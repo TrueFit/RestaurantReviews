@@ -1,0 +1,17 @@
+{
+  "name": "RestaurantReviews",
+  "version": "0.0.1",
+  "description": "TrueFit Coding Exercise",
+  "private": true,
+  "dependencies": {
+    "express": "^4.10.6",
+    "body-parser": "^1.10.0",
+    "method-override": "^2.3.0",
+    "sequelize": "^2.0.0-rc3",
+    "sqlite3": "^3.0.4",
+    "sequelize-cli": "^1.0.0"
+  },
+  "scripts": {
+    "db:seed": "node db/seeds.js"
+  }
+}
