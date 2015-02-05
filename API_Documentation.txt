@@ -1,0 +1,434 @@
+The functions implemented so far in my API are detailed below.  I put it together in PHP with a MySQL backend, and
+all of the comments below are duplicated in the PHP file itself.  The SQL files necessary to create the tables and 
+procedures used by this API are located in the database folder.  They are meant to be used in a pre-existing database
+named Truefit, and allow changes to be easily made if the tables/procedures need to be altered.  The two PHP files 
+in that directory are to placed somewhere on the file system, as they contain the login information for the access 
+required by a normal user and by an administrator.  I would be happy to explain both the choices I made during this 
+process and ideas for ways to expand this API from its current implementation.
+
+The API is intended to use strings representing JSON objects for both the input and output of the functions.  Each 
+function below will indicate the structure of the input and output objects.  Almost every output object contains
+a "feedback" parameter that will either be equal to "success" or the reason for that function's failure.  I've 
+included an extremely simple front end for both the normal user experience and administrator usage.  They are
+located at http://bradplusplus.com/truefit/RestaurantUI.php and http://bradplusplus.com/truefit/helm/AdminUI.php 
+respectively.  Both of these use the API by including it directly, but you could also easily make a PHP page that 
+wraps around the API, accepts a JSON input, and encapsulates all of the functionality if you needed a front end that
+is not PHP (provided it could communicate with the server running this code).
+
+
+
+
+
+  // this function returns a JSON string listing all restaurant types in the database
+  //
+  // output JSON format:
+  // { 
+  //   "types": [
+  //     {
+  //       "typeID": ??, <-- always non-null
+  //       "name": "??"  <-- always non-null
+  //     },
+  //     ...
+  //   ]
+  // }
+  function GetRestaurantTypes()
+
+  // this function takes a JSON string describing a new restaurant type and adds it to the database
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "name": "??"
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function AdminAddRestaurantType($jsonString)
+
+  // this function takes a JSON string describing restaurant type and edits it in the database
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "typeID": ??,
+  //   "name": "??"
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function AdminEditRestaurantType($jsonString)
+
+
+
+  // this function takes a JSON string describing a new restaurant and adds it to the database
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "name": "??",
+  //   "typeID": ??,
+  //   "location": {
+  //     "addr1": "??",
+  //     "addr2": "??",     <-- can be null
+  //     "city": "??",
+  //     "state": "??",
+  //     "zip": "??",
+  //     "latitude": ??,    <-- can be null
+  //     "longitude": ??    <-- can be null
+  //   },
+  //   "phoneNumber": "??", <-- can be null
+  //   "websiteURL": "??"   <-- can be null
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function AddRestaurant($jsonString)
+
+  // this function takes a JSON string describing a restaurant and updates it in the database
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "restaurantID": ??,
+  //   "name": "??",
+  //   "isApproved": "??",
+  //   "typeID": ??,
+  //   "location": {
+  //     "addr1": "??",
+  //     "addr2": "??",     <-- can be null
+  //     "city": "??",
+  //     "state": "??",
+  //     "zip": "??",
+  //     "latitude": ??,    <-- can be null
+  //     "longitude": ??    <-- can be null
+  //   },
+  //   "phoneNumber": "??", <-- can be null
+  //   "websiteURL": "??"   <-- can be null
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function AdminEditRestaurant($jsonString)
+
+
+
+  // this function takes a JSON string describing a new user and adds it to the database
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "username": "??",
+  //   "email": "??",
+  //   "pwHash": "??",
+  //   "firstName": "??", <-- can be null
+  //   "lastName": "??"   <-- can be null
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function AddUser($jsonString)
+
+  // this function takes a JSON string describing an existing user and updates it in the database
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "userID": ??,
+  //   "isApproved": "??",
+  //   "username": "??",
+  //   "email": "??",
+  //   "pwHash": "??",
+  //   "firstName": "??", <-- can be null
+  //   "lastName": "??"   <-- can be null
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function AdminEditUser($jsonString)
+
+  // this function takes a JSON string describing a user and compares it to the database to see whether
+  // they are a proper user
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "username": "??",
+  //   "pwHash": "??"
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function VerifyUser($jsonString)
+
+
+
+  // this function takes a JSON string describing an ID and returns the matching restaurant
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "restaurantID": ??,
+  //   "isAdmin": "??"     <- if this is present and equal to YES, we can override the isApproved flags
+  // }
+  //
+  // output JSON format: (returns "success" for the feedback if all went well, otherwise the error)
+  //                     (see the function GetRestaurantArrayFromQuery below for the details of the restaurant section)
+  // { 
+  //   "feedback": "??", <-- always non-null
+  //   "restaurant": {}
+  // }
+  //
+  function GetRestaurantByID($jsonString)
+
+  // this function takes a JSON string describing a city and returns the restaurants located there
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "city": "??",
+  //   "state": "??",
+  //   "isAdmin": "??"     <- if this is present and equal to YES, we can override the isApproved flags
+  // }
+  //
+  // output JSON format: (returns "success" for the feedback if all went well, otherwise the error)
+  //                     (see the function GetRestaurantArrayFromQuery below for the details of the restaurants section)
+  // { 
+  //   "feedback": "??", <-- always non-null
+  //   "restaurants": []
+  // }
+  //
+  function GetRestaurantsByCity($jsonString)
+
+  // this function takes a JSON string describing a restaurant name and returns any matches we find
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "name": "??",
+  //   "isAdmin": "??"     <- if this is present and equal to YES, we can override the isApproved flags
+  // }
+  //
+  // output JSON format: (returns "success" for the feedback if all went well, otherwise the error)
+  //                     (see the function GetRestaurantArrayFromQuery below for the details of the restaurants section)
+  // { 
+  //   "feedback": "??", <-- always non-null
+  //   "restaurants": []
+  // }
+  //
+  function GetRestaurantsByName($jsonString)
+
+  // this function takes a JSON string describing a location and distance in miles and returns any 
+  // restaurants within that range.
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "latitude": ??,
+  //   "longitude": ??,
+  //   "distanceInMiles": ??,
+  //   "isAdmin": "??"        <- if this is present and equal to YES, we can override the isApproved flags
+  // }
+  //
+  // output JSON format: (returns "success" for the feedback if all went well, otherwise the error)
+  //                     (see the function GetRestaurantArrayFromQuery below for the details of the restaurants section)
+  // { 
+  //   "feedback": "??", <-- always non-null
+  //   "restaurants": []
+  // }
+  //
+  function GetRestaurantsByDistance($jsonString)
+
+  // this is a helper function for the rest of the API.  it takes as an argument a SQL string that will return a
+  // series of restaurants and the associated data.  it returns a PHP array containing all of the information,
+  // so every function that outputs restaurant data should be leveraging this and returning the data structure below.
+  //
+  // output JSON format:
+  // [
+  //   {
+  //     "ID": ??,             <-- always non-null
+  //     "name": "??",         <-- always non-null
+  //     "isApproved": "??",   <-- always non-null
+  //     "typeID": ??,         <-- always non-null
+  //     "typeName": "??",     <-- always non-null
+  //     "location": {         <-- always non-null
+  //       "addr1": "??",      <-- always non-null
+  //       "addr2": "??",
+  //       "city": "??",       <-- always non-null
+  //       "state": "??",      <-- always non-null
+  //       "zip": "??",        <-- always non-null
+  //       "latitude": ??,
+  //       "longitude": ??,
+  //       "distanceInMiles": ??
+  //     },
+  //     "phoneNumber": "??",
+  //     "websiteURL": "??",
+  //     "reviews": [          <-- always non-null
+  //       {
+  //         "reviewID": ??,   <-- always non-null
+  //         "userID": ??,     <-- always non-null
+  //         "userName": "??", <-- always non-null
+  //         "postTime": "??", <-- always non-null
+  //         "rating": ??,
+  //         "price": ??,
+  //         "text": "??"      <-- always non-null
+  //       },
+  //       ...
+  //     ],
+  //     "rating": {           <-- always non-null
+  //       "count": ??,        <-- always non-null
+  //       "total": ??         <-- always non-null
+  //     },
+  //     "price": {            <-- always non-null
+  //       "count": ??,        <-- always non-null
+  //       "total": ??         <-- always non-null
+  //     }
+  //   },
+  //   ...
+  // ]
+  function GetRestaurantArrayFromQuery($query)
+
+
+
+  // this function takes a JSON string describing some login info and a review that user is trying to post.
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "loginInfo": {
+  //     "username": "??",
+  //     "pwHash": "??"
+  //   },
+  //   "restaurantID": ??,
+  //   "rating": ??,       <-- can be null
+  //   "price": ??,        <-- can be null
+  //   "text": "??"
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function PostReview($jsonString)
+
+  // this function takes a JSON string describing some login info and a review that user is trying to edit.
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "loginInfo": {
+  //     "username": "??",
+  //     "pwHash": "??"
+  //   },
+  //   "reviewID": ??,
+  //   "rating": ??,       <-- can be null
+  //   "price": ??,        <-- can be null
+  //   "text": "??"
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function EditReview($jsonString)
+
+  // this function takes a JSON string describing a review that the admin is trying to edit.
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "reviewID": ??,
+  //   "isApproved"; "??",
+  //   "text": "??"
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function AdminEditReview($jsonString)
+
+  // this function takes a JSON string describing some login info and a review that user is trying to delete.
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "loginInfo": {
+  //     "username": "??",
+  //     "pwHash": "??"
+  //   },
+  //   "reviewID": ??
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??" <-- always non-null
+  // }
+  function DeleteReview($jsonString)
+
+
+
+  // this function takes a JSON string describing a user name and returns any matching users who have written reviews
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "username": "??",
+  //   "isAdmin": "??"     <- if this is present and equal to YES, we can override the isApproved flags
+  // }
+  //
+  // output JSON format: (returns "success" for the feedback if all went well, otherwise the error)
+  // { 
+  //   "feedback": "??",     <-- always non-null
+  //   "users": [            <-- always non-null
+  //     {
+  //       "userID": ??,     <-- always non-null
+  //       "username": "??", <-- always non-null
+  //       "reviewCount": ?? <-- always non-null
+  //     },
+  //     ...
+  //   ]
+  // }
+  //
+  function GetUsersByName($jsonString)
+
+  // this function takes a JSON string describing a user and returns all reviews they have written.
+  //
+  // input JSON format (fill in the ??s as needed):
+  // { 
+  //   "userID": ??,
+  //   "isAdmin": "??"     <- if this is present and equal to YES, we can override the isApproved flags
+  // }
+  //
+  // output JSON format (returns "success" if all went well, otherwise the error)
+  // {
+  //   "feedback": "??",             <-- always non-null
+  //   "userID": ??,                 <-- always non-null
+  //   "userName": "??",             <-- always non-null
+  //   "reviews": [                  <-- always non-null
+  //     {
+  //         "reviewID": ??,         <-- always non-null
+  //         "restaurant": {         <-- always non-null
+  //           "restaurantID": ??,   <-- always non-null
+  //           "name": "??",         <-- always non-null
+  //           "typeID": ??,         <-- always non-null
+  //           "typeName": "??",     <-- always non-null
+  //           "location": {         <-- always non-null
+  //             "addr1": "??",      <-- always non-null
+  //             "addr2": "??",
+  //             "city": "??",       <-- always non-null
+  //             "state": "??",      <-- always non-null
+  //             "zip": "??",        <-- always non-null
+  //             "latitude": ??,
+  //             "longitude": ??,
+  //             "distanceInMiles": ??
+  //           },
+  //           "phoneNumber": "??",
+  //           "websiteURL": "??",
+  //         },
+  //         "postTime": "??",       <-- always non-null
+  //         "rating": ??,
+  //         "price": ??,
+  //         "text": "??"            <-- always non-null
+  //     },
+  //     ...
+  //   ]
+  // }
+  function GetReviewsByUserID($jsonString)
