@@ -10,19 +10,20 @@
     {
       allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.@-";
     }
-    else if( id == "firstName" || id == "lastName" || id == "findCity" || id == "addCity" )
+    else if( id == "firstName" || id == "lastName" || id == "findCity" || id == "addCity" || id == "editRestaurantCity" )
     {
       allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-.' ";
     }
-    else if( id == "findState" || id == "addState" )
+    else if( id == "findState" || id == "addState" || id == "editRestaurantState" )
     {
       allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
-    else if( id == "addLongitude" || id == "addLatitude" || id == "findLongitude" || id == "findLatitude" )
+    else if( id == "addLongitude" || id == "addLatitude" || id == "findLongitude" || 
+             id == "findLatitude" || id == "editRestaurantLatitude" || id == "editRestaurantLongitude" )
     {
       allowed = "0123456789.";
     }
-    else if( id == "addPhone" || id == "addZip" )
+    else if( id == "addPhone" || id == "addZip" || id == "editRestaurantZIP" )
     {
       allowed = "0123456789-";
     }
@@ -37,7 +38,7 @@
 
     var element = document.getElementById(id);
     var string = element.value;
-    if( id == "findState" || id == "addState" )
+    if( id == "findState" || id == "addState" || id == "editRestaurantState" )
     {
       string = string.toUpperCase();
     }

@@ -78,8 +78,6 @@
   // }
   function GetRestaurantTypes()
   {
-    global $link; 
-
     // initialize the string
     $returnObject = array("types" => array());
 
@@ -108,8 +106,6 @@
   // }
   function AdminAddRestaurantType($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $typeInfo = json_decode($jsonString, true);
 
@@ -155,8 +151,6 @@
   // }
   function AdminEditRestaurantType($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $typeInfo = json_decode($jsonString, true);
 
@@ -218,8 +212,6 @@
   // }
   function AddRestaurant($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $restaurantInfo = json_decode($jsonString, true);
     if( !isset($restaurantInfo["location"]) )
@@ -300,8 +292,6 @@
   // }
   function AdminEditRestaurant($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $restaurantInfo = json_decode($jsonString, true);
     if( !isset($restaurantInfo["location"]) )
@@ -380,8 +370,6 @@
   // }
   function AddUser($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $userInfo = json_decode($jsonString, true);
 
@@ -456,8 +444,6 @@
   // }
   function AdminEditUser($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $userInfo = json_decode($jsonString, true);
 
@@ -527,8 +513,6 @@
   // }
   function VerifyUser($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $userInfo = json_decode($jsonString, true);
 
@@ -589,8 +573,6 @@
   //
   function GetRestaurantByID($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $restaurantInfo = json_decode($jsonString, true);
 
@@ -638,8 +620,6 @@
   //
   function GetRestaurantsByCity($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $cityInfo = json_decode($jsonString, true);
 
@@ -689,8 +669,6 @@
   //
   function GetRestaurantsByName($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $nameInfo = json_decode($jsonString, true);
 
@@ -740,8 +718,6 @@
   //
   function GetRestaurantsByDistance($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $locationInfo = json_decode($jsonString, true);
 
@@ -901,8 +877,6 @@
   // }
   function PostReview($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $reviewInfo = json_decode($jsonString, true);
 
@@ -968,8 +942,6 @@
   // }
   function EditReview($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $reviewInfo = json_decode($jsonString, true);
 
@@ -1030,8 +1002,6 @@
   // }
   function AdminEditReview($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $reviewInfo = json_decode($jsonString, true);
 
@@ -1077,8 +1047,6 @@
   // }
   function DeleteReview($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $reviewInfo = json_decode($jsonString, true);
 
@@ -1142,8 +1110,6 @@
   //
   function GetUsersByName($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $nameInfo = json_decode($jsonString, true);
 
@@ -1226,8 +1192,6 @@
   // }
   function GetReviewsByUserID($jsonString)
   {
-    global $link; 
-
     // parse the string into an object
     $userInfo = json_decode($jsonString, true);
 
