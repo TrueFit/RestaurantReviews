@@ -20,3 +20,26 @@ Please use whatever technology and techniques you feel are applicable to solve t
 Please fork this repository. When you have completed your solution, please issue a pull request to notify us that you are ready.
 
 Have fun.
+=========================================================================================================
+
+This application was developed and tested with the following configuration
+
+1- Apache v2.4.9 (rewrite_module enabled)
+2- PHP 5.5.12
+3- MySQL 5.6.17;
+4- Composer Dependency Management for PHP (getcomposer.org)
+5- Slim Framework (www.slimframework.com/)
+6- idiorm (idiorm.readthedocs.org)
+
+Once apache virtual directory and db are setup, type any of the following paths
+API Calls:
+GET - [domain]/restaurants/city/:id
+POST - [domain]/restaurants/
+GET - [domain]/restaurants/:id
+GET - [domain]/reviews/user/:id
+POST - [domain]/reviews/
+DELETE - [domain]/reviews/
+
+Restaurant Tests:
+[domain]/test/RestaurantTests/add
+[domain]/test/RestaurantTests/details 

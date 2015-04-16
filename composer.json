@@ -1,0 +1,13 @@
+{
+    "require": {
+        "slim/slim": "~2.6",
+        "j4mie/idiorm": "1.5.x",
+        "phpunit/phpunit": "4.6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "truefit\\": "src/",
+            "truefitTests\\": "tests/"
+        }
+    }
+}
