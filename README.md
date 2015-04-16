@@ -25,21 +25,34 @@ Have fun.
 This application was developed and tested with the following configuration
 
 1- Apache v2.4.9 (rewrite_module enabled)
+
 2- PHP 5.5.12
+
 3- MySQL 5.6.17;
+
 4- Composer Dependency Management for PHP (getcomposer.org)
+
 5- Slim Framework (www.slimframework.com/)
+
 6- idiorm (idiorm.readthedocs.org)
 
 Once apache virtual directory and db are setup, type any of the following paths
 API Calls:
-GET - [domain]/restaurants/city/:id
-POST - [domain]/restaurants/
-GET - [domain]/restaurants/:id
-GET - [domain]/reviews/user/:id
-POST - [domain]/reviews/
-DELETE - [domain]/reviews/
+----------
+GET - [domain]/restaurants/city/:id      (list of restaurants by city)
+
+POST - [domain]/restaurants/             (add restaurant)
+
+GET - [domain]/restaurants/:id           (details of a restaurant)
+
+GET - [domain]/reviews/user/:id          (reviews by user)
+
+POST - [domain]/reviews/                 (add review)
+
+DELETE - [domain]/reviews/               (delete review)
 
 Restaurant Tests:
+----------------
 [domain]/test/RestaurantTests/add
+
 [domain]/test/RestaurantTests/details 
