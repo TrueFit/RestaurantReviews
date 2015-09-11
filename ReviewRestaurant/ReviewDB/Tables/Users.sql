@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Users]
+(
+	[UserID] INT NOT NULL IDENTITY(1,1), 
+    [UserName] NVARCHAR(50) NOT NULL, 
+    CONSTRAINT [PK_Users] PRIMARY KEY ([UserID])
+)

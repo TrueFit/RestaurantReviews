@@ -1,0 +1,25 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Cities] (Table)
+       [dbo].[Rating] (Table)
+       [dbo].[Restaurant] (Table)
+       [dbo].[Reviews] (Table)
+       [dbo].[States] (Table)
+       [dbo].[Users] (Table)
+       [dbo].[FK_Cities_States] (Foreign Key)
+       [dbo].[FK_Restaurant_Cities] (Foreign Key)
+       [dbo].[FK_Reviews_Users] (Foreign Key)
+       [dbo].[FK_Reviews_Restaurant] (Foreign Key)
+       [dbo].[FK_Reviews_Rating] (Foreign Key)
+
+** Supporting actions
