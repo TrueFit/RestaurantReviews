@@ -1,0 +1,5 @@
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\bin\Release\ReviewDB.dacpac
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\bin\Release\ReviewDB.dll
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\bin\Release\ReviewDB.pdb
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\obj\Release\ReviewDB.dll
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\obj\Release\ReviewDB.pdb

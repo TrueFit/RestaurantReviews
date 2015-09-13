@@ -1,0 +1,199 @@
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Reviews_Users". The conflict occurred in database "ReviewDB", table "dbo.Users", column 'UserID'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 29
+   at DAL.ReviewsDAL.InsertRestarantReview(Int32 userID, Int32 restaurantID, Int32 ratingID, String reviewText, Int32 reviewID) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 30
+ClientConnectionId:b164a8ae-7472-40f3-942c-ffcca2f91790
+Error Number:547,State:0,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'GetAllReviewsByCity' expects parameter '@CityName', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at DAL.DBConnection.SelectData(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 46
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 55
+ClientConnectionId:fe5f22c7-3f96-49b3-8403-1c2b7b56cef0
+Error Number:201,State:4,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): The parameterized query '(@Pittsburgh nvarchar(4000))GetAllReviewsByCity' expects the parameter '@Pittsburgh', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at DAL.DBConnection.SelectData(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 46
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 55
+ClientConnectionId:69b4019b-a8c9-4de0-9c4f-16ca939ca65c
+Error Number:8178,State:1,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): The parameterized query '(@CityName nvarchar(4000))GetAllReviewsByCity' expects the parameter '@CityName', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at DAL.DBConnection.SelectData(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 46
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 55
+ClientConnectionId:14a302a1-6310-40a4-8a05-3288c4f18b2d
+Error Number:8178,State:1,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'GetAllReviewsByCity' expects parameter '@CityName', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at DAL.DBConnection.SelectData(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 46
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 55
+ClientConnectionId:52dc2ac6-88ce-4e7e-9898-79a725da2c80
+Error Number:201,State:4,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'GetAllReviewsByCity' expects parameter '@CityName', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at DAL.DBConnection.SelectData(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 46
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 55
+ClientConnectionId:202b2d6a-a6dd-42fc-ba18-13516bb8ec38
+Error Number:201,State:4,Class:16
+PROGRAM Error: 0 : System.InvalidOperationException: Invalid attempt to call Read when reader is closed.
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 60
+PROGRAM Error: 0 : System.InvalidOperationException: Invalid attempt to call Read when reader is closed.
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 62
+PROGRAM Error: 0 : System.InvalidOperationException: Invalid attempt to call Read when reader is closed.
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 62
+PROGRAM Error: 0 : System.InvalidOperationException: Invalid attempt to call Read when reader is closed.
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 62
+PROGRAM Error: 0 : System.InvalidOperationException: Invalid attempt to call Read when reader is closed.
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 62
+PROGRAM Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 66
+PROGRAM Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 66
+te.processhost.managed.exe Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 66
+te.processhost.managed.exe Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 66
+te.processhost.managed.exe Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 66
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Reviews_Users". The conflict occurred in database "ReviewDB", table "dbo.Users", column 'UserID'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 29
+   at DAL.ReviewsDAL.InsertRestarantReview(Int32 userID, Int32 restaurantID, Int32 ratingID, String reviewText, Int32 reviewID) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 31
+ClientConnectionId:d384cf6e-3811-4105-9c7b-9dfe1f324cb8
+Error Number:547,State:0,Class:16
+PROGRAM Error: 0 : System.InvalidOperationException: Invalid attempt to call Read when reader is closed.
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at DAL.ReviewsDAL.GetAllReviewsByRestaurant(String restaurantName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 104
+PROGRAM Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByRestaurant(String restaurantName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 107
+PROGRAM Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByRestaurant(String restaurantName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 107
+te.processhost.managed.exe Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByRestaurant(String restaurantName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 107
+PROGRAM Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByRestaurant(String restaurantName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 107
+te.processhost.managed.exe Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByRestaurant(String restaurantName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 107
+PROGRAM Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByRestaurant(String restaurantName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 107
+PROGRAM Error: 0 : System.IndexOutOfRangeException: ReviewID
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DAL.ReviewsDAL.GetAllReviewsByRestaurant(String restaurantName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 107

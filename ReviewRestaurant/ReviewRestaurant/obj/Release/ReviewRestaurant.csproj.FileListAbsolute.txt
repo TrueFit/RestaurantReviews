@@ -1,0 +1,8 @@
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\bin\Release\ReviewRestaurant.exe.config
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\bin\Release\ReviewRestaurant.exe
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\bin\Release\ReviewRestaurant.pdb
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Release\ReviewRestaurant.csprojResolveAssemblyReference.cache
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Release\ReviewRestaurant.Properties.Resources.resources
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Release\ReviewRestaurant.csproj.GenerateResource.Cache
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Release\ReviewRestaurant.exe
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Release\ReviewRestaurant.pdb

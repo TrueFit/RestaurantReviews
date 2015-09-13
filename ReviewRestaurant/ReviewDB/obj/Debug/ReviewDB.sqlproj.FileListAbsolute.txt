@@ -10,5 +10,9 @@ C:\Users\Martha\documents\visual studio 2015\Projects\ReviewRestaurant\ReviewDB\
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\bin\Debug\ReviewDB.dacpac
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\bin\Debug\ReviewDB.dll
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\bin\Debug\ReviewDB.pdb
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\obj\Debug\Model.xml
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\obj\Debug\refactor.xml
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\obj\Debug\postdeploy.sql
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\obj\Debug\predeploy.sql
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\obj\Debug\ReviewDB.dll
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewDB\obj\Debug\ReviewDB.pdb

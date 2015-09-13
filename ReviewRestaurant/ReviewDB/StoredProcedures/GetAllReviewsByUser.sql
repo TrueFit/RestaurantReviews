@@ -1,6 +1,27 @@
 ﻿CREATE PROCEDURE [dbo].[GetAllReviewsByUser]
-	@param1 int = 0,
-	@param2 int
+	@UserName NVARCHAR(50)
 AS
-	SELECT @param1, @param2
-RETURN 0
+SET NOCOUNT ON
+
+DECLARE @UserID SMALLINT
+
+EXEC	[dbo].[GetUserIDByName]
+		@UserName = @UserName,
+		@UserID = @UserID OUTPUT
+
+
+SELECT rv.ReviewID,
+r.RestaurantName,
+u.Username,
+rv.ReviewText,
+rt.RatingDescription,
+c.CityName,
+s.StateName
+FROM Users u
+INNER JOIN Reviews rv ON rv.UserID = u.UserID
+INNER JOIN Restaurant r ON r.RestaurantID = rv.RestaurantID
+INNER JOIN Rating rt ON rt.RatingID = rv.RatingID
+INNER JOIN Cities c ON c.CityID = r.CityID
+INNER JOIN States s ON s.StateID = c.CityID
+WHERE rv.UserID = @UserID
+GO

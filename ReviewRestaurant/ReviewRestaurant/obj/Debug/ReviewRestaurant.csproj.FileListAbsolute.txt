@@ -7,5 +7,10 @@ C:\Users\Martha\documents\visual studio 2015\Projects\ReviewRestaurant\ReviewRes
 C:\Users\Martha\documents\visual studio 2015\Projects\ReviewRestaurant\ReviewRestaurant\obj\Debug\ReviewRestaurant.exe
 C:\Users\Martha\documents\visual studio 2015\Projects\ReviewRestaurant\ReviewRestaurant\obj\Debug\ReviewRestaurant.pdb
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\bin\Debug\ReviewRestaurant.exe.config
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\bin\Debug\ReviewRestaurant.exe
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\bin\Debug\ReviewRestaurant.pdb
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Debug\ReviewRestaurant.csprojResolveAssemblyReference.cache
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Debug\ReviewRestaurant.Properties.Resources.resources
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Debug\ReviewRestaurant.csproj.GenerateResource.Cache
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Debug\ReviewRestaurant.exe
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\ReviewRestaurant\obj\Debug\ReviewRestaurant.pdb

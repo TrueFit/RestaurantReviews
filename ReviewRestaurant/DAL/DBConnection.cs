@@ -39,15 +39,11 @@ namespace DAL
             return o;
         }
 
-        public DataTable SelectData(SqlCommand cmd)
+        public SqlDataReader ExecReader(SqlCommand cmd)
         {
             cmd.Connection = GetConnection();
-            DataTable dt = new DataTable();
             SqlDataReader reader = cmd.ExecuteReader();
-            dt.Load(reader);
-            connection.Close();
-            return dt;
-
+            return reader;
         }
 
     }

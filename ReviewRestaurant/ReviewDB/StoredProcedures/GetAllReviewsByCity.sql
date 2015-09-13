@@ -10,7 +10,8 @@ EXEC	[dbo].[GetCityIDByCityName]
 		@CityID = @CityID OUTPUT
 
 
-SELECT r.RestaurantName,
+SELECT rv.ReviewID,
+r.RestaurantName,
 u.Username,
 rv.ReviewText,
 rt.RatingDescription,
