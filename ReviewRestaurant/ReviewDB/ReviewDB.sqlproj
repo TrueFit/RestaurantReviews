@@ -75,6 +75,13 @@
     <Build Include="StoredProcedures\GetAllReviewsByRestaurant.sql" />
     <Build Include="StoredProcedures\GetAllReviewsByCity.sql" />
     <Build Include="StoredProcedures\GetAllReviewsByUser.sql" />
+    <Build Include="StoredProcedures\InsertRestaurantReview.sql" />
+    <Build Include="StoredProcedures\AddNewRestaurant.sql" />
+    <Build Include="StoredProcedures\GetStateIDByStateName.sql" />
+    <Build Include="StoredProcedures\GetRatingIDByRating.sql" />
+    <Build Include="StoredProcedures\DeleteReviewByID.sql" />
+    <Build Include="StoredProcedures\InsertReviewForNewRestaurant.sql" />
+    <Build Include="StoredProcedures\GetReviewByID.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ReviewDB.refactorlog" />

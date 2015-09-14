@@ -4,4 +4,3 @@ C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\bin\Rele
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\bin\Release\DAL.pdb
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\obj\Release\DAL.dll
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\obj\Release\DAL.pdb
-C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
