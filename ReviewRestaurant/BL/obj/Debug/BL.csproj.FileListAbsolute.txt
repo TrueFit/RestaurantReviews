@@ -1,0 +1,8 @@
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Debug\App.config
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Debug\BL.dll
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Debug\BL.pdb
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Debug\DAL.dll
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Debug\DAL.pdb
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\obj\Debug\BL.dll
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\obj\Debug\BL.pdb

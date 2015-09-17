@@ -1,0 +1,20 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Cities] (Table)
+       [dbo].[Rating] (Table)
+       [dbo].[Restaurant] (Table)
+       [dbo].[Reviews] (Table)
+       [dbo].[States] (Table)
+       [dbo].[Users] (Table)
+
+** Supporting actions
