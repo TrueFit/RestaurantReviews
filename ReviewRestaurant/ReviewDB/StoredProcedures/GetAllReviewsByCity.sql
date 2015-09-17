@@ -16,7 +16,8 @@ u.Username,
 rv.ReviewText,
 rt.RatingDescription,
 c.CityName,
-s.StateName
+s.StateName,
+rv.ReviewDate
 FROM Cities c
 INNER JOIN States s ON c.StateID = s.StateID
 INNER JOIN Restaurant r ON r.CityID = c.CityID

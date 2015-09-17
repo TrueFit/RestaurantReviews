@@ -12,12 +12,21 @@ namespace Tests
     [TestFixture]
     public class DALTests
     {
+        private string username = "MissPiggy";
+        private string restaurantN = "Nakama";
+        private string restaurantQSL = "Quaker Steak and Lube";
+        private string ratingVG = "Very Good";
+        private string ratingP = "Poor";
+        private string cityPitt = "Pittsburgh";
+        private string citySharon = "Sharon";
+        
+
         [Test]
         public void InsertRestaurantReview()
         {
             int id;
             ReviewsDAL rd = new ReviewsDAL();
-            id = rd.InsertRestarantReview("MissPiggy", "Vintage Estates", "Very Good", "Nice place.");
+            id = rd.InsertRestarantReview(LoadRDCForTest("Insert Restaurant Review"));
             Assert.AreNotEqual(-1, id);
         }
 
@@ -26,50 +35,50 @@ namespace Tests
         {
             int id;
             ReviewsDAL rd = new ReviewsDAL();
-            id = rd.InsertReviewForNewRestaurant("MissPiggy", "New Restaurant", "Pittsburgh","Very Good", "Nice place.");
+            id = rd.InsertReviewForNewRestaurant(LoadRDCForNewRestaurantTest("New restaurant test"));
             Assert.AreNotEqual(-1, id);
         }
 
         [Test]
         public void GetAllReviewsByCity()
         {
-            string city = "Sharon";
-            ReviewDataContainer rdc = new ReviewDataContainer();
             ReviewsDAL rd = new ReviewsDAL();
-            rd.InsertReview(1, 5, 1, "Reviews by city test", 1);
+            ReviewDataContainer inRdc = LoadRDCForTest("Get all reviews by city");
+            rd.InsertRestarantReview(inRdc);
             IList<ReviewDataContainer> reviews = new List<ReviewDataContainer>();
-            reviews = rd.GetAllReviewsByCity(city);
-            rdc = reviews.FirstOrDefault();
+            reviews = rd.GetAllReviewsByCity(inRdc.CityName);
+            ReviewDataContainer rdc = reviews.FirstOrDefault();
             Console.WriteLine(rdc.ReviewText.ToString());
-            Assert.IsTrue(rdc.CityName == city);
+
+            Assert.IsTrue(rdc.CityName == inRdc.CityName);
         }
 
         [Test]
         public void GetAllReviewsByRestaurant()
         {
-            string restaurantName = "Quaker Steak and Lube";
-            ReviewDataContainer rdc = new ReviewDataContainer();
             ReviewsDAL rd = new ReviewsDAL();
-            rd.InsertReview(1, 5, 1, "Reviews by restaurant test", 1);
+            ReviewDataContainer inRdc = LoadRDCForTest("Get all reviews by Restaurant");
+            rd.InsertRestarantReview(inRdc);
             IList<ReviewDataContainer> reviews = new List<ReviewDataContainer>();
-            reviews = rd.GetAllReviewsByRestaurant(restaurantName);
-            rdc = reviews.FirstOrDefault();
+            reviews = rd.GetAllReviewsByRestaurant(inRdc.RestaurantName);
+            ReviewDataContainer rdc = reviews.FirstOrDefault();
             Console.WriteLine(rdc.ReviewText.ToString());
-            Assert.IsTrue(rdc.RestaurantName == restaurantName);
+
+            Assert.IsTrue(rdc.RestaurantName == inRdc.RestaurantName);
         }
 
         [Test]
         public void GetAllReviewsByUser()
         {
-            string userName = "MissPiggy";
-            ReviewDataContainer rdc = new ReviewDataContainer();
             ReviewsDAL rd = new ReviewsDAL();
-            rd.InsertReview(1, 5, 1, "Reviews by user test", 1);
+            ReviewDataContainer inRdc = LoadRDCForTest("Get all reviews by user");
+            rd.InsertRestarantReview(inRdc);
             IList<ReviewDataContainer> reviews = new List<ReviewDataContainer>();
-            reviews = rd.GetAllReviewsByUser(userName);
-            rdc = reviews.FirstOrDefault();
+            reviews = rd.GetAllReviewsByUser(inRdc.Username);
+            ReviewDataContainer rdc = reviews.FirstOrDefault();
             Console.WriteLine(rdc.ReviewText.ToString());
-            Assert.IsTrue(rdc.Username == userName);
+
+            Assert.IsTrue(rdc.Username == inRdc.Username);
         }
 
         [Test]
@@ -77,9 +86,8 @@ namespace Tests
         {
             int id, delCount;
             ReviewsDAL rd = new ReviewsDAL();
-            id = rd.InsertRestarantReview("MissPiggy", "Vintage Estates", "Very Good", "Nice place.");
-
-            delCount = rd.DeleteReview(id, "MissPiggy");
+            id = rd.InsertRestarantReview(LoadRDCForTest("Delete Review"));
+            delCount = rd.DeleteReview(id, username);
 
             Assert.AreEqual(delCount, 1);
         }
@@ -88,14 +96,13 @@ namespace Tests
         public void GetReviewByID()
         {
             int id;
-            string reviewText = "Testing get review by ID";
             ReviewsDAL rd = new ReviewsDAL();
-            id = rd.InsertRestarantReview("MissPiggy", "Vintage Estates", "Very Good", reviewText);
-
+            ReviewDataContainer inRdc = LoadRDCForTest("Get review by ID");
+            id = rd.InsertRestarantReview(inRdc);
             ReviewDataContainer rdc = new ReviewDataContainer();
             rdc = rd.GetReviewByID(id);
 
-            Assert.AreEqual(reviewText, rdc.ReviewText);
+            Assert.AreEqual(inRdc.ReviewText, rdc.ReviewText);
 
         }
 
@@ -117,5 +124,30 @@ namespace Tests
             Assert.IsTrue(passed);
         }
 
+        private ReviewDataContainer LoadRDCForTest(string testString)
+        {
+            ReviewDataContainer rdc = new ReviewDataContainer();
+
+            rdc.Username = username;
+            rdc.RestaurantName = restaurantQSL;
+            rdc.RatingDescription = ratingVG;
+            rdc.ReviewText = testString;
+            rdc.CityName = citySharon;
+
+            return rdc;
+        }
+
+        private ReviewDataContainer LoadRDCForNewRestaurantTest(string testString)
+        {
+            ReviewDataContainer rdc = new ReviewDataContainer();
+
+            rdc.Username = username;
+            rdc.RestaurantName = "Brand new place";
+            rdc.RatingDescription = ratingVG;
+            rdc.ReviewText = testString;
+            rdc.CityName = cityPitt;
+
+            return rdc;
+        }
     }
 }

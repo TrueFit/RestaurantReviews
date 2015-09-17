@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReviewRestaurant", "ReviewRestaurant\ReviewRestaurant.csproj", "{9A4F6D6D-646F-4568-A562-ABA782E61FA6}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ReviewDB", "ReviewDB\ReviewDB.sqlproj", "{C096A4C7-BCC9-4186-A9AC-6AEB5C153E4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{5E997C31-67DA-4FB5-A772-3D6E743B5593}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9A4F6D6D-646F-4568-A562-ABA782E61FA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A4F6D6D-646F-4568-A562-ABA782E61FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A4F6D6D-646F-4568-A562-ABA782E61FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A4F6D6D-646F-4568-A562-ABA782E61FA6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C096A4C7-BCC9-4186-A9AC-6AEB5C153E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C096A4C7-BCC9-4186-A9AC-6AEB5C153E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C096A4C7-BCC9-4186-A9AC-6AEB5C153E4E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

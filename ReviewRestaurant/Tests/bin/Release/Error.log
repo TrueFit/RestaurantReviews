@@ -334,3 +334,135 @@ PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Procedure or
    at DAL.ReviewsDAL.InsertReviewForNewRestaurant(String userName, String restaurantName, String cityName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 100
 ClientConnectionId:5498074f-bdbe-4454-ab30-6846fbd18cf2
 Error Number:201,State:4,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserID', table 'ReviewDB.dbo.Reviews'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 29
+   at DAL.ReviewsDAL.InsertRestarantReview(String userName, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 65
+ClientConnectionId:1380d939-e832-40dd-9ec9-f7afe756e4a6
+Error Number:515,State:2,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserID', table 'ReviewDB.dbo.Reviews'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 29
+   at DAL.ReviewsDAL.InsertRestarantReview(String userName, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 65
+ClientConnectionId:0c16a474-91d3-4334-b70c-f1b1572f3201
+Error Number:515,State:2,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserID', table 'ReviewDB.dbo.Reviews'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 30
+   at DAL.ReviewsDAL.InsertRestarantReview(String userName, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 65
+ClientConnectionId:075a4b42-b7a4-4a83-a12d-a08983c75ced
+Error Number:515,State:2,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserID', table 'ReviewDB.dbo.Reviews'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 30
+   at DAL.ReviewsDAL.InsertRestarantReview(String userName, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 71
+ClientConnectionId:5de23ab8-d2d5-4c81-bee1-c42c8f250982
+Error Number:515,State:2,Class:16
+te.processhost.managed.exe Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserID', table 'ReviewDB.dbo.Reviews'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 30
+   at DAL.ReviewsDAL.InsertRestarantReview(String userName, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 71
+ClientConnectionId:3b2a7294-5262-4086-a92b-4c223ec9175a
+Error Number:515,State:2,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserID', table 'ReviewDB.dbo.Reviews'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 30
+   at DAL.ReviewsDAL.InsertRestarantReview(String userName, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 71
+ClientConnectionId:46b35d21-f9c7-45c9-95e2-cf9ae87f4fa9
+Error Number:515,State:2,Class:16
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserID', table 'ReviewDB.dbo.Reviews'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.DBConnection.ExecNonQuery(SqlCommand cmd) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\DBConnection.cs:line 30
+   at DAL.ReviewsDAL.InsertRestarantReview(String userName, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 82
+   at BL.Review.CreateReview(String username, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\Review.cs:line 30
+ClientConnectionId:46b35d21-f9c7-45c9-95e2-cf9ae87f4fa9
+Error Number:515,State:2,Class:16
+PROGRAM Error: 0 : System.ArgumentNullException: Value cannot be null.
+Parameter name: validationContext
+   at System.ComponentModel.DataAnnotations.Validator.GetObjectValidationErrors(Object instance, ValidationContext validationContext, Boolean validateAllProperties, Boolean breakOnFirstError)
+   at System.ComponentModel.DataAnnotations.Validator.TryValidateObject(Object instance, ValidationContext validationContext, ICollection`1 validationResults, Boolean validateAllProperties)
+   at BL.Review.CreateReview(String username, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\Review.cs:line 26
+te.processhost.managed.exe Error: 0 : System.ArgumentNullException: Value cannot be null.
+Parameter name: validationContext
+   at System.ComponentModel.DataAnnotations.Validator.GetObjectValidationErrors(Object instance, ValidationContext validationContext, Boolean validateAllProperties, Boolean breakOnFirstError)
+   at System.ComponentModel.DataAnnotations.Validator.TryValidateObject(Object instance, ValidationContext validationContext, ICollection`1 validationResults, Boolean validateAllProperties)
+   at BL.Review.CreateReview(String username, String restaurantName, String ratingDescription, String reviewText) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\Review.cs:line 26
+PROGRAM Error: 0 : System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'GetAllReviewsByCity' expects parameter '@CityName', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at DAL.ReviewsDAL.GetAllReviewsByCity(String cityName) in C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\DAL\ReviewsDAL.cs:line 133
+ClientConnectionId:e9d8b477-7f31-4b33-960b-51944bfcd708
+Error Number:201,State:4,Class:16

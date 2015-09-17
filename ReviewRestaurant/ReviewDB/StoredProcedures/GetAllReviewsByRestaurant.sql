@@ -15,7 +15,8 @@ u.Username,
 rv.ReviewText,
 rt.RatingDescription,
 c.CityName,
-s.StateName
+s.StateName,
+rv.ReviewDate
 FROM Restaurant r
 INNER JOIN Reviews rv ON rv.RestaurantID = r.RestaurantID
 INNER JOIN Rating rt ON rv.RatingID = rt.RatingID

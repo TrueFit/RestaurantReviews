@@ -14,3 +14,5 @@ C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\Tests\bin\Re
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\Tests\obj\Release\Tests.csprojResolveAssemblyReference.cache
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\Tests\obj\Release\Tests.dll
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\Tests\obj\Release\Tests.pdb
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\Tests\bin\Release\BL.xml
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\Tests\bin\Release\DAL.xml

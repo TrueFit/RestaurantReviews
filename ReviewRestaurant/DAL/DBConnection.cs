@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace DAL
 {
     public class DBConnection
     {
-        private static string connectionString = "Data Source=MARTHA-PC\\SQLEXPRESS;Initial Catalog=ReviewDB;Integrated Security=True";
-
-        public SqlConnection connection = new SqlConnection(connectionString);
-
+        //private static string connectionString = ConfigurationManager.ConnectionStrings["ReviewDBConnection"].ConnectionString;
+        private static string connectionString ="Data Source=MARTHA-PC\\SQLEXPRESS;Initial Catalog=ReviewDB;Integrated Security=True";
+        SqlConnection connection = new SqlConnection(connectionString);
+        
         public SqlConnection GetConnection()
         {
             if(connection.State==ConnectionState.Closed)

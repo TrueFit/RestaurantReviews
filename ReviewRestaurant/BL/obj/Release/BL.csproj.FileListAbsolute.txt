@@ -6,3 +6,6 @@ C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Relea
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\obj\Release\BL.csprojResolveAssemblyReference.cache
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\obj\Release\BL.dll
 C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\obj\Release\BL.pdb
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Release\BL.dll.config
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Release\BL.XML
+C:\Users\Martha\Documents\GitHub\RestaurantReviews\ReviewRestaurant\BL\bin\Release\DAL.xml

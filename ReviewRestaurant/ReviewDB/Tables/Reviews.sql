@@ -5,6 +5,7 @@
     [RestaurantID] INT NOT NULL, 
     [RatingID] TINYINT NOT NULL, 
     [ReviewText] NVARCHAR(1000) NOT NULL, 
+    [ReviewDate] DATETIME NOT NULL, 
     CONSTRAINT [PK_Reviews] PRIMARY KEY ([ReviewID]), 
     CONSTRAINT [FK_Reviews_Users] FOREIGN KEY ([UserID]) REFERENCES [Users]([UserID]), 
     CONSTRAINT [FK_Reviews_Restaurant] FOREIGN KEY ([RestaurantID]) REFERENCES [Restaurant]([RestaurantID]), 

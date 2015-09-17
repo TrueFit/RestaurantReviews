@@ -23,7 +23,7 @@ EXEC	[dbo].[GetRatingIDByRating]
 		@RatingDescription = @RatingDescription,
 		@RatingID = @RatingID OUTPUT
 
-INSERT INTO dbo.Reviews(UserID, RestaurantID, RatingID, ReviewText) 
-VALUES (@UserID, @RestaurantID, @RatingID, @ReviewText)
+INSERT INTO dbo.Reviews(UserID, RestaurantID, RatingID, ReviewText, ReviewDate) 
+VALUES (@UserID, @RestaurantID, @RatingID, @ReviewText, GETUTCDATE())
 
 SET @ReviewID = SCOPE_IDENTITY()

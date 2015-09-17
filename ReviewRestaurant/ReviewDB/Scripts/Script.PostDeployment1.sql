@@ -62,11 +62,11 @@ VALUES(1, N'Nakama', 1),
 SET IDENTITY_INSERT dbo.Restaurant OFF
 
 
-INSERT INTO dbo.Reviews(UserID, RestaurantID, RatingID, ReviewText) 
-VALUES(1, 1, 1, N'This place is terrible!'),
-(2, 1, 3, N'This place is ok'),
-(3, 1, 5, N'This place is amazing!'),
-(1, 3, 4, N'Great sushi!'),
-(2, 3, 2, N'Awful sushi.'),
-(3, 3, 3, N'Meh.')
+INSERT INTO dbo.Reviews(UserID, RestaurantID, RatingID, ReviewText, ReviewDate) 
+VALUES(1, 1, 1, N'This place is terrible!', GETUTCDATE()),
+(2, 1, 3, N'This place is ok', GETUTCDATE()),
+(3, 1, 5, N'This place is amazing!', GETUTCDATE()),
+(1, 3, 4, N'Great sushi!', GETUTCDATE()),
+(2, 3, 2, N'Awful sushi.', GETUTCDATE()),
+(3, 3, 3, N'Meh.', GETUTCDATE())
 
