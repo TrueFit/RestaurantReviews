@@ -14,11 +14,19 @@ namespace RestaurantReview.Models
     
     public partial class Review
     {
+        public Review()
+        {
+            this.Comments = new HashSet<Comment>();
+        }
+    
         public int Id { get; set; }
         public string UserName { get; set; }
         public int RestaurantId { get; set; }
         public decimal Rating { get; set; }
         public string Content { get; set; }
         public System.DateTime Timestamp { get; set; }
+    
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

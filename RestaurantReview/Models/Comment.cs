@@ -19,5 +19,7 @@ namespace RestaurantReview.Models
         public string UserName { get; set; }
         public string Content { get; set; }
         public System.DateTime Timestamp { get; set; }
+    
+        public virtual Review Review { get; set; }
     }
 }

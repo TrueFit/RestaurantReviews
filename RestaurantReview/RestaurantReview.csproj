@@ -98,33 +98,31 @@
     </Compile>
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\Comment.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\CustomRestRevModels\RestaurantSearchModel.cs" />
     <Compile Include="Models\ResponseModels\ErrorModels.cs" />
     <Compile Include="Models\ResponseModels\UserLoginResponseModel.cs" />
     <Compile Include="Models\Restaurant.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RestaurantTag.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+    <Compile Include="Models\RestRevModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestRevModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RestRevModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestRevModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RestRevModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestRevModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Review.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Session.cs">
       <DependentUpon>SessionModel.tt</DependentUpon>
@@ -145,7 +143,7 @@
       <DependentUpon>SessionModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Tag.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModels\CreateUserModel.cs" />
     <Compile Include="Models\UserModels\LoginUserModel.cs" />
@@ -156,23 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\DBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DBModel.edmx.diagram">
-      <DependentUpon>DBModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\DBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="Models\SessionModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SessionModel.Designer.cs</LastGenOutput>
@@ -189,6 +170,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SessionModel.edmx</DependentUpon>
       <LastGenOutput>SessionModel.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\RestRevModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RestRevModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\RestRevModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestRevModel.edmx</DependentUpon>
+      <LastGenOutput>RestRevModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\RestRevModel.edmx.diagram">
+      <DependentUpon>RestRevModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\RestRevModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestRevModel.edmx</DependentUpon>
+      <LastGenOutput>RestRevModel.cs</LastGenOutput>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

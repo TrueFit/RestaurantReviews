@@ -21,6 +21,7 @@ namespace RestaurantReview.Controllers
     {
         // POST /api/user/register
         [ResponseType(typeof(SafeUserModel))]
+        [Route("api/user/register")]
         public IHttpActionResult Register(CreateUserModel user)
         {
             if (!ModelState.IsValid)
@@ -37,7 +38,7 @@ namespace RestaurantReview.Controllers
             }
             catch
             {
-                return BadRequest("Unable to create user");
+                return InternalServerError();
             }
 
             return Ok<SafeUserModel>(Mapper.Map<SafeUserModel>(user));
@@ -45,6 +46,7 @@ namespace RestaurantReview.Controllers
 
         // POST /api/user/login
         [ResponseType(typeof(UserLoginResponseModel))]
+        [Route("api/user/login")]
         public IHttpActionResult Login(LoginUserModel user)
         {
             UserLoginResponseModel returnModel = new UserLoginResponseModel();
@@ -77,6 +79,7 @@ namespace RestaurantReview.Controllers
 
         // POST /api/user/logout
         [AuthorizeMembership]
+        [Route("api/user/logout")]
         public IHttpActionResult Logout(LogoutUserModel user)
         {
             try

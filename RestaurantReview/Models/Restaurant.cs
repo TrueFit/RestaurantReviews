@@ -11,16 +11,32 @@ namespace RestaurantReview.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Restaurant
     {
+        public Restaurant()
+        {
+            this.Reviews = new HashSet<Review>();
+            this.Tags = new HashSet<Tag>();
+        }
+    
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string City { get; set; }
+        [Required]
         public string State { get; set; }
+        [Required]
         public string Zipcode { get; set; }
+        [Required]
         public string StreetAddress1 { get; set; }
         public string StreetAddress2 { get; set; }
         public string PhoneNum { get; set; }
+        public string OwnerUserName { get; set; }
+    
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

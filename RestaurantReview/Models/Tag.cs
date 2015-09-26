@@ -15,6 +15,9 @@ namespace RestaurantReview.Models
     public partial class Tag
     {
         public int Id { get; set; }
-        public byte[] Name { get; set; }
+        public string TagName { get; set; }
+        public Nullable<int> RestaurantId { get; set; }
+    
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

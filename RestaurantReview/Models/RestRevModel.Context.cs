@@ -13,10 +13,10 @@ namespace RestaurantReview.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBEntities : DbContext
+    public partial class RestRevEntities : DbContext
     {
-        public DBEntities()
-            : base("name=DBEntities")
+        public RestRevEntities()
+            : base("name=RestRevEntities")
         {
         }
     
@@ -27,7 +27,6 @@ namespace RestaurantReview.Models
     
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<RestaurantTag> RestaurantTags { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Tag> Tags { get; set; }
     }

@@ -4,33 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="DBModelStoreContainer">
-          <EntitySet Name="Comment" EntityType="DBModel.Store.Comment" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Restaurant" EntityType="DBModel.Store.Restaurant" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RestaurantTag" EntityType="DBModel.Store.RestaurantTag" store:Type="Tables" store:Schema="dbo" store:Name="RestaurantTag">
-            <DefiningQuery>SELECT 
-      [RestaurantTag].[RestaurantId] AS [RestaurantId], 
-      [RestaurantTag].[TagId] AS [TagId]
-      FROM [dbo].[RestaurantTag] AS [RestaurantTag]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Review" EntityType="DBModel.Store.Review" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Tag" EntityType="DBModel.Store.Tag" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Comment_Review" Association="DBModel.Store.FK_Comment_Review">
+      <Schema Namespace="RestRevModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RestRevModelStoreContainer">
+          <EntitySet Name="Comment" EntityType="RestRevModel.Store.Comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Restaurant" EntityType="RestRevModel.Store.Restaurant" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Review" EntityType="RestRevModel.Store.Review" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tag" EntityType="RestRevModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Comment_Review" Association="RestRevModel.Store.FK_Comment_Review">
             <End Role="Review" EntitySet="Review" />
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_RestaurantTag_Restaurant" Association="DBModel.Store.FK_RestaurantTag_Restaurant">
-            <End Role="Restaurant" EntitySet="Restaurant" />
-            <End Role="RestaurantTag" EntitySet="RestaurantTag" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RestaurantTag_Tag" Association="DBModel.Store.FK_RestaurantTag_Tag">
-            <End Role="Tag" EntitySet="Tag" />
-            <End Role="RestaurantTag" EntitySet="RestaurantTag" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_Restaurant" Association="DBModel.Store.FK_Review_Restaurant">
+          <AssociationSet Name="FK_Review_Restaurant" Association="RestRevModel.Store.FK_Review_Restaurant">
             <End Role="Restaurant" EntitySet="Restaurant" />
             <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Restaurant" Association="RestRevModel.Store.FK_Tag_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Tag" EntitySet="Tag" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Comment">
@@ -55,17 +45,7 @@
           <Property Name="StreetAddress1" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="StreetAddress2" Type="varchar" MaxLength="50" />
           <Property Name="PhoneNum" Type="varchar" MaxLength="10" />
-        </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'truefit.dbo.RestaurantTag' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="RestaurantTag">
-          <Key>
-            <PropertyRef Name="RestaurantId" />
-            <PropertyRef Name="TagId" />
-          </Key>
-          <Property Name="RestaurantId" Type="int" Nullable="false" />
-          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="OwnerUserName" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -83,11 +63,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varbinary" Nullable="false" MaxLength="25" />
+          <Property Name="TagName" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="RestaurantId" Type="int" />
         </EntityType>
         <Association Name="FK_Comment_Review">
-          <End Role="Review" Type="DBModel.Store.Review" Multiplicity="1" />
-          <End Role="Comment" Type="DBModel.Store.Comment" Multiplicity="*" />
+          <End Role="Review" Type="RestRevModel.Store.Review" Multiplicity="1" />
+          <End Role="Comment" Type="RestRevModel.Store.Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Review">
               <PropertyRef Name="Id" />
@@ -97,33 +78,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RestaurantTag_Restaurant">
-          <End Role="Restaurant" Type="DBModel.Store.Restaurant" Multiplicity="1" />
-          <End Role="RestaurantTag" Type="DBModel.Store.RestaurantTag" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Restaurant">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RestaurantTag">
-              <PropertyRef Name="RestaurantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RestaurantTag_Tag">
-          <End Role="Tag" Type="DBModel.Store.Tag" Multiplicity="1" />
-          <End Role="RestaurantTag" Type="DBModel.Store.RestaurantTag" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tag">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RestaurantTag">
-              <PropertyRef Name="TagId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Review_Restaurant">
-          <End Role="Restaurant" Type="DBModel.Store.Restaurant" Multiplicity="1" />
-          <End Role="Review" Type="DBModel.Store.Review" Multiplicity="*" />
+          <End Role="Restaurant" Type="RestRevModel.Store.Restaurant" Multiplicity="1" />
+          <End Role="Review" Type="RestRevModel.Store.Review" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Restaurant">
               <PropertyRef Name="Id" />
@@ -133,24 +90,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+        <Association Name="FK_Tag_Restaurant">
+          <End Role="Restaurant" Type="RestRevModel.Store.Restaurant" Multiplicity="0..1" />
+          <End Role="Tag" Type="RestRevModel.Store.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="DBEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Comments" EntityType="DBModel.Comment" />
-          <EntitySet Name="Restaurants" EntityType="DBModel.Restaurant" />
-          <EntitySet Name="Reviews" EntityType="DBModel.Review" />
-          <EntitySet Name="Tags" EntityType="DBModel.Tag" />
-          <AssociationSet Name="FK_Comment_Review" Association="DBModel.FK_Comment_Review">
+      <Schema Namespace="RestRevModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RestRevEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="RestRevModel.Comment" />
+          <EntitySet Name="Restaurants" EntityType="RestRevModel.Restaurant" />
+          <EntitySet Name="Reviews" EntityType="RestRevModel.Review" />
+          <EntitySet Name="Tags" EntityType="RestRevModel.Tag" />
+          <AssociationSet Name="FK_Comment_Review" Association="RestRevModel.FK_Comment_Review">
             <End Role="Review" EntitySet="Reviews" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Review_Restaurant" Association="DBModel.FK_Review_Restaurant">
+          <AssociationSet Name="FK_Review_Restaurant" Association="RestRevModel.FK_Review_Restaurant">
             <End Role="Restaurant" EntitySet="Restaurants" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="RestaurantTag1" Association="DBModel.RestaurantTag1">
+          <AssociationSet Name="FK_Tag_Restaurant" Association="RestRevModel.FK_Tag_Restaurant">
             <End Role="Restaurant" EntitySet="Restaurants" />
             <End Role="Tag" EntitySet="Tags" />
           </AssociationSet>
@@ -164,7 +134,7 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Review" Relationship="DBModel.FK_Comment_Review" FromRole="Comment" ToRole="Review" />
+          <NavigationProperty Name="Review" Relationship="RestRevModel.FK_Comment_Review" FromRole="Comment" ToRole="Review" />
         </EntityType>
         <EntityType Name="Restaurant">
           <Key>
@@ -178,8 +148,9 @@
           <Property Name="StreetAddress1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="StreetAddress2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="PhoneNum" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Reviews" Relationship="DBModel.FK_Review_Restaurant" FromRole="Restaurant" ToRole="Review" />
-          <NavigationProperty Name="Tags" Relationship="DBModel.RestaurantTag1" FromRole="Restaurant" ToRole="Tag" />
+          <Property Name="OwnerUserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Reviews" Relationship="RestRevModel.FK_Review_Restaurant" FromRole="Restaurant" ToRole="Review" />
+          <NavigationProperty Name="Tags" Relationship="RestRevModel.FK_Tag_Restaurant" FromRole="Restaurant" ToRole="Tag" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -191,20 +162,21 @@
           <Property Name="Rating" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Comments" Relationship="DBModel.FK_Comment_Review" FromRole="Review" ToRole="Comment" />
-          <NavigationProperty Name="Restaurant" Relationship="DBModel.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
+          <NavigationProperty Name="Comments" Relationship="RestRevModel.FK_Comment_Review" FromRole="Review" ToRole="Comment" />
+          <NavigationProperty Name="Restaurant" Relationship="RestRevModel.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="Binary" Nullable="false" MaxLength="25" FixedLength="false" />
-          <NavigationProperty Name="Restaurants" Relationship="DBModel.RestaurantTag1" FromRole="Tag" ToRole="Restaurant" />
+          <Property Name="TagName" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="RestaurantId" Type="Int32" />
+          <NavigationProperty Name="Restaurant" Relationship="RestRevModel.FK_Tag_Restaurant" FromRole="Tag" ToRole="Restaurant" />
         </EntityType>
         <Association Name="FK_Comment_Review">
-          <End Type="DBModel.Review" Role="Review" Multiplicity="1" />
-          <End Type="DBModel.Comment" Role="Comment" Multiplicity="*" />
+          <End Role="Review" Type="RestRevModel.Review" Multiplicity="1" />
+          <End Role="Comment" Type="RestRevModel.Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Review">
               <PropertyRef Name="Id" />
@@ -215,8 +187,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Review_Restaurant">
-          <End Type="DBModel.Restaurant" Role="Restaurant" Multiplicity="1" />
-          <End Type="DBModel.Review" Role="Review" Multiplicity="*" />
+          <End Role="Restaurant" Type="RestRevModel.Restaurant" Multiplicity="1" />
+          <End Role="Review" Type="RestRevModel.Review" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Restaurant">
               <PropertyRef Name="Id" />
@@ -226,18 +198,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RestaurantTag1">
-          <End Type="DBModel.Restaurant" Role="Restaurant" Multiplicity="*" />
-          <End Type="DBModel.Tag" Role="Tag" Multiplicity="*" />
+        <Association Name="FK_Tag_Restaurant">
+          <End Role="Restaurant" Type="RestRevModel.Restaurant" Multiplicity="0..1" />
+          <End Role="Tag" Type="RestRevModel.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+        <EntityContainerMapping StorageEntityContainer="RestRevModelStoreContainer" CdmEntityContainer="RestRevEntities">
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="DBModel.Comment">
+            <EntityTypeMapping TypeName="RestRevModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
@@ -248,7 +228,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Restaurants">
-            <EntityTypeMapping TypeName="DBModel.Restaurant">
+            <EntityTypeMapping TypeName="RestRevModel.Restaurant">
               <MappingFragment StoreEntitySet="Restaurant">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -258,11 +238,12 @@
                 <ScalarProperty Name="StreetAddress1" ColumnName="StreetAddress1" />
                 <ScalarProperty Name="StreetAddress2" ColumnName="StreetAddress2" />
                 <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="OwnerUserName" ColumnName="OwnerUserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="DBModel.Review">
+            <EntityTypeMapping TypeName="RestRevModel.Review">
               <MappingFragment StoreEntitySet="Review">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -274,21 +255,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="DBModel.Tag">
+            <EntityTypeMapping TypeName="RestRevModel.Tag">
               <MappingFragment StoreEntitySet="Tag">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="RestaurantTag1" TypeName="DBModel.RestaurantTag1" StoreEntitySet="RestaurantTag">
-            <EndProperty Name="Tag">
-              <ScalarProperty Name="Id" ColumnName="TagId" />
-            </EndProperty>
-            <EndProperty Name="Restaurant">
-              <ScalarProperty Name="Id" ColumnName="RestaurantId" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

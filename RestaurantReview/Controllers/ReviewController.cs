@@ -14,7 +14,7 @@ namespace RestaurantReview.Controllers
 {
     public class ReviewController : ApiController
     {
-        private DBEntities db = new DBEntities();
+        private RestRevEntities db = new RestRevEntities();
 
         // GET api/Review
         public IQueryable<Review> GetReviews()
