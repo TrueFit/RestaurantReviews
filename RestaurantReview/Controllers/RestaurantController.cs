@@ -14,18 +14,21 @@ using System.Web.Security;
 using RestaurantReview.Filters;
 using RestaurantReview.Models.CustomRestRevModels;
 using System.Diagnostics;
+using System.Web.Script.Serialization;
 
 namespace RestaurantReview.Controllers
 {
     public class RestaurantController : ApiController
     {
         private RestRevEntities db = new RestRevEntities();
+        private JavaScriptSerializer serializer = new JavaScriptSerializer();
 
         // GET api/Restaurant
         [HttpGet]
-        public IEnumerable<Restaurant> Select([FromUri]RestaurantSearchModel restaurant)
+        public IEnumerable<DisplayRestaurantModel> Select([FromUri]RestaurantSearchModel restaurant)
         {
             IQueryable<Restaurant> filteredRestaurants = db.Restaurants;
+            List<DisplayRestaurantModel> displayRestaurants = new List<DisplayRestaurantModel>();
 
             // Filter the restaurants
             if (!String.IsNullOrWhiteSpace(restaurant.Name))
@@ -64,7 +67,7 @@ namespace RestaurantReview.Controllers
             }
 
             // Order the restaurants by the OrderBy and Order specified
-            if (!String.IsNullOrWhiteSpace(restaurant.OrderBy) && restaurant.GetType().GetProperty(restaurant.OrderBy) != null)
+            if (!String.IsNullOrWhiteSpace(restaurant.OrderBy))
             {
                 filteredRestaurants = OrderRestaurants(filteredRestaurants, restaurant.OrderBy, restaurant.Order);
             }
@@ -83,12 +86,18 @@ namespace RestaurantReview.Controllers
                                         .Take(restaurant.NumRestaurants);
             }
 
-            return filteredRestaurants;
+            // TODO: Create mapping for this
+            foreach (Restaurant rest in filteredRestaurants)
+            {
+                displayRestaurants.Add(MapRestaurant(rest));
+            }
+
+            return displayRestaurants;
         }
 
         // GET api/Restaurant/5
         // Returns a restaurant with the given id
-        [ResponseType(typeof(Restaurant))]
+        [ResponseType(typeof(DisplayRestaurantModel))]
         [HttpGet]
         public IHttpActionResult GetRestaurant(int id)
         {
@@ -98,7 +107,7 @@ namespace RestaurantReview.Controllers
                 return NotFound();
             }
 
-            return Ok(restaurant);
+            return Ok(MapRestaurant(restaurant));
         }
 
         // PUT api/Restaurant/5
@@ -139,7 +148,7 @@ namespace RestaurantReview.Controllers
 
         // POST api/Restaurant
         [AuthorizeMembership]
-        [ResponseType(typeof(Restaurant))]
+        [ResponseType(typeof(DisplayRestaurantModel))]
         [HttpPost]
         public IHttpActionResult PostRestaurant(Restaurant restaurant)
         {
@@ -152,12 +161,12 @@ namespace RestaurantReview.Controllers
             db.Restaurants.Add(restaurant);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = restaurant.Id }, restaurant);
+            return CreatedAtRoute("DefaultApi", new { id = restaurant.Id }, MapRestaurant(restaurant));
         }
 
         // DELETE api/Restaurant/5
         [AuthorizeMembership]
-        [ResponseType(typeof(Restaurant))]
+        [ResponseType(typeof(DisplayRestaurantModel))]
         [HttpPost]
         public IHttpActionResult DeleteRestaurant(int id)
         {
@@ -171,7 +180,7 @@ namespace RestaurantReview.Controllers
             db.Restaurants.Remove(restaurant);
             db.SaveChanges();
 
-            return Ok(restaurant);
+            return Ok(MapRestaurant(restaurant));
         }
 
         protected override void Dispose(bool disposing)
@@ -236,6 +245,24 @@ namespace RestaurantReview.Controllers
             }
 
             return restaurants;
+        }
+
+        private DisplayRestaurantModel MapRestaurant(Restaurant rest)
+        {
+            DisplayRestaurantModel dispModel = new DisplayRestaurantModel();
+            dispModel = new DisplayRestaurantModel();
+            dispModel.Id = rest.Id;
+            dispModel.Name = rest.Name;
+            dispModel.City = rest.City;
+            dispModel.State = rest.State;
+            dispModel.StreetAddress1 = rest.StreetAddress1;
+            dispModel.StreetAddress2 = rest.StreetAddress2;
+            dispModel.PhoneNum = rest.PhoneNum;
+            dispModel.OwnerUserName = rest.OwnerUserName;
+            dispModel.ReviewIds = rest.Reviews.Select(r => r.Id).ToList();
+            dispModel.Tags = rest.Tags.Select(r => r.TagName).ToList();
+
+            return dispModel;
         }
     }
 }

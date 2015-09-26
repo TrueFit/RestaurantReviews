@@ -11,6 +11,7 @@ namespace RestaurantReview.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Review
     {
@@ -21,8 +22,11 @@ namespace RestaurantReview.Models
     
         public int Id { get; set; }
         public string UserName { get; set; }
+        [Required]
         public int RestaurantId { get; set; }
+        [Required]
         public decimal Rating { get; set; }
+        [Required]
         public string Content { get; set; }
         public System.DateTime Timestamp { get; set; }
     

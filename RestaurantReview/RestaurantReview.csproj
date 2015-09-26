@@ -100,6 +100,7 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomRestRevModels\DisplayRestaurantModel.cs" />
     <Compile Include="Models\CustomRestRevModels\RestaurantSearchModel.cs" />
     <Compile Include="Models\ResponseModels\ErrorModels.cs" />
     <Compile Include="Models\ResponseModels\UserLoginResponseModel.cs" />
