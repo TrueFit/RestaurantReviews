@@ -92,6 +92,7 @@
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\AuthorizeMembership.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -114,6 +115,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResponseModels\ErrorModels.cs" />
+    <Compile Include="Models\ResponseModels\UserLoginResponseModel.cs" />
     <Compile Include="Models\Restaurant.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -123,12 +126,33 @@
     <Compile Include="Models\Review.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Session.cs">
+      <DependentUpon>SessionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SessionModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SessionModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SessionModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tag.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModels\CreateUserModel.cs" />
+    <Compile Include="Models\UserModels\LoginUserModel.cs" />
+    <Compile Include="Models\UserModels\LogoutUserModel.cs" />
     <Compile Include="Models\UserModels\SafeUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\SessionUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -148,6 +172,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\SessionModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SessionModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SessionModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SessionModel.edmx</DependentUpon>
+      <LastGenOutput>SessionModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SessionModel.edmx.diagram">
+      <DependentUpon>SessionModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SessionModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SessionModel.edmx</DependentUpon>
+      <LastGenOutput>SessionModel.cs</LastGenOutput>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

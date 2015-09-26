@@ -39,7 +39,6 @@ namespace RestaurantReview.Controllers
         }
 
         // PUT api/Restaurant/5
-        [Authorize(Roles = "Administrators")]
         public IHttpActionResult PutRestaurant(int id, Restaurant restaurant)
         {
             if (!ModelState.IsValid)
@@ -74,7 +73,6 @@ namespace RestaurantReview.Controllers
         }
 
         // POST api/Restaurant
-        [Authorize(Roles = "Administrators")]
         [ResponseType(typeof(Restaurant))]
         public IHttpActionResult PostRestaurant(Restaurant restaurant)
         {
@@ -90,7 +88,6 @@ namespace RestaurantReview.Controllers
         }
 
         // DELETE api/Restaurant/5
-        [Authorize(Roles = "Administrators")]
         [ResponseType(typeof(Restaurant))]
         public IHttpActionResult DeleteRestaurant(int id)
         {

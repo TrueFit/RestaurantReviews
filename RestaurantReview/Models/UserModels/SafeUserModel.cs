@@ -15,5 +15,7 @@ namespace RestaurantReview.Models.UserModels
         
         [Required]
         public string Email { get; set; }
+
+        public string EndTime { get; set; }
     }
 }
