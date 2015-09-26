@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using RestaurantReview.Models;
+using RestaurantReview.Filters;
 
 namespace RestaurantReview.Controllers
 {
@@ -71,6 +72,7 @@ namespace RestaurantReview.Controllers
 
         // POST api/Review
         [ResponseType(typeof(Review))]
+        [AuthorizeMembership]
         public IHttpActionResult PostReview(Review review)
         {
             if (!ModelState.IsValid)
@@ -78,6 +80,8 @@ namespace RestaurantReview.Controllers
                 return BadRequest(ModelState);
             }
 
+            review.UserName = GetUserName(Request);
+            review.Timestamp = DateTime.Now;
             db.Reviews.Add(review);
             db.SaveChanges();
 
@@ -109,9 +113,16 @@ namespace RestaurantReview.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ReviewExists(int id)
+        private bool ReviewExists(int id, string username = null)
         {
-            return db.Reviews.Count(e => e.Id == id) > 0;
+            return username == null ? 
+                db.Reviews.Count(e => e.Id == id) > 0 :
+                db.Reviews.Count(e => e.Id == id && e.UserName.Equals(username)) > 0;
+        }
+
+        private string GetUserName(HttpRequestMessage request)
+        {
+            return request.GetRouteData().Values["MemberUserName"].ToString();
         }
     }
 }
