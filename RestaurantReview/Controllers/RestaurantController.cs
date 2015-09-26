@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using RestaurantReview.Models;
 using System.Security.Principal;
 using System.Web.Security;
+using RestaurantReview.Filters;
 
 namespace RestaurantReview.Controllers
 {
@@ -19,7 +20,6 @@ namespace RestaurantReview.Controllers
         private DBEntities db = new DBEntities();
 
         // GET api/Restaurant
-
         public IQueryable<Restaurant> GetRestaurants()
         {
             return db.Restaurants;
@@ -73,6 +73,7 @@ namespace RestaurantReview.Controllers
         }
 
         // POST api/Restaurant
+        [AuthorizeMembership]
         [ResponseType(typeof(Restaurant))]
         public IHttpActionResult PostRestaurant(Restaurant restaurant)
         {
