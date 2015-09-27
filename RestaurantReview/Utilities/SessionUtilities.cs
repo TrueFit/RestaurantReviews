@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using AutoMapper;
+using System.Net.Http;
 
 namespace RestaurantReview.Utilities
 {
@@ -79,6 +80,13 @@ namespace RestaurantReview.Utilities
                 session.EndTime = DateTime.Now.AddMinutes(SESSION_LEN);
             }
             db.SaveChanges();
+        }
+
+        // Get the username of the user that's been authorized for this request
+        // NOTE: The "MemberUserName" value is set in the AuthorizeMembership filter
+        public static string GetUserName(HttpRequestMessage request)
+        {
+            return request.GetRouteData().Values["MemberUserName"].ToString();
         }
 
         private static string GenerateToken()

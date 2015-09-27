@@ -91,6 +91,7 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\AuthorizeMembership.cs" />
     <Compile Include="Global.asax.cs">
@@ -157,6 +158,8 @@
     <Compile Include="Models\Tag.cs">
       <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TagModels\CreateDeleteTagModel.cs" />
+    <Compile Include="Models\TagModels\DisplayTagModel.cs" />
     <Compile Include="Models\UserModels\CreateUserModel.cs" />
     <Compile Include="Models\UserModels\LoginUserModel.cs" />
     <Compile Include="Models\UserModels\LogoutUserModel.cs" />

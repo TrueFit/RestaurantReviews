@@ -5,6 +5,7 @@ using RestaurantReview.Models.CustomRestRevModels;
 using RestaurantReview.Models.ResponseModels;
 using RestaurantReview.Models.RestaurantModels;
 using RestaurantReview.Models.ReviewModels;
+using RestaurantReview.Models.TagModels;
 using RestaurantReview.Models.UserModels;
 using RestaurantReview.Utilities;
 using System;
@@ -24,6 +25,7 @@ namespace RestaurantReview.Mappings
             ConfigureRestaurantMappings();
             ConfigureReviewMappings();
             ConfigureCommentMappings();
+            ConfigureTagMappings();
         }
 
         private static void ConfigureUserMappings()
@@ -97,6 +99,18 @@ namespace RestaurantReview.Mappings
                 .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.Content, opts => opts.MapFrom(src => src.Content))
                 .ForMember(dest => dest.Timestamp, opts => opts.MapFrom(src => DateTime.Now));
+        }
+
+        private static void ConfigureTagMappings()
+        {
+            Mapper.CreateMap<CreateDeleteTagModel, Tag>()
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => 0))
+                .ForMember(dest => dest.RestaurantId, opts => opts.MapFrom(src => src.RestaurantId))
+                .ForMember(dest => dest.TagName, opts => opts.MapFrom(src => src.TagName));
+
+            Mapper.CreateMap<Tag, DisplayTagModel>()
+                .ForMember(dest => dest.RestaurantId, opts => opts.MapFrom(src => src.RestaurantId))
+                .ForMember(dest => dest.TagName, opts => opts.MapFrom(src => src.TagName));
         }
     }
 }

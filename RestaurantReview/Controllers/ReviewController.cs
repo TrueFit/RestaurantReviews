@@ -13,6 +13,7 @@ using RestaurantReview.Filters;
 using RestaurantReview.Models.CustomRestRevModels;
 using RestaurantReview.Models.ReviewModels;
 using AutoMapper;
+using RestaurantReview.Utilities;
 
 namespace RestaurantReview.Controllers
 {
@@ -75,7 +76,7 @@ namespace RestaurantReview.Controllers
         [HttpPut]
         public IHttpActionResult PutReview(int id, UpdateReviewModel reviewModel)
         {
-            string username = GetUserName(Request);
+            string username = SessionUtilities.GetUserName(Request);
 
             // Validate user input
             if (!ModelState.IsValid)
@@ -130,7 +131,7 @@ namespace RestaurantReview.Controllers
             }
 
             // Create new review
-            reviewModel.UserName = GetUserName(Request);
+            reviewModel.UserName = SessionUtilities.GetUserName(Request);
             Review review = Mapper.Map<Review>(reviewModel);
             db.Reviews.Add(review);
 
@@ -152,7 +153,7 @@ namespace RestaurantReview.Controllers
         public IHttpActionResult DeleteReview(int id)
         {
             Review review = db.Reviews.Find(id);
-            if (review == null || !ReviewExists(id, GetUserName(Request)))
+            if (review == null || !ReviewExists(id, SessionUtilities.GetUserName(Request)))
             {
                 return NotFound();
             }
@@ -177,11 +178,6 @@ namespace RestaurantReview.Controllers
             return username == null ?
                 db.Reviews.Count(r => r.Id == id) > 0 :
                 db.Reviews.Count(r => r.Id == id && r.UserName.Equals(username)) > 0;
-        }
-
-        private string GetUserName(HttpRequestMessage request)
-        {
-            return request.GetRouteData().Values["MemberUserName"].ToString();
         }
 
         /* Orders the filtered reviews query by the following fields

@@ -12,6 +12,7 @@ using RestaurantReview.Models;
 using RestaurantReview.Models.CommentModels;
 using AutoMapper;
 using RestaurantReview.Filters;
+using RestaurantReview.Utilities;
 
 namespace RestaurantReview.Controllers
 {
@@ -73,7 +74,7 @@ namespace RestaurantReview.Controllers
         [HttpPut]
         public IHttpActionResult PutComment(int id, UpdateCommentModel commentModel)
         {
-            string username = GetUserName(Request);
+            string username = SessionUtilities.GetUserName(Request);
 
             // Validate user input
             if (!ModelState.IsValid)
@@ -126,7 +127,7 @@ namespace RestaurantReview.Controllers
             }
 
             // Create new comment
-            commentModel.UserName = GetUserName(Request);
+            commentModel.UserName = SessionUtilities.GetUserName(Request);
             Comment comment = Mapper.Map<Comment>(commentModel);
             db.Comments.Add(comment);
 
@@ -149,7 +150,7 @@ namespace RestaurantReview.Controllers
         public IHttpActionResult DeleteComment(int id)
         {
             Comment comment = db.Comments.Find(id);
-            if (comment == null || !CommentExists(id, GetUserName(Request)))
+            if (comment == null || !CommentExists(id, SessionUtilities.GetUserName(Request)))
             {
                 return NotFound();
             }
@@ -179,11 +180,6 @@ namespace RestaurantReview.Controllers
             return username == null ?
                 db.Comments.Count(c => c.Id == id) > 0 :
                 db.Comments.Count(c => c.Id == id && c.UserName.Equals(username)) > 0;
-        }
-
-        private string GetUserName(HttpRequestMessage request)
-        {
-            return request.GetRouteData().Values["MemberUserName"].ToString();
         }
 
         /* Orders the filtered comments by the following fields

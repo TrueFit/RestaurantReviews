@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Web.Script.Serialization;
 using AutoMapper;
 using RestaurantReview.Models.RestaurantModels;
+using RestaurantReview.Utilities;
 
 namespace RestaurantReview.Controllers
 {
@@ -67,7 +68,7 @@ namespace RestaurantReview.Controllers
 
                 if (!String.IsNullOrWhiteSpace(restaurant.Tag))
                 {
-                    filteredRestaurants = filteredRestaurants.Where(r => r.Tags.Contains(new Tag() { TagName = restaurant.Tag }));
+                    filteredRestaurants = filteredRestaurants.Where(r => r.Tags.Select(t => t.TagName).Contains(restaurant.Tag));
                 }
 
                 // Order the restaurants by the OrderBy and Order specified
@@ -105,7 +106,7 @@ namespace RestaurantReview.Controllers
         [HttpPut]
         public IHttpActionResult PutRestaurant(int id, UpdateRestaurantModel restaurantModel)
         {
-            string username = GetUserName(Request);
+            string username = SessionUtilities.GetUserName(Request);
 
             // Validate user input
             if (!ModelState.IsValid)
@@ -159,7 +160,7 @@ namespace RestaurantReview.Controllers
             }
 
             // Create restaurant
-            restaurantModel.OwnerUserName = GetUserName(Request);
+            restaurantModel.OwnerUserName = SessionUtilities.GetUserName(Request);
             Restaurant restaurant = Mapper.Map<Restaurant>(restaurantModel);
             db.Restaurants.Add(restaurant);
 
@@ -181,7 +182,7 @@ namespace RestaurantReview.Controllers
         public IHttpActionResult DeleteRestaurant(int id)
         {
             Restaurant restaurant = db.Restaurants.Find(id);
-            if (restaurant == null || !RestaurantExists(id, GetUserName(Request)))
+            if (restaurant == null || !RestaurantExists(id, SessionUtilities.GetUserName(Request)))
             {
                 return NotFound();
             }
@@ -199,11 +200,6 @@ namespace RestaurantReview.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private string GetUserName(HttpRequestMessage request)
-        {
-            return request.GetRouteData().Values["MemberUserName"].ToString();
         }
 
         private bool RestaurantExists(int id, string username = null)
