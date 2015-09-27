@@ -15,15 +15,10 @@ namespace RestaurantReview.Models.CustomRestRevModels
         }
     
         public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string City { get; set; }
-        [Required]
         public string State { get; set; }
-        [Required]
         public string Zipcode { get; set; }
-        [Required]
         public string StreetAddress1 { get; set; }
         public string StreetAddress2 { get; set; }
         public string PhoneNum { get; set; }

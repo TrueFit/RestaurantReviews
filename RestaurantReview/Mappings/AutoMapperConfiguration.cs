@@ -3,6 +3,7 @@ using RestaurantReview.Models;
 using RestaurantReview.Models.CommentModels;
 using RestaurantReview.Models.CustomRestRevModels;
 using RestaurantReview.Models.ResponseModels;
+using RestaurantReview.Models.RestaurantModels;
 using RestaurantReview.Models.ReviewModels;
 using RestaurantReview.Models.UserModels;
 using RestaurantReview.Utilities;
@@ -48,6 +49,17 @@ namespace RestaurantReview.Mappings
                 .ForMember(dest => dest.StreetAddress2, opts => opts.MapFrom(src => src.StreetAddress2))
                 .ForMember(dest => dest.PhoneNum, opts => opts.MapFrom(src => src.PhoneNum))
                 .ForMember(dest => dest.OwnerUserName, opts => opts.MapFrom(src => src.OwnerUserName));
+
+            Mapper.CreateMap<CreateRestaurantModel, Restaurant>()
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => 0))
+                .ForMember(dest => dest.OwnerUserName, opts => opts.MapFrom(src => src.OwnerUserName))
+                .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
+                .ForMember(dest => dest.City, opts => opts.MapFrom(src => src.City))
+                .ForMember(dest => dest.State, opts => opts.MapFrom(src => src.State))
+                .ForMember(dest => dest.Zipcode, opts => opts.MapFrom(src => src.Zipcode))
+                .ForMember(dest => dest.StreetAddress1, opts => opts.MapFrom(src => src.StreetAddress1))
+                .ForMember(dest => dest.StreetAddress2, opts => opts.MapFrom(src => src.StreetAddress2))
+                .ForMember(dest => dest.PhoneNum, opts => opts.MapFrom(src => src.PhoneNum));
         }
 
         private static void ConfigureReviewMappings()
@@ -56,7 +68,6 @@ namespace RestaurantReview.Mappings
                 .ForMember(dest => dest.Id, opts => opts.MapFrom(src => 0))
                 .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.RestaurantId, opts => opts.MapFrom(src => src.RestaurantId))
-                .ForMember(dest => dest.Restaurant, opts => opts.MapFrom(src => db.Restaurants.Find(src.RestaurantId)))
                 .ForMember(dest => dest.Rating, opts => opts.MapFrom(src => src.Rating))
                 .ForMember(dest => dest.Content, opts => opts.MapFrom(src => src.Content))
                 .ForMember(dest => dest.Timestamp, opts => opts.MapFrom(src => DateTime.Now));
@@ -83,7 +94,6 @@ namespace RestaurantReview.Mappings
             Mapper.CreateMap<CreateCommentModel, Comment>()
                 .ForMember(dest => dest.Id, opts => opts.MapFrom(src => 0))
                 .ForMember(dest => dest.ReviewId, opts => opts.MapFrom(src => src.ReviewId))
-                .ForMember(dest => dest.Review, opts => opts.MapFrom(src => db.Reviews.Find(src.ReviewId)))
                 .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.Content, opts => opts.MapFrom(src => src.Content))
                 .ForMember(dest => dest.Timestamp, opts => opts.MapFrom(src => DateTime.Now));

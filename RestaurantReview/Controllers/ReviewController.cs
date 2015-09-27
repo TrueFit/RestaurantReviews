@@ -21,27 +21,31 @@ namespace RestaurantReview.Controllers
         private RestRevEntities db = new RestRevEntities();
 
         // GET api/Review
+        [HttpGet]
         public IEnumerable<DisplayReviewModel> GetReviews([FromUri]SearchReviewModel reviewModel)
         {
             IQueryable<Review> filteredReviews = db.Reviews;
             List<DisplayReviewModel> displayReviews = new List<DisplayReviewModel>();
 
-            // Filter the reviews
-            if (!String.IsNullOrWhiteSpace(reviewModel.UserName))
+            if (reviewModel != null)
             {
-                filteredReviews = filteredReviews.Where(r => r.UserName.Contains(reviewModel.UserName));
+                // Filter the reviews
+                if (!String.IsNullOrWhiteSpace(reviewModel.UserName))
+                {
+                    filteredReviews = filteredReviews.Where(r => r.UserName.Contains(reviewModel.UserName));
+                }
+
+                if (reviewModel.RestaurantId > 0)
+                {
+                    filteredReviews = filteredReviews.Where(r => r.RestaurantId == reviewModel.RestaurantId);
+                }
+
+                // Order the reviews by the OrderBy and Order specified
+                filteredReviews = OrderReviews(filteredReviews, reviewModel.OrderBy, reviewModel.Order);
+
+                // Get page of reviews by quantity requested and page number
+                filteredReviews = reviewModel.GetPage(filteredReviews);
             }
-
-            if (reviewModel.RestaurantId > 0)
-            {
-                filteredReviews = filteredReviews.Where(r => r.RestaurantId == reviewModel.RestaurantId);
-            }
-
-            // Order the reviews by the OrderBy and Order specified
-            filteredReviews = OrderReviews(filteredReviews, reviewModel.OrderBy, reviewModel.Order);
-
-            // Get page of reviews by quantity requested and page number
-            filteredReviews = reviewModel.GetPage(filteredReviews);
 
             foreach (Review rev in filteredReviews)
             {
@@ -53,6 +57,7 @@ namespace RestaurantReview.Controllers
 
         // GET api/Review/5
         [ResponseType(typeof(DisplayReviewModel))]
+        [HttpGet]
         public IHttpActionResult GetReview(int id)
         {
             Review review = db.Reviews.Find(id);
@@ -67,24 +72,28 @@ namespace RestaurantReview.Controllers
         // PUT api/Review/5
         // Updates an existing review
         [AuthorizeMembership]
+        [HttpPut]
         public IHttpActionResult PutReview(int id, UpdateReviewModel reviewModel)
         {
+            string username = GetUserName(Request);
+
             // Validate user input
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            reviewModel.UserName = GetUserName(Request);
-            if (id != reviewModel.Id || !ReviewExists(id, reviewModel.UserName))
+            
+            if (reviewModel == null || id != reviewModel.Id || !ReviewExists(id, username))
             {
                 return BadRequest();
             }
+            reviewModel.UserName = username;
 
             // Update the review
             Review review = db.Reviews.Find(reviewModel.Id);
             review.Rating = reviewModel.Rating;
             review.Content = reviewModel.Content;
+            review.Timestamp = DateTime.Now;
             db.Entry(review).State = EntityState.Modified;
 
             try
@@ -103,6 +112,7 @@ namespace RestaurantReview.Controllers
         // Inserts a new Review for the restaurant with given RestaurantId by the authorized user
         [ResponseType(typeof(DisplayReviewModel))]
         [AuthorizeMembership]
+        [HttpPost]
         public IHttpActionResult PostReview(CreateReviewModel reviewModel)
         {
             // Validate user input
@@ -110,7 +120,10 @@ namespace RestaurantReview.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            if (reviewModel == null)
+            {
+                return BadRequest();
+            }
             if (db.Restaurants.Find(reviewModel.RestaurantId) == null)
             {
                 return BadRequest("Specified restaurant not found");
@@ -127,7 +140,7 @@ namespace RestaurantReview.Controllers
             }
             catch (DbUpdateException)
             {
-                return BadRequest("Unable to update review. A user can only submit one review per restaurant.");
+                return BadRequest("Unable to create review. A user can only submit one review per restaurant.");
             }
             return CreatedAtRoute("DefaultApi", new { id = review.Id }, Mapper.Map<DisplayReviewModel>(review));
         }
@@ -135,10 +148,11 @@ namespace RestaurantReview.Controllers
         // DELETE api/Review/5
         [ResponseType(typeof(DisplayReviewModel))]
         [AuthorizeMembership]
+        [HttpPost]
         public IHttpActionResult DeleteReview(int id)
         {
             Review review = db.Reviews.Find(id);
-            if (review == null)
+            if (review == null || !ReviewExists(id, GetUserName(Request)))
             {
                 return NotFound();
             }
@@ -161,8 +175,8 @@ namespace RestaurantReview.Controllers
         private bool ReviewExists(int id, string username = null)
         {
             return username == null ?
-                db.Reviews.Count(e => e.Id == id) > 0 :
-                db.Reviews.Count(e => e.Id == id && e.UserName.Equals(username)) > 0;
+                db.Reviews.Count(r => r.Id == id) > 0 :
+                db.Reviews.Count(r => r.Id == id && r.UserName.Equals(username)) > 0;
         }
 
         private string GetUserName(HttpRequestMessage request)
@@ -173,6 +187,7 @@ namespace RestaurantReview.Controllers
         /* Orders the filtered reviews query by the following fields
          * - UserName
          * - Rating
+         * - Timestamp
          */
         private IQueryable<Review> OrderReviews(IQueryable<Review> reviews, string orderby, string order)
         {
@@ -190,6 +205,12 @@ namespace RestaurantReview.Controllers
                     reviews = order != null && order.ToLower() == "desc" ?
                         reviews.OrderByDescending(r => r.Rating) :
                         reviews.OrderBy(r => r.Rating);
+                }
+                else if (orderby.ToLower() == "timestamp")
+                {
+                    reviews = order != null && order.ToLower() == "desc" ?
+                        reviews.OrderByDescending(r => r.Timestamp) :
+                        reviews.OrderBy(r => r.Timestamp);
                 }
             }
             

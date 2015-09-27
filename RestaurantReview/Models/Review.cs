@@ -22,6 +22,7 @@ namespace RestaurantReview.Models
     
         public int Id { get; set; }
 
+        [MaxLength(50, ErrorMessage = "The username cannot be longer than 50 characters")]
         public string UserName { get; set; }
 
         [Required]

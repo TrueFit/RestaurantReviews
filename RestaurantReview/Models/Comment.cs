@@ -11,13 +11,19 @@ namespace RestaurantReview.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Comment
     {
         public int Id { get; set; }
+        [Required]
         public int ReviewId { get; set; }
+        [Required]
+        [MaxLength(50, ErrorMessage = "Username cannot be longer than 50 characters")]
         public string UserName { get; set; }
+        [Required]
         public string Content { get; set; }
+        [Required]
         public System.DateTime Timestamp { get; set; }
     
         public virtual Review Review { get; set; }

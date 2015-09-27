@@ -100,7 +100,13 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentModels\CreateCommentModel.cs" />
+    <Compile Include="Models\CommentModels\DisplayCommentModel.cs" />
+    <Compile Include="Models\CommentModels\SearchCommentModel.cs" />
+    <Compile Include="Models\CommentModels\UpdateCommentModel.cs" />
+    <Compile Include="Models\RestaurantModels\CreateRestaurantModel.cs" />
     <Compile Include="Models\RestaurantModels\DisplayRestaurantModel.cs" />
+    <Compile Include="Models\RestaurantModels\UpdateRestaurantModel.cs" />
     <Compile Include="Models\ReviewModels\CreateReviewModel.cs" />
     <Compile Include="Models\ReviewModels\DisplayReviewModel.cs" />
     <Compile Include="Models\RestaurantModels\SearchRestaurantModel.cs" />

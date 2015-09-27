@@ -16,6 +16,7 @@ using RestaurantReview.Models.CustomRestRevModels;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
 using AutoMapper;
+using RestaurantReview.Models.RestaurantModels;
 
 namespace RestaurantReview.Controllers
 {
@@ -31,47 +32,50 @@ namespace RestaurantReview.Controllers
             IQueryable<Restaurant> filteredRestaurants = db.Restaurants;
             List<DisplayRestaurantModel> displayRestaurants = new List<DisplayRestaurantModel>();
 
-            // Filter the restaurants
-            if (!String.IsNullOrWhiteSpace(restaurant.Name))
+            if (restaurant != null)
             {
-                filteredRestaurants = filteredRestaurants.Where(r => r.Name.Contains(restaurant.Name));
+                // Filter the restaurants
+                if (!String.IsNullOrWhiteSpace(restaurant.Name))
+                {
+                    filteredRestaurants = filteredRestaurants.Where(r => r.Name.Contains(restaurant.Name));
+                }
+
+                if (!String.IsNullOrWhiteSpace(restaurant.City))
+                {
+                    filteredRestaurants = filteredRestaurants.Where(r => r.City.Equals(restaurant.City));
+                }
+
+                if (!String.IsNullOrWhiteSpace(restaurant.State))
+                {
+                    filteredRestaurants = filteredRestaurants.Where(r => r.State.Equals(restaurant.State));
+                }
+
+                if (!String.IsNullOrWhiteSpace(restaurant.StreetAddress1))
+                {
+                    filteredRestaurants = filteredRestaurants.Where(r => r.StreetAddress1.Equals(restaurant.StreetAddress1));
+                }
+
+                if (!String.IsNullOrWhiteSpace(restaurant.StreetAddress2))
+                {
+                    filteredRestaurants = filteredRestaurants.Where(r => r.StreetAddress2.Equals(restaurant.StreetAddress2));
+                }
+
+                if (!String.IsNullOrWhiteSpace(restaurant.Zipcode))
+                {
+                    filteredRestaurants = filteredRestaurants.Where(r => r.Zipcode.Equals(restaurant.Zipcode));
+                }
+
+                if (!String.IsNullOrWhiteSpace(restaurant.Tag))
+                {
+                    filteredRestaurants = filteredRestaurants.Where(r => r.Tags.Contains(new Tag() { TagName = restaurant.Tag }));
+                }
+
+                // Order the restaurants by the OrderBy and Order specified
+                filteredRestaurants = OrderRestaurants(filteredRestaurants, restaurant.OrderBy, restaurant.Order);
+
+                // Filter restaurants by quantity requested and page number
+                filteredRestaurants = restaurant.GetPage(filteredRestaurants);
             }
-
-            if (!String.IsNullOrWhiteSpace(restaurant.City))
-            {
-                filteredRestaurants = filteredRestaurants.Where(r => r.City.Equals(restaurant.City));
-            }
-
-            if (!String.IsNullOrWhiteSpace(restaurant.State))
-            {
-                filteredRestaurants = filteredRestaurants.Where(r => r.State.Equals(restaurant.State));
-            }
-
-            if (!String.IsNullOrWhiteSpace(restaurant.StreetAddress1))
-            {
-                filteredRestaurants = filteredRestaurants.Where(r => r.StreetAddress1.Equals(restaurant.StreetAddress1));
-            }
-
-            if (!String.IsNullOrWhiteSpace(restaurant.StreetAddress2))
-            {
-                filteredRestaurants = filteredRestaurants.Where(r => r.StreetAddress2.Equals(restaurant.StreetAddress2));
-            }
-
-            if (!String.IsNullOrWhiteSpace(restaurant.Zipcode))
-            {
-                filteredRestaurants = filteredRestaurants.Where(r => r.Zipcode.Equals(restaurant.Zipcode));
-            }
-
-            if (!String.IsNullOrWhiteSpace(restaurant.Tag))
-            {
-                filteredRestaurants = filteredRestaurants.Where(r => r.Tags.Contains(new Tag() { TagName = restaurant.Tag }));
-            }
-
-            // Order the restaurants by the OrderBy and Order specified
-            filteredRestaurants = OrderRestaurants(filteredRestaurants, restaurant.OrderBy, restaurant.Order);
-
-            // Filter restaurants by quantity requested and page number
-            filteredRestaurants = restaurant.GetPage(filteredRestaurants);
 
             foreach (Restaurant rest in filteredRestaurants)
             {
@@ -99,25 +103,31 @@ namespace RestaurantReview.Controllers
         // PUT api/Restaurant/5
         [AuthorizeMembership]
         [HttpPut]
-        public IHttpActionResult PutRestaurant(int id, Restaurant restaurant)
+        public IHttpActionResult PutRestaurant(int id, UpdateRestaurantModel restaurantModel)
         {
+            string username = GetUserName(Request);
+
+            // Validate user input
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != restaurant.Id)
+            if (restaurantModel == null || id != restaurantModel.Id || !RestaurantExists(id, username))
             {
-                return BadRequest("The restaurant requested for update does not match the id given");
+                return BadRequest();
             }
+            restaurantModel.OwnerUserName = username;
             
-            // Ensure a user can't update a restaurant owned by another user
-            restaurant.OwnerUserName = GetUserName(Request);
-            if (!RestaurantExists(id, restaurant.OwnerUserName))
-            {
-                return NotFound();
-            }
-
+            // Update the database
+            Restaurant restaurant = db.Restaurants.Find(restaurantModel.Id);
+            restaurant.Name = restaurantModel.Name;
+            restaurant.City = restaurantModel.City;
+            restaurant.State = restaurantModel.State;
+            restaurant.Zipcode = restaurantModel.Zipcode;
+            restaurant.StreetAddress1 = restaurantModel.StreetAddress1;
+            restaurant.StreetAddress2 = restaurantModel.StreetAddress2;
+            restaurant.PhoneNum = restaurantModel.PhoneNum;
             db.Entry(restaurant).State = EntityState.Modified;
 
             try
@@ -126,7 +136,7 @@ namespace RestaurantReview.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                return InternalServerError();
+                return BadRequest("Unable to update restaurant");
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -136,17 +146,31 @@ namespace RestaurantReview.Controllers
         [AuthorizeMembership]
         [ResponseType(typeof(DisplayRestaurantModel))]
         [HttpPost]
-        public IHttpActionResult PostRestaurant(Restaurant restaurant)
+        public IHttpActionResult PostRestaurant(CreateRestaurantModel restaurantModel)
         {
+            // Validate user input
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            if (restaurantModel == null)
+            {
+                return BadRequest();
+            }
 
-            restaurant.OwnerUserName = GetUserName(Request);
+            // Create restaurant
+            restaurantModel.OwnerUserName = GetUserName(Request);
+            Restaurant restaurant = Mapper.Map<Restaurant>(restaurantModel);
             db.Restaurants.Add(restaurant);
-            db.SaveChanges();
 
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Unable to create restaurant");
+            }
             return CreatedAtRoute("DefaultApi", new { id = restaurant.Id }, Mapper.Map<DisplayRestaurantModel>(restaurant));
         }
 
@@ -156,9 +180,8 @@ namespace RestaurantReview.Controllers
         [HttpPost]
         public IHttpActionResult DeleteRestaurant(int id)
         {
-            string currUserName = GetUserName(Request);
-            Restaurant restaurant = db.Restaurants.Where(r => r.Id == id && r.OwnerUserName == currUserName).FirstOrDefault();
-            if (restaurant == null)
+            Restaurant restaurant = db.Restaurants.Find(id);
+            if (restaurant == null || !RestaurantExists(id, GetUserName(Request)))
             {
                 return NotFound();
             }
