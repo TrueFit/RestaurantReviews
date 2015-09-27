@@ -14,7 +14,7 @@ namespace RestaurantReview.Utilities
     {
         public static SessionsEntities db = new SessionsEntities();
         private const int SESSION_LEN = 20; // in minutes
-        public static string TokenType = "RestRevToken"; // review rfc 6749 for acceptable token types
+        public static string TokenType = "RestRevToken"; // review rfc 6749 for acceptable token types (this is not one of them)
 
         // Manages the sessions database for an authorized user
         // NOTE: This assumes a valid and authorized username

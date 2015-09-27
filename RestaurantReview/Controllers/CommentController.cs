@@ -21,6 +21,7 @@ namespace RestaurantReview.Controllers
         private RestRevEntities db = new RestRevEntities();
 
         // GET api/Comment
+        // Search for comments based on SearchCommentModel properties
         [HttpGet]
         public List<DisplayCommentModel> GetComments([FromUri]SearchCommentModel commentModel)
         {
@@ -56,6 +57,7 @@ namespace RestaurantReview.Controllers
         }
 
         // GET api/Comment/5
+        // Search for comment by id
         [ResponseType(typeof(DisplayCommentModel))]
         [HttpGet]
         public IHttpActionResult GetComment(int id)
@@ -70,6 +72,7 @@ namespace RestaurantReview.Controllers
         }
 
         // PUT api/Comment/5
+        // Allows a user to edit a comment that they authored
         [AuthorizeMembership]
         [HttpPut]
         public IHttpActionResult PutComment(int id, UpdateCommentModel commentModel)
@@ -107,6 +110,7 @@ namespace RestaurantReview.Controllers
         }
 
         // POST api/Comment
+        // Allows a user to post a comment to the Review given by the model's ReviewId
         [ResponseType(typeof(Comment))]
         [AuthorizeMembership]
         [HttpPost]

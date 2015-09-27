@@ -22,6 +22,7 @@ namespace RestaurantReview.Controllers
         private RestRevEntities db = new RestRevEntities();
 
         // GET api/Review
+        // Get reviews filtered by properties of the SearchReviewModel
         [HttpGet]
         public IEnumerable<DisplayReviewModel> GetReviews([FromUri]SearchReviewModel reviewModel)
         {
@@ -57,6 +58,7 @@ namespace RestaurantReview.Controllers
         }
 
         // GET api/Review/5
+        // Get review by id
         [ResponseType(typeof(DisplayReviewModel))]
         [HttpGet]
         public IHttpActionResult GetReview(int id)
@@ -71,7 +73,7 @@ namespace RestaurantReview.Controllers
         }
 
         // PUT api/Review/5
-        // Updates an existing review
+        // Allows the author of a review to update their review
         [AuthorizeMembership]
         [HttpPut]
         public IHttpActionResult PutReview(int id, UpdateReviewModel reviewModel)
@@ -110,7 +112,7 @@ namespace RestaurantReview.Controllers
         }
 
         // POST api/Review
-        // Inserts a new Review for the restaurant with given RestaurantId by the authorized user
+        // Allows a user to insert a new Review for the restaurant with given RestaurantId
         [ResponseType(typeof(DisplayReviewModel))]
         [AuthorizeMembership]
         [HttpPost]
@@ -147,6 +149,7 @@ namespace RestaurantReview.Controllers
         }
 
         // DELETE api/Review/5
+        // Allows the author of a review to delete the review
         [ResponseType(typeof(DisplayReviewModel))]
         [AuthorizeMembership]
         [HttpPost]

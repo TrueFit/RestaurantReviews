@@ -107,11 +107,11 @@ namespace RestaurantReview.Controllers
             return Ok("Logout successful");
         }
 
-        // PUT /api/user/updatepassword
+        // PUT /api/user/update
         [AuthorizeMembership]
-        [Route("api/user/updatepassword")]
+        [Route("api/user/update")]
         [HttpPut]
-        public IHttpActionResult UpdatePassword(UpdateUserModel userModel)
+        public IHttpActionResult Update(UpdateUserModel userModel)
         {
             // Validate user input
             if (!ModelState.IsValid)

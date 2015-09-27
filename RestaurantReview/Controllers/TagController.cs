@@ -21,6 +21,7 @@ namespace RestaurantReview.Controllers
         private RestRevEntities db = new RestRevEntities();
 
         // GET api/Tag
+        // Get all tags for a given restaurant
         [HttpGet]
         public List<string> GetTags(int restaurantId)
         {
@@ -28,11 +29,13 @@ namespace RestaurantReview.Controllers
         }
 
         // POST api/Tag
+        // Allows the owner of a restaurant to add tags to their restaurant
         [ResponseType(typeof(DisplayTagModel))]
         [AuthorizeMembership]
         [HttpPost]
         public IHttpActionResult PostTag(CreateDeleteTagModel tagModel)
         {
+            // Validate user input
             string username = SessionUtilities.GetUserName(Request);
             if (!ModelState.IsValid)
             {
@@ -46,6 +49,7 @@ namespace RestaurantReview.Controllers
             }
             Tag tag = Mapper.Map<Tag>(tagModel);
 
+            // Create the tag
             db.Tags.Add(tag);
             try
             {
@@ -59,6 +63,7 @@ namespace RestaurantReview.Controllers
         }
 
         // DELETE api/Tag/5
+        // Allows the owner of a restaurant to delete tags from their restaurant
         [ResponseType(typeof(DisplayTagModel))]
         [AuthorizeMembership]
         [HttpPost]

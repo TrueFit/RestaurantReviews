@@ -27,6 +27,7 @@ namespace RestaurantReview.Controllers
         private JavaScriptSerializer serializer = new JavaScriptSerializer();
 
         // GET api/Restaurant
+        // Search for restaurants by given criteria in SearchRestaurantModel
         [HttpGet]
         public IEnumerable<DisplayRestaurantModel> Select([FromUri]SearchRestaurantModel restaurant)
         {
@@ -102,6 +103,7 @@ namespace RestaurantReview.Controllers
         }
 
         // PUT api/Restaurant/5
+        // Allows a restaurant owner to update their restaurant
         [AuthorizeMembership]
         [HttpPut]
         public IHttpActionResult PutRestaurant(int id, UpdateRestaurantModel restaurantModel)
@@ -144,6 +146,7 @@ namespace RestaurantReview.Controllers
         }
 
         // POST api/Restaurant
+        // Allows a user to add a new restaurant
         [AuthorizeMembership]
         [ResponseType(typeof(DisplayRestaurantModel))]
         [HttpPost]
