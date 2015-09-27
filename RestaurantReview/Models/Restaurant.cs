@@ -22,21 +22,33 @@ namespace RestaurantReview.Models
         }
     
         public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public string City { get; set; }
+
         [Required]
+        [RegularExpression("^[A-Z]$", ErrorMessage = "State must be 2-character capitalized state code")]
         public string State { get; set; }
+
         [Required]
+        [RegularExpression("^[0-9]{5}$", ErrorMessage = "Invalid 5-digit zip code")]
         public string Zipcode { get; set; }
+
         [Required]
         public string StreetAddress1 { get; set; }
+
         public string StreetAddress2 { get; set; }
+
+        [RegularExpression("^[0-9]{10}", ErrorMessage = "Phone number must be 10-digit number (including area code) with no formatting")]
         public string PhoneNum { get; set; }
+
         public string OwnerUserName { get; set; }
     
         public virtual ICollection<Review> Reviews { get; set; }
+
         public virtual ICollection<Tag> Tags { get; set; }
     }
 }

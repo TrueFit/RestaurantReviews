@@ -28,6 +28,11 @@ namespace RestaurantReview.Controllers
             {
                 return BadRequest(ModelState);
             }
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
             try
             {
                 Membership.CreateUser(user.UserName, user.Password, user.Email);
@@ -38,7 +43,7 @@ namespace RestaurantReview.Controllers
             }
             catch
             {
-                return InternalServerError();
+                return BadRequest();
             }
 
             return Ok<SafeUserModel>(Mapper.Map<SafeUserModel>(user));
@@ -55,7 +60,7 @@ namespace RestaurantReview.Controllers
             {
                 return BadRequest(ModelState);
             }
-            else if (user.grant_type.ToLower() != "password")
+            else if (user == null || user.grant_type.ToLower() != "password")
             {
                 return BadRequest(new JavaScriptSerializer().Serialize(ErrorModels.InvalidGrant));
             }
@@ -82,13 +87,18 @@ namespace RestaurantReview.Controllers
         [Route("api/user/logout")]
         public IHttpActionResult Logout(LogoutUserModel user)
         {
+            if (!ModelState.IsValid || user == null)
+            {
+                return BadRequest("UserName must be provided");
+            }
+
             try
             {
                 SessionUtilities.RemoveSession(user.UserName);
             }
             catch
             {
-                return InternalServerError();
+                return BadRequest();
             }
 
             return Ok("Logout successful");

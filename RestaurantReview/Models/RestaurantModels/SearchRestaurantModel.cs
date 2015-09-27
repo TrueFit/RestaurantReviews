@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RestaurantReview.Models.CustomRestRevModels
 {
-    public class RestaurantSearchModel
+    public class SearchRestaurantModel : SearchModel<Restaurant>
     {
         // Optional search fields
         public string Name { get; set; }
@@ -17,11 +17,5 @@ namespace RestaurantReview.Models.CustomRestRevModels
         public string PhoneNum { get; set; }
         public string MinRating { get; set; }
         public string Tag { get; set; }
-
-        // Search options
-        public int NumRestaurants { get; set; }
-        public int PageNum { get; set; }
-        public string OrderBy { get; set; }
-        public string Order { get; set; }
     }
 }

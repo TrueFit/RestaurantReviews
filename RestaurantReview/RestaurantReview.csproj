@@ -100,8 +100,10 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomRestRevModels\DisplayRestaurantModel.cs" />
-    <Compile Include="Models\CustomRestRevModels\RestaurantSearchModel.cs" />
+    <Compile Include="Models\RestaurantModels\DisplayRestaurantModel.cs" />
+    <Compile Include="Models\ReviewModels\CreateReviewModel.cs" />
+    <Compile Include="Models\ReviewModels\DisplayReviewModel.cs" />
+    <Compile Include="Models\RestaurantModels\SearchRestaurantModel.cs" />
     <Compile Include="Models\ResponseModels\ErrorModels.cs" />
     <Compile Include="Models\ResponseModels\UserLoginResponseModel.cs" />
     <Compile Include="Models\Restaurant.cs">
@@ -125,6 +127,9 @@
     <Compile Include="Models\Review.cs">
       <DependentUpon>RestRevModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReviewModels\SearchReviewModel.cs" />
+    <Compile Include="Models\ReviewModels\UpdateReviewModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\Session.cs">
       <DependentUpon>SessionModel.tt</DependentUpon>
     </Compile>

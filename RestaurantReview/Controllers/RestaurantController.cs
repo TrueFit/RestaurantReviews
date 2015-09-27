@@ -26,7 +26,7 @@ namespace RestaurantReview.Controllers
 
         // GET api/Restaurant
         [HttpGet]
-        public IEnumerable<DisplayRestaurantModel> Select([FromUri]RestaurantSearchModel restaurant)
+        public IEnumerable<DisplayRestaurantModel> Select([FromUri]SearchRestaurantModel restaurant)
         {
             IQueryable<Restaurant> filteredRestaurants = db.Restaurants;
             List<DisplayRestaurantModel> displayRestaurants = new List<DisplayRestaurantModel>();
@@ -68,29 +68,14 @@ namespace RestaurantReview.Controllers
             }
 
             // Order the restaurants by the OrderBy and Order specified
-            if (!String.IsNullOrWhiteSpace(restaurant.OrderBy))
-            {
-                filteredRestaurants = OrderRestaurants(filteredRestaurants, restaurant.OrderBy, restaurant.Order);
-            }
-            else
-            {
-                // Order by Id by default explicitly in order to be able to call Skip() to determine number of restaurants returned
-                filteredRestaurants = filteredRestaurants.OrderBy(r => r.Id);
-            }
+            filteredRestaurants = OrderRestaurants(filteredRestaurants, restaurant.OrderBy, restaurant.Order);
 
             // Filter restaurants by quantity requested and page number
-            if (restaurant.NumRestaurants > 0)
-            {
-                restaurant.PageNum = restaurant.PageNum <= 0 ? 0 : restaurant.PageNum - 1;
-                filteredRestaurants = filteredRestaurants
-                                        .Skip(restaurant.PageNum * restaurant.NumRestaurants)
-                                        .Take(restaurant.NumRestaurants);
-            }
+            filteredRestaurants = restaurant.GetPage(filteredRestaurants);
 
-            // TODO: Create mapping for this
             foreach (Restaurant rest in filteredRestaurants)
             {
-                displayRestaurants.Add(MapRestaurant(rest));
+                displayRestaurants.Add(Mapper.Map<DisplayRestaurantModel>(rest));
             }
 
             return displayRestaurants;
@@ -126,7 +111,7 @@ namespace RestaurantReview.Controllers
                 return BadRequest("The restaurant requested for update does not match the id given");
             }
             
-            // Ensure one user cannot update a restaurant owned by another user
+            // Ensure a user can't update a restaurant owned by another user
             restaurant.OwnerUserName = GetUserName(Request);
             if (!RestaurantExists(id, restaurant.OwnerUserName))
             {
@@ -162,7 +147,7 @@ namespace RestaurantReview.Controllers
             db.Restaurants.Add(restaurant);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = restaurant.Id }, MapRestaurant(restaurant));
+            return CreatedAtRoute("DefaultApi", new { id = restaurant.Id }, Mapper.Map<DisplayRestaurantModel>(restaurant));
         }
 
         // DELETE api/Restaurant/5
@@ -211,59 +196,59 @@ namespace RestaurantReview.Controllers
          * - State
          * - Zipcode
          * - Number of reviews (NumReviews)
+         * - Lowest review rating (MinRating)
+         * - Average review rating (AvgRating)
          */
         private IQueryable<Restaurant> OrderRestaurants(IQueryable<Restaurant> restaurants, string orderby, string order)
         {
-            if (orderby.ToLower() == "name")
+            restaurants = restaurants.OrderBy(rest => rest.Id);
+            if (!String.IsNullOrWhiteSpace(orderby))
             {
-                restaurants = order != null && order.ToLower() == "desc" ? 
-                    restaurants.OrderByDescending(r => r.Name) :
-                    restaurants.OrderBy(r => r.Name);
-            }
-            else if (orderby.ToLower() == "city")
-            {
-                restaurants = order != null && order.ToLower() == "desc" ?
-                    restaurants.OrderByDescending(r => r.City) :
-                    restaurants.OrderBy(r => r.City);
-            }
-            else if (orderby.ToLower() == "state")
-            {
-                restaurants = order != null && order.ToLower() == "desc" ?
-                    restaurants.OrderByDescending(r => r.State) :
-                    restaurants.OrderBy(r => r.State);
-            }
-            else if (orderby.ToLower() == "zipcode")
-            {
-                restaurants = order != null && order.ToLower() == "desc" ?
-                    restaurants.OrderByDescending(r => r.Zipcode) :
-                    restaurants.OrderBy(r => r.Zipcode);
-            }
-            else if (orderby.ToLower() == "numreviews")
-            {
-                restaurants = order != null && order.ToLower() == "desc" ?
-                    restaurants.OrderByDescending(r => r.Reviews.Count()) :
-                    restaurants.OrderBy(r => r.Reviews.Count());
+                if (orderby.ToLower() == "name")
+                {
+                    restaurants = order != null && order.ToLower() == "desc" ?
+                        restaurants.OrderByDescending(r => r.Name) :
+                        restaurants.OrderBy(r => r.Name);
+                }
+                else if (orderby.ToLower() == "city")
+                {
+                    restaurants = order != null && order.ToLower() == "desc" ?
+                        restaurants.OrderByDescending(r => r.City) :
+                        restaurants.OrderBy(r => r.City);
+                }
+                else if (orderby.ToLower() == "state")
+                {
+                    restaurants = order != null && order.ToLower() == "desc" ?
+                        restaurants.OrderByDescending(r => r.State) :
+                        restaurants.OrderBy(r => r.State);
+                }
+                else if (orderby.ToLower() == "zipcode")
+                {
+                    restaurants = order != null && order.ToLower() == "desc" ?
+                        restaurants.OrderByDescending(r => r.Zipcode) :
+                        restaurants.OrderBy(r => r.Zipcode);
+                }
+                else if (orderby.ToLower() == "numreviews")
+                {
+                    restaurants = order != null && order.ToLower() == "desc" ?
+                        restaurants.OrderByDescending(r => r.Reviews.Count()) :
+                        restaurants.OrderBy(r => r.Reviews.Count());
+                }
+                else if (orderby.ToLower() == "minrating")
+                {
+                    restaurants = order != null && order.ToLower() == "desc" ?
+                        restaurants.OrderByDescending(rest => rest.Reviews.Select(rev => rev.Rating).Min()) :
+                        restaurants.OrderBy(rest => rest.Reviews.Select(rev => rev.Rating).Min());
+                }
+                else if (orderby.ToLower() == "avgrating")
+                {
+                    restaurants = order != null && order.ToLower() == "desc" ?
+                        restaurants.OrderByDescending(rest => rest.Reviews.Select(rev => rev.Rating).Average()) :
+                        restaurants.OrderBy(rest => rest.Reviews.Select(rev => rev.Rating).Average());
+                }
             }
 
             return restaurants;
-        }
-
-        private DisplayRestaurantModel MapRestaurant(Restaurant rest)
-        {
-            DisplayRestaurantModel dispModel = new DisplayRestaurantModel();
-            dispModel = new DisplayRestaurantModel();
-            dispModel.Id = rest.Id;
-            dispModel.Name = rest.Name;
-            dispModel.City = rest.City;
-            dispModel.State = rest.State;
-            dispModel.StreetAddress1 = rest.StreetAddress1;
-            dispModel.StreetAddress2 = rest.StreetAddress2;
-            dispModel.PhoneNum = rest.PhoneNum;
-            dispModel.OwnerUserName = rest.OwnerUserName;
-            dispModel.ReviewIds = rest.Reviews.Select(r => r.Id).ToList();
-            dispModel.Tags = rest.Tags.Select(r => r.TagName).ToList();
-
-            return dispModel;
         }
     }
 }

@@ -21,16 +21,23 @@ namespace RestaurantReview.Models
         }
     
         public int Id { get; set; }
+
         public string UserName { get; set; }
+
         [Required]
         public int RestaurantId { get; set; }
+
         [Required]
+        [Range(0.0, 10.0, ErrorMessage = "Ratings must be between 0.0 and 10.0")]
         public decimal Rating { get; set; }
+
         [Required]
         public string Content { get; set; }
+
         public System.DateTime Timestamp { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
+
         public virtual Restaurant Restaurant { get; set; }
     }
 }
