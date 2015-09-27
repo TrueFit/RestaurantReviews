@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RestaurantReview.Models;
+using RestaurantReview.Models.CommentModels;
 using RestaurantReview.Models.CustomRestRevModels;
 using RestaurantReview.Models.ResponseModels;
 using RestaurantReview.Models.ReviewModels;
@@ -21,6 +22,7 @@ namespace RestaurantReview.Mappings
             ConfigureUserMappings();
             ConfigureRestaurantMappings();
             ConfigureReviewMappings();
+            ConfigureCommentMappings();
         }
 
         private static void ConfigureUserMappings()
@@ -67,6 +69,24 @@ namespace RestaurantReview.Mappings
                 .ForMember(dest => dest.Rating, opts => opts.MapFrom(src => src.Rating))
                 .ForMember(dest => dest.Timestamp, opts => opts.MapFrom(src => src.Timestamp.ToString()))
                 .ForMember(dest => dest.CommentIds, opts => opts.MapFrom(src => src.Comments.Select(c => c.Id).ToList()));
+        }
+
+        private static void ConfigureCommentMappings()
+        {
+            Mapper.CreateMap<Comment, DisplayCommentModel>()
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id))
+                .ForMember(dest => dest.ReviewId, opts => opts.MapFrom(src => src.ReviewId))
+                .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.Content, opts => opts.MapFrom(src => src.Content))
+                .ForMember(dest => dest.Timestamp, opts => opts.MapFrom(src => src.Timestamp.ToString()));
+
+            Mapper.CreateMap<CreateCommentModel, Comment>()
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => 0))
+                .ForMember(dest => dest.ReviewId, opts => opts.MapFrom(src => src.ReviewId))
+                .ForMember(dest => dest.Review, opts => opts.MapFrom(src => db.Reviews.Find(src.ReviewId)))
+                .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.Content, opts => opts.MapFrom(src => src.Content))
+                .ForMember(dest => dest.Timestamp, opts => opts.MapFrom(src => DateTime.Now));
         }
     }
 }
