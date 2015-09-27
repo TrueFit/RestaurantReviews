@@ -164,6 +164,7 @@
     <Compile Include="Models\UserModels\LoginUserModel.cs" />
     <Compile Include="Models\UserModels\LogoutUserModel.cs" />
     <Compile Include="Models\UserModels\SafeUserModel.cs" />
+    <Compile Include="Models\UserModels\UpdateUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\SessionUtilities.cs" />
   </ItemGroup>

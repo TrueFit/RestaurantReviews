@@ -106,5 +106,44 @@ namespace RestaurantReview.Controllers
 
             return Ok("Logout successful");
         }
+
+        // PUT /api/user/updatepassword
+        [AuthorizeMembership]
+        [Route("api/user/updatepassword")]
+        [HttpPut]
+        public IHttpActionResult UpdatePassword(UpdateUserModel userModel)
+        {
+            // Validate user input
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (userModel == null)
+            {
+                return BadRequest();
+            }
+            MembershipUser muser = Membership.GetUser(SessionUtilities.GetUserName(Request));
+            if (muser != null)
+            {
+                try
+                {
+                    muser.Email = userModel.Email;
+                    Membership.UpdateUser(muser);
+                    if (!muser.ChangePassword(userModel.OldPassword, userModel.NewPassword))
+                    {
+                        return BadRequest();
+                    }
+                }
+                catch
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+            return Ok("User update successful");
+        }
     }
 }
