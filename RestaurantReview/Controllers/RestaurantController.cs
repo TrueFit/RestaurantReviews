@@ -15,6 +15,7 @@ using RestaurantReview.Filters;
 using RestaurantReview.Models.CustomRestRevModels;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
+using AutoMapper;
 
 namespace RestaurantReview.Controllers
 {
@@ -107,7 +108,7 @@ namespace RestaurantReview.Controllers
                 return NotFound();
             }
 
-            return Ok(MapRestaurant(restaurant));
+            return Ok(Mapper.Map<DisplayRestaurantModel>(restaurant));
         }
 
         // PUT api/Restaurant/5
@@ -180,7 +181,7 @@ namespace RestaurantReview.Controllers
             db.Restaurants.Remove(restaurant);
             db.SaveChanges();
 
-            return Ok(MapRestaurant(restaurant));
+            return Ok(Mapper.Map<DisplayRestaurantModel>(restaurant));
         }
 
         protected override void Dispose(bool disposing)

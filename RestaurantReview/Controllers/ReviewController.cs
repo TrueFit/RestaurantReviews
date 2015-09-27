@@ -10,6 +10,9 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using RestaurantReview.Models;
 using RestaurantReview.Filters;
+using RestaurantReview.Models.CustomRestRevModels;
+using RestaurantReview.Models.ReviewModels;
+using AutoMapper;
 
 namespace RestaurantReview.Controllers
 {

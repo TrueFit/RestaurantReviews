@@ -2,6 +2,7 @@
 using RestaurantReview.Models;
 using RestaurantReview.Models.CustomRestRevModels;
 using RestaurantReview.Models.ResponseModels;
+using RestaurantReview.Models.ReviewModels;
 using RestaurantReview.Models.UserModels;
 using RestaurantReview.Utilities;
 using System;
@@ -13,9 +14,13 @@ namespace RestaurantReview.Mappings
 {
     public class AutoMapperConfiguration
     {
+        private static RestRevEntities db = new RestRevEntities();
+
         public static void Configure()
         {
             ConfigureUserMappings();
+            ConfigureRestaurantMappings();
+            ConfigureReviewMappings();
         }
 
         private static void ConfigureUserMappings()
@@ -41,6 +46,27 @@ namespace RestaurantReview.Mappings
                 .ForMember(dest => dest.StreetAddress2, opts => opts.MapFrom(src => src.StreetAddress2))
                 .ForMember(dest => dest.PhoneNum, opts => opts.MapFrom(src => src.PhoneNum))
                 .ForMember(dest => dest.OwnerUserName, opts => opts.MapFrom(src => src.OwnerUserName));
+        }
+
+        private static void ConfigureReviewMappings()
+        {
+            Mapper.CreateMap<CreateReviewModel, Review>()
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => 0))
+                .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.RestaurantId, opts => opts.MapFrom(src => src.RestaurantId))
+                .ForMember(dest => dest.Restaurant, opts => opts.MapFrom(src => db.Restaurants.Find(src.RestaurantId)))
+                .ForMember(dest => dest.Rating, opts => opts.MapFrom(src => src.Rating))
+                .ForMember(dest => dest.Content, opts => opts.MapFrom(src => src.Content))
+                .ForMember(dest => dest.Timestamp, opts => opts.MapFrom(src => DateTime.Now));
+
+            Mapper.CreateMap<Review, DisplayReviewModel>()
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id))
+                .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.Content, opts => opts.MapFrom(src => src.Content))
+                .ForMember(dest => dest.RestaurantId, opts => opts.MapFrom(src => src.RestaurantId))
+                .ForMember(dest => dest.Rating, opts => opts.MapFrom(src => src.Rating))
+                .ForMember(dest => dest.Timestamp, opts => opts.MapFrom(src => src.Timestamp.ToString()))
+                .ForMember(dest => dest.CommentIds, opts => opts.MapFrom(src => src.Comments.Select(c => c.Id).ToList()));
         }
     }
 }
