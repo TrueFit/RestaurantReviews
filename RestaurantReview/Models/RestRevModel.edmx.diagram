@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c150106a80b54e28949da7acd33e1c21" Name="Diagram1">
+        <EntityTypeShape EntityType="RestRevModel.Comment" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestRevModel.Restaurant" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestRevModel.Review" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestRevModel.Tag" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="RestRevModel.FK_Comment_Review" ManuallyRouted="false" />
+        <AssociationConnector Association="RestRevModel.FK_Review_Restaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="RestRevModel.FK_Tag_Restaurant" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

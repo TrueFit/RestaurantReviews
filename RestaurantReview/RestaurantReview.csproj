@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A2A858B3-49FC-43FB-A089-3053B2CB7514}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RestaurantReview</RootNamespace>
+    <AssemblyName>RestaurantReview</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\AuthorizeMembership.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>RestRevModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommentModels\CreateCommentModel.cs" />
+    <Compile Include="Models\CommentModels\DisplayCommentModel.cs" />
+    <Compile Include="Models\CommentModels\SearchCommentModel.cs" />
+    <Compile Include="Models\CommentModels\UpdateCommentModel.cs" />
+    <Compile Include="Models\RestaurantModels\CreateRestaurantModel.cs" />
+    <Compile Include="Models\RestaurantModels\DisplayRestaurantModel.cs" />
+    <Compile Include="Models\RestaurantModels\UpdateRestaurantModel.cs" />
+    <Compile Include="Models\ReviewModels\CreateReviewModel.cs" />
+    <Compile Include="Models\ReviewModels\DisplayReviewModel.cs" />
+    <Compile Include="Models\RestaurantModels\SearchRestaurantModel.cs" />
+    <Compile Include="Models\ResponseModels\ErrorModels.cs" />
+    <Compile Include="Models\ResponseModels\UserLoginResponseModel.cs" />
+    <Compile Include="Models\Restaurant.cs">
+      <DependentUpon>RestRevModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RestRevModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestRevModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RestRevModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestRevModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RestRevModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestRevModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>RestRevModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReviewModels\SearchReviewModel.cs" />
+    <Compile Include="Models\ReviewModels\UpdateReviewModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\Session.cs">
+      <DependentUpon>SessionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SessionModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SessionModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SessionModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tag.cs">
+      <DependentUpon>RestRevModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TagModels\CreateDeleteTagModel.cs" />
+    <Compile Include="Models\TagModels\DisplayTagModel.cs" />
+    <Compile Include="Models\UserModels\CreateUserModel.cs" />
+    <Compile Include="Models\UserModels\LoginUserModel.cs" />
+    <Compile Include="Models\UserModels\LogoutUserModel.cs" />
+    <Compile Include="Models\UserModels\SafeUserModel.cs" />
+    <Compile Include="Models\UserModels\UpdateUserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\SessionUtilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <EntityDeploy Include="Models\SessionModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SessionModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SessionModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SessionModel.edmx</DependentUpon>
+      <LastGenOutput>SessionModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SessionModel.edmx.diagram">
+      <DependentUpon>SessionModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SessionModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SessionModel.edmx</DependentUpon>
+      <LastGenOutput>SessionModel.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\RestRevModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RestRevModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\RestRevModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestRevModel.edmx</DependentUpon>
+      <LastGenOutput>RestRevModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\RestRevModel.edmx.diagram">
+      <DependentUpon>RestRevModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\RestRevModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestRevModel.edmx</DependentUpon>
+      <LastGenOutput>RestRevModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55688/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
