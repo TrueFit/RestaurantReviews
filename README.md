@@ -1,3 +1,19 @@
+Process for Determining Design
+=================
+The requirements given are vague in terms of the client's intentions and what their long term goals are, though it's pretty clear what their short term goals are. Our short term goal should be to both design this system to reflect their long term goals and to avoid over-building at this stage to keep costs down.
+
+Questions I'd Have For Product
+--------------
+* Will this client expand beyond restaurants in the future?
+* Is the client looking for massive scalability (aka trying to build the next Yelp), or will their traffic likely be lower (aka a local newspaper wants it to review Pittsburgh restaurants)
+* Are they going to hire developers after the initial development to conitinue development, and what level of developer will they be looking to hire first?
+
+Sample Product Answers (which the implementation is based on)
+--------------
+* Yes, the client has a vision to expand to many types of businesses based on City location.
+* They want scalability, however they don't want it built in right away. However they would like us to build in a way that modifying the system to horizontally scale won't require a rewrite of the entire system.
+* They plan on hiring one senior developer, and they would like us to walk the developer through the design and implementation after the project.
+
 RestaurantReviews
 =================
 
