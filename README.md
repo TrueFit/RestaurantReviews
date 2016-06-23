@@ -21,6 +21,8 @@ Thoughts of Design
 * This architecture is decoupled into Services, however they will be implemented in this phase as components. The goal is to provide components that can be turned into web services later when scaling issues arise.
 * There is a downside to this strategy, data integrity is now the responsibility of the application rather than the database because we won't be establishing a relational database. This could have implications down the road if the underlying data needs to be utilized in a manner we aren't building towards. The most obvious use case is reporting, however in a high performance system that should be moved to a data warehouse anyways since we don't want live reporting queries in our production environment.
 * Even if we aren't aiming for high test coverage, everything should be testable as much as possible.
+* The services themselves are going to come across as fairly useless at this stage, which is true given a lot of these operations are simple CRUD calls. This is designed for the theoritical world where more may be happening behind the scenes later, for instance with Reviews the obvious future feature is an automated process to screen reviews for content (curse words, etc), and possibly workflows for manual auditing of reviews. For these reasons the data repositories are being screened inside the services layer.
+* You'll notice not all operations are available for each model, for instance you can't Delete a User. This is by design, we're only exposing what the application needs for now. Adding these operations later is easy enough, however if we currently are designing our app to take advantage of them there's no reason to expose them for accidental use.
 
 RestaurantReviews
 =================
