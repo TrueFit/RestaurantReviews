@@ -6,7 +6,7 @@ using RestaurantReviews.Data;
 using RestaurantReviews.Data.Models;
 using RestaurantReviews.Data.Repositories;
 
-namespace Truefit.Entities.Tests
+namespace Truefit.Entities.Tests.Unit
 {
     [TestFixture]
     public class EntityServiceTests
