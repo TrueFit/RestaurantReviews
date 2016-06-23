@@ -19,12 +19,5 @@ namespace RestaurantReviews.Data.Repositories
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<CityModel>> GetAll();
-
-        /// <summary>
-        /// Gets a City by a US State abbreviation
-        /// </summary>
-        /// <param name="abbr"></param>
-        /// <returns></returns>
-        Task<IEnumerable<CityModel>> GetByStateAbbr(string abbr);
     }
 }
