@@ -67,5 +67,21 @@ namespace Truefit.Entities.Tests.Unit
             var actual = await this._entityService.GetEntities(city, type);
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public async Task InsertUserEntity_Should_Set_NeedsApproved_To_True()
+        {
+            var entity = new EntityModel();
+            await this._entityService.InsertUserEntity(entity);
+            this._entityRepository.Verify(x => x.Insert(It.Is<EntityModel>(e => e.NeedsReviewed)));
+        }
+
+        [Test]
+        public async Task InsertUserEntity_Should_Set_IsActive_To_False()
+        {
+            var entity = new EntityModel();
+            await this._entityService.InsertUserEntity(entity);
+            this._entityRepository.Verify(x => x.Insert(It.Is<EntityModel>(e => !e.IsActive)));
+        }
     }
 }

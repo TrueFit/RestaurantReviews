@@ -35,5 +35,11 @@ namespace RestaurantReviews.Data
         /// <returns></returns>
         Task<IEnumerable<EntityModel>> GetEntities(CityModel city, string type);
 
+        /// <summary>
+        /// Inserts an entity that was submitted by a User
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task InsertUserEntity(EntityModel entity);
     }
 }

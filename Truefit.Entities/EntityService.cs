@@ -36,5 +36,12 @@ namespace RestaurantReviews.Data
         {
             return await this._entityRepository.GetByCityAndType(city.Guid, type);
         }
+
+        public async Task InsertUserEntity(EntityModel entity)
+        {
+            entity.IsActive = false;
+            entity.NeedsReviewed = true;
+            await this._entityRepository.Insert(entity);
+        }
     }
 }
