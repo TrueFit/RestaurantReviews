@@ -1,13 +1,14 @@
 using System;
+using System.Threading.Tasks;
 using Truefit.Users.Models;
 
 namespace Truefit.Users.Repositories
 {
     public interface IUserRepository
     {
-        UserModel GetByGuid(Guid guid);
-        UserModel GetByFacebookId(int id);
-        void Insert(UserModel user);
-        void Update(UserModel user);
+        Task<UserModel> GetByGuid(Guid guid);
+        Task<UserModel> GetByFacebookId(int id);
+        Task Insert(UserModel user);
+        Task Update(UserModel user);
     }
 }

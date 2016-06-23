@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RestaurantReviews.Data.Models;
 
 namespace RestaurantReviews.Data.Repositories
 {
     public interface IEntityRepository
     {
-        EntityModel GetByGuid(Guid guid);
-        IEnumerable<EntityModel> GetByCity(Guid guid);
-        void Insert(EntityModel entity);
+        Task<EntityModel> GetByGuid(Guid guid);
+        Task<IEnumerable<EntityModel>> GetByCity(Guid guid);
+        Task Insert(EntityModel entity);
     }
 }

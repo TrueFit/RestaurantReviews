@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RestaurantReviews.Data.Models;
 
 namespace RestaurantReviews.Data.Repositories
 {
     public interface ICityRepository
     {
-        CityModel GetByGuid(Guid guid);
-        IEnumerable<CityModel> GetAll();
-        IEnumerable<CityModel> GetByStateAbbr(string abbr);
+        Task<CityModel> GetByGuid(Guid guid);
+        Task<IEnumerable<CityModel>> GetAll();
+        Task<IEnumerable<CityModel>> GetByStateAbbr(string abbr);
     }
 }
