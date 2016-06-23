@@ -8,5 +8,6 @@ namespace Truefit.Reviews.Repositories
     {
         ReviewModel GetByGuid(Guid guid);
         IEnumerable<ReviewModel> GetByEntity(Guid guid);
+        IEnumerable<ReviewModel> GetByUser(Guid guid);
     }
 }
