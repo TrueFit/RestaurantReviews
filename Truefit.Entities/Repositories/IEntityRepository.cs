@@ -8,5 +8,6 @@ namespace RestaurantReviews.Data.Repositories
     {
         EntityModel GetByGuid(Guid guid);
         IEnumerable<EntityModel> GetByCity(Guid guid);
+        void Insert(EntityModel entity);
     }
 }
