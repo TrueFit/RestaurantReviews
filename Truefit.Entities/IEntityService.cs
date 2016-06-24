@@ -40,6 +40,6 @@ namespace RestaurantReviews.Data
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task InsertUserEntity(EntityModel entity);
+        Task AddUserEntity(EntityModel entity);
     }
 }

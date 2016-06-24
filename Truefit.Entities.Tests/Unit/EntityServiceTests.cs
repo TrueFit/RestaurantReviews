@@ -69,18 +69,18 @@ namespace Truefit.Entities.Tests.Unit
         }
 
         [Test]
-        public async Task InsertUserEntity_Should_Set_NeedsApproved_To_True()
+        public async Task AddUserEntity_Should_Set_NeedsApproved_To_True()
         {
             var entity = new EntityModel();
-            await this._entityService.InsertUserEntity(entity);
+            await this._entityService.AddUserEntity(entity);
             this._entityRepository.Verify(x => x.Insert(It.Is<EntityModel>(e => e.NeedsReviewed)));
         }
 
         [Test]
-        public async Task InsertUserEntity_Should_Set_IsActive_To_False()
+        public async Task AddUserEntity_Should_Set_IsActive_To_False()
         {
             var entity = new EntityModel();
-            await this._entityService.InsertUserEntity(entity);
+            await this._entityService.AddUserEntity(entity);
             this._entityRepository.Verify(x => x.Insert(It.Is<EntityModel>(e => !e.IsActive)));
         }
     }

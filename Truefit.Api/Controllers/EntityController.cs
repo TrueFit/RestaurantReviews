@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using RestaurantReviews.Data;
 using RestaurantReviews.Data.Models;
 using Truefit.Reviews.Models;
 
@@ -9,6 +10,13 @@ namespace Truefit.Api.Controllers
     [RoutePrefix("entities")]
     public class EntityController : ApiController
     {
+        private readonly IEntityService _entityService;
+
+        public EntityController(IEntityService entityService)
+        {
+            this._entityService = entityService;
+        }
+
         [HttpPost]
         [Route]
         public async Task<IHttpActionResult> Post(EntityModel entity)
