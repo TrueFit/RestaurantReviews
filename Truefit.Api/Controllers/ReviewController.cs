@@ -15,7 +15,8 @@ namespace Truefit.Api.Controllers
         [Route("{reviewId}")]
         public async Task<IHttpActionResult> DeleteReview(string reviewId, string authToken)
         {
-            return this.Ok(reviewId + " " + authToken);
+            await this.DeleteReview(reviewId, authToken);
+            return this.Ok();
         }
     }
 }

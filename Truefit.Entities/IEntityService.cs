@@ -33,7 +33,7 @@ namespace RestaurantReviews.Data
         /// <param name="city"></param>
         /// <param name="type">Restuarant, Yoga Studio, etc. (free text)</param>
         /// <returns></returns>
-        Task<IEnumerable<EntityModel>> GetEntities(CityModel city, string type);
+        Task<IEnumerable<EntityModel>> GetEntities(Guid cityId, string type);
 
         /// <summary>
         /// Inserts an entity that was submitted by a User

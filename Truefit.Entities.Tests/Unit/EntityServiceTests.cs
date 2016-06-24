@@ -56,15 +56,14 @@ namespace Truefit.Entities.Tests.Unit
         }
 
         [Test]
-        public async Task GetEntities_Retrieves_From_Repo_By_City_Guid()
+        public async Task GetEntities_is_Repo_Passthrough()
         {
-            var guid = Guid.NewGuid();
+            var cityId = Guid.NewGuid();
             var type = string.Empty;
-            var city = new CityModel {Guid = guid};
             var expected = new[] {new EntityModel()};
 
-            this._entityRepository.Setup(x => x.GetByCityAndType(guid, type)).ReturnsAsync(expected);
-            var actual = await this._entityService.GetEntities(city, type);
+            this._entityRepository.Setup(x => x.GetByCityAndType(cityId, type)).ReturnsAsync(expected);
+            var actual = await this._entityService.GetEntities(cityId, type);
             Assert.AreEqual(expected, actual);
         }
 

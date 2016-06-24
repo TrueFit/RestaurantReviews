@@ -32,9 +32,9 @@ namespace RestaurantReviews.Data
             return await this._entityRepository.GetByGuid(guid);
         }
 
-        public async Task<IEnumerable<EntityModel>> GetEntities(CityModel city, string type)
+        public async Task<IEnumerable<EntityModel>> GetEntities(Guid cityId, string type)
         {
-            return await this._entityRepository.GetByCityAndType(city.Guid, type);
+            return await this._entityRepository.GetByCityAndType(cityId, type);
         }
 
         public async Task AddUserEntity(EntityModel entity)
