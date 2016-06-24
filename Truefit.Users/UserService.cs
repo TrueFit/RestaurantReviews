@@ -13,7 +13,7 @@ namespace Truefit.Users
         {
             return new UserModel
             {
-                Guid = Guid.NewGuid(),
+                Guid = Guid.Parse("19685BD6-1B72-4DE9-BCB5-413DAFBA5DD0"),
                 UserName = "Test User",
                 AuthToken = authToken
             };

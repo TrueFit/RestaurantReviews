@@ -1,3 +1,7 @@
+using System.Web.Http;
+using Ninject.Web.WebApi;
+using Truefit.Users;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Truefit.Api.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(Truefit.Api.NinjectWebCommon), "Stop")]
 namespace Truefit.Api
@@ -12,7 +16,7 @@ namespace Truefit.Api
 
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper _bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -21,7 +25,7 @@ namespace Truefit.Api
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            _bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -29,7 +33,7 @@ namespace Truefit.Api
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            _bootstrapper.ShutDown();
         }
         
         /// <summary>
@@ -45,6 +49,7 @@ namespace Truefit.Api
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
                 return kernel;
             }
             catch
@@ -60,6 +65,7 @@ namespace Truefit.Api
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IUserService>().To<UserService>().InRequestScope();
         }        
     }
 }
