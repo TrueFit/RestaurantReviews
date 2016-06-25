@@ -133,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Data\demo\citymodels.json" />
+    <Content Include="Data\demo\entitymodels.json" />
+    <Content Include="Data\demo\reviewmodels.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
