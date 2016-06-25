@@ -1,15 +1,69 @@
 API Usage
 =================
+Below is a lost of API endpoints, as well as examples that should work with the checked in JSON data files.
+
 ```
-GET    /cities
+GET /cities
+```
+```
 GET    /cities/{guid}/{type}
-POST   /entities
-GET    /entities/{guid}
-GET    /entities/{guid}/reviews
-POST   /entities/{guid}/reviews
+
+Example: 
+GET /cities/c8a4577a-f449-44c1-9f78-ab0ed43c4cf2/restaurant
+```
+```
+POST /entities
+
+Example:  
+POST /entities
+{
+  Guid : "2D3406D2-86CD-4E50-A56A-474C6618AC04",
+  CityGuid: "c8a4577a-f449-44c1-9f78-ab0ed43c4cf2",
+  Name: "More Pizza",
+  Type: "Restaurant"
+}
+```
+```
+GET /entities/{guid}
+
+Example:
+GET /entities/0374a4c1-57aa-4dcd-b580-944e9a99bc13
+```
+```
+GET /entities/{guid}/reviews
+
+Example:
+/entities/0374a4c1-57aa-4dcd-b580-944e9a99bc13/reviews
+```
+```
+POST /entities/{guid}/reviews
+
+Example:
+POST /entities/0374a4c1-57aa-4dcd-b580-944e9a99bc13/reviews
+{
+  UserGuid : "19685BD6-1B72-4DE9-BCB5-413DAFBA5DD0",
+  Title: "Most Awesome Pizza Ever",
+  Body: "I ate so much num num num",
+  Rating: 5
+}
+```
+```
 DELETE /reviews/{guid}?authToken={token}
-GET    /user/authenticate?authToken={token}
-GET    /user/{guid}/reviews
+
+Example:
+DELETE /reviews/e2703d41-948d-4f34-994b-b42d0b34f2f1?authToken=anystring
+```
+```
+GET /users/authenticate?authToken={token}
+
+Example:
+GET /users/authenticate?authToken=anystring
+```
+```
+GET /users/{guid}/reviews
+
+Example:
+GET /users/19685bd6-1b72-4de9-bcb5-413dafba5dd0/reviews
 ```
 
 Process for Determining Design
@@ -56,6 +110,7 @@ Things That Are Missing or Could Be Different This Submission
 * It really bugs me people can post reviews without proper authentication, again I could keep going for awhile but I need to stop.
 * Did I really just pass a success/failure boolen back from ReviewService.RemoveUserReview? It should at least indicate if the user wasn't authenicated to delete it or if it wasn't there... yeah, I could spend a couple more hours on this but I think the theme of what you're looking for is met here.
 * There's a good bit of happy path testing here, I'm certain there are several non-happy path bugs sitting in here somewhere.
+* Probably should move posting an entity from /entities to /cities/{guid}/entities. Seems a little more natural, but doesn't really work if you switch to a geo location model rather than direct city mapping. Hmmm...
 
 RestaurantReviews
 =================
