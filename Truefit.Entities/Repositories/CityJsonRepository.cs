@@ -20,12 +20,12 @@ namespace RestaurantReviews.Data.Repositories
 
         public async Task<CityModel> GetByGuid(Guid guid)
         {
-            return this._cities.FirstOrDefault(x => x.Guid == guid);
+            return await Task.FromResult(this._cities.FirstOrDefault(x => x.Guid == guid));
         }
 
         public async Task<IEnumerable<CityModel>> GetAll()
         {
-            return this._cities;
+            return await Task.FromResult(this._cities);
         }
     }
 }

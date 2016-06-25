@@ -19,17 +19,17 @@ namespace RestaurantReviews.Data.Repositories
 
         public async Task<EntityModel> GetByGuid(Guid guid)
         {
-            return this._entities.FirstOrDefault(x => x.Guid == guid);
+            return await Task.FromResult(this._entities.FirstOrDefault(x => x.Guid == guid));
         }
 
         public async Task<IEnumerable<EntityModel>> GetByCityAndType(Guid cityId, string type)
         {
-            return this._entities.Where(x => x.CityGuid == cityId && x.Type == type);
+            return await Task.FromResult(this._entities.Where(x => x.CityGuid == cityId && x.Type == type));
         }
 
         public async Task Insert(EntityModel entity)
         {
-            this._entities.Add(entity);
+            await Task.Run(() => this._entities.Add(entity));
         }
     }
 }

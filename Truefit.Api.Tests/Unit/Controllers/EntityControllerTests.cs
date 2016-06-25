@@ -10,7 +10,7 @@ using Truefit.Reviews.Models;
 namespace Truefit.Api.Tests.Unit.Controllers
 {
     [TestFixture]
-    public class EntityControllerTests
+    public class EntityControllerTests : IDisposable
     {
         private Mock<IEntityService> _entityService;
         private Mock<IReviewService> _reviewService;
@@ -33,6 +33,11 @@ namespace Truefit.Api.Tests.Unit.Controllers
             await this._controller.PostReview(entityId, review);
 
             this._reviewService.Verify(x => x.AddUserReview(It.Is<ReviewModel>(r => r.EntityGuid == entityId)));
+        }
+
+        public void Dispose()
+        {
+            this._controller.Dispose();
         }
     }
 }

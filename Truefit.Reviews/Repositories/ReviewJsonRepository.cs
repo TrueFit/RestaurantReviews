@@ -19,28 +19,28 @@ namespace Truefit.Reviews.Repositories
 
         public async Task<ReviewModel> GetByGuid(Guid guid)
         {
-            return this._reviews.FirstOrDefault(x => x.Guid == guid);
+            return await Task.FromResult(this._reviews.FirstOrDefault(x => x.Guid == guid));
         }
 
         public async Task<IEnumerable<ReviewModel>> GetByEntity(Guid entityId)
         {
-            return this._reviews.Where(x => x.EntityGuid == entityId);
+            return await Task.FromResult(this._reviews.Where(x => x.EntityGuid == entityId));
         }
 
         public async Task<IEnumerable<ReviewModel>> GetByUser(Guid userId)
         {
-            return this._reviews.Where(x => x.UserGuid == userId);
+            return await Task.FromResult(this._reviews.Where(x => x.UserGuid == userId));
         }
 
         public async Task Insert(ReviewModel review)
         {
-            this._reviews.Add(review);
+            await Task.Run(() => this._reviews.Add(review));
         }
 
         public async Task Delete(Guid guid)
         {
             var review = this._reviews.FirstOrDefault(x => x.Guid == guid);
-            this._reviews.Remove(review);
+            await Task.Run(() => this._reviews.Remove(review));
         }
     }
 }
