@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RestaurantReviews.Data.Models
+namespace Truefit.Entities.Models
 {
     public class EntityModel
     {

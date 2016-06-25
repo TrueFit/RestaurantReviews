@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using RestaurantReviews.Data;
+using Truefit.Entities;
 
 namespace Truefit.Api.Controllers
 {

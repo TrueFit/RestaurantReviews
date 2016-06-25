@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Biggy.Core;
 using Biggy.Data.Json;
-using RestaurantReviews.Data.Models;
+using Truefit.Entities.Models;
 
-namespace RestaurantReviews.Data.Repositories
+namespace Truefit.Entities.Repositories
 {
     public class CityJsonRepository : ICityRepository
     {

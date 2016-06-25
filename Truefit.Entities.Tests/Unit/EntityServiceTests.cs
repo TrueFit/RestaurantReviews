@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using RestaurantReviews.Data;
-using RestaurantReviews.Data.Models;
-using RestaurantReviews.Data.Repositories;
+using Truefit.Entities.Models;
+using Truefit.Entities.Repositories;
 
 namespace Truefit.Entities.Tests.Unit
 {

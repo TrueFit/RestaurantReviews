@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using RestaurantReviews.Data;
 using Truefit.Api.Controllers;
+using Truefit.Entities;
 using Truefit.Reviews;
 using Truefit.Reviews.Models;
 

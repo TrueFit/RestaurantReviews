@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RestaurantReviews.Data.Models;
-using RestaurantReviews.Data.Repositories;
+using Truefit.Entities.Models;
+using Truefit.Entities.Repositories;
 
-namespace RestaurantReviews.Data
+namespace Truefit.Entities
 {
     public class EntityService : IEntityService
     {

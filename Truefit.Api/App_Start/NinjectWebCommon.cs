@@ -1,8 +1,8 @@
 using System.Web.Http;
 using Biggy.Data.Json;
 using Ninject.Web.WebApi;
-using RestaurantReviews.Data;
-using RestaurantReviews.Data.Repositories;
+using Truefit.Entities;
+using Truefit.Entities.Repositories;
 using Truefit.Reviews;
 using Truefit.Reviews.Repositories;
 using Truefit.Users;

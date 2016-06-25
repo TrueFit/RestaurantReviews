@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using RestaurantReviews.Data;
-using RestaurantReviews.Data.Models;
+using Truefit.Entities;
+using Truefit.Entities.Models;
 using Truefit.Reviews;
 using Truefit.Reviews.Models;
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RestaurantReviews.Data.Models;
+using Truefit.Entities.Models;
 
-namespace RestaurantReviews.Data
+namespace Truefit.Entities
 {
     public interface IEntityService
     {
