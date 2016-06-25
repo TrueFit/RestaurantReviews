@@ -4,15 +4,27 @@ Below is a lost of API endpoints, as well as examples that should work with the 
 
 ```
 GET /cities
+
+Gets a list of all cities. 
+
+Example:
+GET /cities
 ```
 ```
 GET    /cities/{guid}/{type}
+
+Gets a list of entities by type from a city. 
 
 Example: 
 GET /cities/c8a4577a-f449-44c1-9f78-ab0ed43c4cf2/restaurant
 ```
 ```
 POST /entities
+
+Adds an entity.
+
+Notes:
+Trusts data submitted too much, also doesn't log the user that submitted it.
 
 Example:  
 POST /entities
@@ -26,17 +38,26 @@ POST /entities
 ```
 GET /entities/{guid}
 
+Gets an entity by it's guid
+
 Example:
 GET /entities/0374a4c1-57aa-4dcd-b580-944e9a99bc13
 ```
 ```
 GET /entities/{guid}/reviews
 
+Gets an entity's reviews
+
 Example:
 /entities/0374a4c1-57aa-4dcd-b580-944e9a99bc13/reviews
 ```
 ```
 POST /entities/{guid}/reviews
+
+Adds a review for an entity
+
+Notes: 
+Ignores the guid for the review if you submit one and automatically overwrites it. Also lacks authentication that the user submitting the review matches the UserGuid in the review (aka we are trusting the mobile app, which is a bad idea).
 
 Example:
 POST /entities/0374a4c1-57aa-4dcd-b580-944e9a99bc13/reviews
@@ -50,17 +71,32 @@ POST /entities/0374a4c1-57aa-4dcd-b580-944e9a99bc13/reviews
 ```
 DELETE /reviews/{guid}?authToken={token}
 
+Deletes a review.
+
+Notes:
+Validates the user based on authToken, however user it validates to is hard-coded so you can't get rid of the review unless Test User was the user that submitted it. This is about as far as validation got before I decided it was time to stop adding things to this test.
+
 Example:
 DELETE /reviews/e2703d41-948d-4f34-994b-b42d0b34f2f1?authToken=anystring
 ```
 ```
 GET /users/authenticate?authToken={token}
 
+Authenticates a user based on the authToken.
+
+Notes:
+Pass anything in here, this is just so you can lookup the guid of Test User
+
 Example:
 GET /users/authenticate?authToken=anystring
 ```
 ```
 GET /users/{guid}/reviews
+
+Gets reviews for a user
+
+Notes:
+This works for any user guid, so I made an API where you can look them up for anyone but can only delete them for Test User
 
 Example:
 GET /users/19685bd6-1b72-4de9-bcb5-413dafba5dd0/reviews
