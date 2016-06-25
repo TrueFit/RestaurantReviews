@@ -154,6 +154,7 @@ Things That Are Missing or Could Be Different This Submission
 * There's a good bit of happy path testing here, I'm certain there are several non-happy path bugs sitting in here somewhere.
 * Probably should move posting an entity from /entities to /cities/{guid}/entities. Seems a little more natural, but doesn't really work if you switch to a geo location model rather than direct city mapping. Hmmm...
 * I know I can make these changes and more, however I need to stop at some point before I end up writing a complete application.
+* My apologies for the namespaces, the F should have been capitialized. Just realized that after looking up at where I forked this from.
 
 RestaurantReviews
 =================
