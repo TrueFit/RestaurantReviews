@@ -6,9 +6,11 @@ namespace Truefit.Users
 {
     public class UserService : IUserService
     {
-        /*
-         * Warning: This account service is temporary, calling this method only returns a random user.
-         * */
+        /// <summary>
+        /// Returns a temporary user
+        /// </summary>
+        /// <param name="authToken"></param>
+        /// <returns></returns>
         public async Task<UserModel> Authenticate(string authToken)
         {
             return new UserModel
