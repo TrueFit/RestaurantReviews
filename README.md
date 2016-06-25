@@ -8,7 +8,7 @@ GET    /entities/{guid}
 GET    /entities/{guid}/reviews
 POST   /entities/{guid}/reviews
 DELETE /reviews/{guid}?authToken={token}
-GET    /user/authenticate
+GET    /user/authenticate?authToken={token}
 GET    /user/{guid}/reviews
 ```
 
