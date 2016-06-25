@@ -1,4 +1,3 @@
-using System.Web.Hosting;
 using System.Web.Http;
 using Biggy.Data.Json;
 using Ninject.Web.WebApi;

@@ -30,7 +30,7 @@ namespace RestaurantReviews.Data
         /// <summary>
         /// Gets all Entities for a City that have a specific Type
         /// </summary>
-        /// <param name="city"></param>
+        /// <param name="cityId"></param>
         /// <param name="type">Restuarant, Yoga Studio, etc. (free text)</param>
         /// <returns></returns>
         Task<IEnumerable<EntityModel>> GetEntities(Guid cityId, string type);

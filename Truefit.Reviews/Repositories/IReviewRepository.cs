@@ -17,14 +17,14 @@ namespace Truefit.Reviews.Repositories
         /// <summary>
         /// Gets all Reviews for an Entity
         /// </summary>
-        /// <param name="guid"></param>
+        /// <param name="entityId"></param>
         /// <returns></returns>
         Task<IEnumerable<ReviewModel>> GetByEntity(Guid entityId);
 
         /// <summary>
         /// Get all Reviews by User
         /// </summary>
-        /// <param name="guid"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
         Task<IEnumerable<ReviewModel>> GetByUser(Guid userId);
 
