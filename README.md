@@ -29,7 +29,6 @@ Trusts data submitted too much, also doesn't log the user that submitted it.
 Example:  
 POST /entities
 {
-  Guid : "2D3406D2-86CD-4E50-A56A-474C6618AC04",
   CityGuid: "c8a4577a-f449-44c1-9f78-ab0ed43c4cf2",
   Name: "More Pizza",
   Type: "Restaurant"
