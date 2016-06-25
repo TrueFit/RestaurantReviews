@@ -1,6 +1,6 @@
 API Usage
 =================
-
+```
 GET    /cities
 GET    /cities/{guid}/{type}
 POST   /entities
@@ -10,6 +10,7 @@ POST   /entities/{guid}/reviews
 DELETE /reviews/{guid}?authToken={token}
 GET    /user/authenticate
 GET    /user/{guid}/reviews
+```
 
 Process for Determining Design
 =================
