@@ -1,3 +1,16 @@
+API Usage
+=================
+
+GET    /cities
+GET    /cities/{guid}/{type}
+POST   /entities
+GET    /entities/{guid}
+GET    /entities/{guid}/reviews
+POST   /entities/{guid}/reviews
+DELETE /reviews/{guid}?authToken={token}
+GET    /user/authenticate
+GET    /user/{guid}/reviews
+
 Process for Determining Design
 =================
 The requirements given are vague in terms of the client's intentions and what their long term goals are, though it's pretty clear what their short term goals are. Our short term goal should be to both design this system to reflect their long term goals and to avoid over-building at this stage to keep costs down.
