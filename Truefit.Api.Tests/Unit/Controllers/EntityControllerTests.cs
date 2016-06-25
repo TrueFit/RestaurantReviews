@@ -37,7 +37,15 @@ namespace Truefit.Api.Tests.Unit.Controllers
 
         public void Dispose()
         {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this._controller == null) return;
             this._controller.Dispose();
+            this._controller = null;
         }
     }
 }

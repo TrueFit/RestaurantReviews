@@ -11,7 +11,7 @@ using Truefit.Users.Models;
 namespace Truefit.Api.Tests.Unit.Controllers
 {
     [TestFixture]
-    public class ReviewControllerTests
+    public class ReviewControllerTests : IDisposable
     {
         private Mock<IUserService> _userService;
         private Mock<IReviewService> _reviewService;
@@ -41,6 +41,19 @@ namespace Truefit.Api.Tests.Unit.Controllers
             this._reviewService.Setup(x => x.RemoveUserReview(It.IsAny<Guid>(), It.IsAny<Guid>())).ReturnsAsync(false);
             var result = await this._controller.DeleteReview(Guid.NewGuid(), string.Empty);
             Assert.IsInstanceOf<NotFoundResult>(result);
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this._controller == null) return;
+            this._controller.Dispose();
+            this._controller = null;
         }
     }
 }
