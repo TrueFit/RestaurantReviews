@@ -24,6 +24,25 @@ Thoughts of Design
 * The services themselves are going to come across as fairly useless at this stage, which is true given a lot of these operations are simple CRUD calls. This is designed for the theoritical world where more may be happening behind the scenes later, for instance with Reviews the obvious future feature is an automated process to screen reviews for content (curse words, etc), and possibly workflows for manual auditing of reviews. For these reasons the data repositories are being screened inside the services layer.
 * You'll notice not all operations are available for each model, for instance you can't Delete a User. This is by design, we're only exposing what the application needs for now. Adding these operations later is easy enough, however if we currently are designing our app to take advantage of them there's no reason to expose them for accidental use.
 
+If This Was a Real Project
+--------------
+* I'd probably want to start on geolocation and work from there. Identifying where the user is, where a restaurant address is, and recentering on a city seem to be the most critical parts of this app. Once you have that the rest is easy to build.
+* We'd need to work out workflows for user submitted restaurants and reviews. Restaurants probably need approval, reviews probably need filtering by curse words and need a reporting process for inappropriate reviews (phase 2?)
+* User authentication should be handled early, and we'd likely want to filter at the Web Api layer. We can intermix admin and user api calls on the same controllers that way.
+* A rest api can get out of hand when queries get complex, we could explore graphql however that may cost too much in terms of time (maybe an upgrade once it's successful?)
+
+Things That Are Missing or Could Be Different This Submission
+--------------
+* User authentication is obviously just a stub, and only used in a fairly simple manner when deleting reviews
+* No where near enough validation
+* Proper error codes and message being kicked back to the mobile app
+* Proper data storage (though the json files work pretty well for this)
+* API for cities could be cleaner, maybe a url friendly name? May be nicer to lookup with /cities/pittsburgh-pa/restaurant
+* Speaking of nice urls, using generic entities that are typed caught me in a trap where my urls suck because they end up singular rather than plural. At one point I was thinking /cities/pittsburgh-pa/by-type/restaraunt then thought I've already sunk a lot of time I shouldn't into this. I need to stop myself before this becomes a complete application.
+* It really bugs me people can post reviews without proper authentication, again I could keep going for awhile but I need to stop.
+* Did I really just pass a success/failure boolen back from ReviewService.RemoveUserReview? It should at least indicate if the user wasn't authenicated to delete it or if it wasn't there... yeah, I could spend a couple more hours on this but I think the theme of what you're looking for is met here.
+* There's a good bit of happy path testing here, I'm certain there are several non-happy path bugs sitting in here somewhere.
+
 RestaurantReviews
 =================
 
