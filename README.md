@@ -57,7 +57,9 @@ POST /entities/{guid}/reviews
 Adds a review for an entity
 
 Notes: 
-Ignores the guid for the review if you submit one and automatically overwrites it. Also lacks authentication that the user submitting the review matches the UserGuid in the review (aka we are trusting the mobile app, which is a bad idea).
+Ignores the guid for the review if you submit one and automatically overwrites it. 
+Also lacks authentication that the user submitting the review matches the UserGuid 
+in the review (aka we are trusting the mobile app, which is a bad idea).
 
 Example:
 POST /entities/0374a4c1-57aa-4dcd-b580-944e9a99bc13/reviews
@@ -74,7 +76,10 @@ DELETE /reviews/{guid}?authToken={token}
 Deletes a review.
 
 Notes:
-Validates the user based on authToken, however user it validates to is hard-coded so you can't get rid of the review unless Test User was the user that submitted it. This is about as far as validation got before I decided it was time to stop adding things to this test.
+Validates the user based on authToken, however user it validates to is 
+hard-coded so you can't get rid of the review unless Test User was the 
+user that submitted it. This is about as far as validation got before 
+I decided it was time to stop adding things to this test.
 
 Example:
 DELETE /reviews/e2703d41-948d-4f34-994b-b42d0b34f2f1?authToken=anystring
@@ -96,7 +101,8 @@ GET /users/{guid}/reviews
 Gets reviews for a user
 
 Notes:
-This works for any user guid, so I made an API where you can look them up for anyone but can only delete them for Test User
+This works for any user guid, so I made an API where you can look them 
+up for anyone but can only delete them for Test User
 
 Example:
 GET /users/19685bd6-1b72-4de9-bcb5-413dafba5dd0/reviews
