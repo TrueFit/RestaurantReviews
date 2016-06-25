@@ -1,16 +1,29 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
+using Truefit.Reviews;
+using Truefit.Users;
 
 namespace Truefit.Api.Controllers
 {
     [RoutePrefix("reviews")]
     public class ReviewController : ApiController
     {
-        [HttpDelete]
-        [Route("{reviewId}")]
-        public async Task<IHttpActionResult> DeleteReview(string reviewId, string authToken)
+        private readonly IUserService _userService;
+        private readonly IReviewService _reviewService;
+
+        public ReviewController(IUserService userService, IReviewService reviewService)
         {
-            await this.DeleteReview(reviewId, authToken);
+            this._userService = userService;
+            this._reviewService = reviewService;
+        }
+
+        [HttpDelete]
+        [Route("{reviewId:guid}")]
+        public async Task<IHttpActionResult> DeleteReview(Guid reviewId, string authToken)
+        {
+            var user = await this._userService.Authenticate(authToken);
+            await this._reviewService.RemoveUserReview(reviewId, user.Guid);
             return this.Ok();
         }
     }

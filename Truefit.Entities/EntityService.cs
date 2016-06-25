@@ -34,12 +34,14 @@ namespace RestaurantReviews.Data
 
         public async Task<IEnumerable<EntityModel>> GetEntities(Guid cityId, string type)
         {
+            type = type.ToLower();
             return await this._entityRepository.GetByCityAndType(cityId, type);
         }
 
         public async Task AddUserEntity(EntityModel entity)
         {
             entity.Guid = Guid.NewGuid();
+            entity.Type = entity.Type?.ToLower();
             entity.IsActive = false;
             entity.NeedsReviewed = true;
             await this._entityRepository.Insert(entity);

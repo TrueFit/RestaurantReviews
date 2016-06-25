@@ -56,15 +56,15 @@ namespace Truefit.Entities.Tests.Unit
         }
 
         [Test]
-        public async Task GetEntities_is_Repo_Passthrough()
+        public async Task GetEntities_Lowercases_Type()
         {
             var cityId = Guid.NewGuid();
-            var type = string.Empty;
-            var expected = new[] {new EntityModel()};
+            var type = "LOWER";
+            var expected = "lower";
 
-            this._entityRepository.Setup(x => x.GetByCityAndType(cityId, type)).ReturnsAsync(expected);
-            var actual = await this._entityService.GetEntities(cityId, type);
-            Assert.AreEqual(expected, actual);
+            await this._entityService.GetEntities(cityId, type);
+
+            this._entityRepository.Verify(x => x.GetByCityAndType(cityId, expected));
         }
 
         [Test]

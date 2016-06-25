@@ -29,7 +29,7 @@ namespace Truefit.Api.Controllers
         [Route("{userId:guid}/reviews")]
         public async Task<IHttpActionResult> GetReviews(Guid userId)
         {
-            return this.Ok();
+            return this.Ok(await this._reviewService.GetByUser(userId));
         }
     }
 }

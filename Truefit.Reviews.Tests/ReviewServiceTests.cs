@@ -44,6 +44,18 @@ namespace Truefit.Reviews.Tests
         }
 
         [Test]
+        public async Task RemoveUserReview_Returns_False_If_No_Review_Found()
+        {
+            var userId = Guid.NewGuid();
+            var reviewId = Guid.NewGuid();
+
+            this._reviewRepository.Setup(x => x.GetByGuid(reviewId)).ReturnsAsync(null);
+
+            var actual = await this._reviewService.RemoveUserReview(reviewId, userId);
+            Assert.IsFalse(actual);
+        }
+
+        [Test]
         public async Task RemoveUserReview_Returns_False_If_Not_By_User()
         {
             var userId = Guid.NewGuid();
