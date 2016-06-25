@@ -124,15 +124,15 @@ Sample Product Answers (which the implementation is based on)
 * Yes, the client has a vision to expand to many types of businesses based on City location.
 * They want scalability, however they don't want it built in right away. However they would like us to build in a way that modifying the system to horizontally scale won't require a rewrite of the entire system.
 * They plan on hiring one senior developer, and they would like us to walk the developer through the design and implementation after the project.
-* Plans are for US only, possible international but client doesn't want extra effort to manage this scenario.
+* Plans are for US only, possible international but client doesn't want a lot of extra effort to manage this scenario.
 
-Thoughts on Design
+Random Thoughts on Design
 --------------
 * This architecture is decoupled into Services, however they will be implemented in this phase as components. The goal is to provide components that can be turned into web services later when scaling issues arise.
 * There is a downside to this strategy, data integrity is now the responsibility of the application rather than the database because we won't be establishing a relational database. This could have implications down the road if the underlying data needs to be utilized in a manner we aren't building towards. The most obvious use case is reporting, however in a high performance system that should be moved to a data warehouse anyways since we don't want live reporting queries in our production environment.
 * Even if we aren't aiming for high test coverage, everything should be testable as much as possible.
 * The services themselves are going to come across as fairly useless at this stage, which is true given a lot of these operations are simple CRUD calls. This is designed for the theoritical world where more may be happening behind the scenes later, for instance with Reviews the obvious future feature is an automated process to screen reviews for content (curse words, etc), and possibly workflows for manual auditing of reviews. For these reasons the data repositories are being screened inside the services layer.
-* You'll notice not all operations are available for each model, for instance you can't Delete a User. This is by design, we're only exposing what the application needs for now. Adding these operations later is easy enough, however if we currently are designing our app to take advantage of them there's no reason to expose them for accidental use.
+* We should only add operations as we need them, for instance adding DELETE for /users doesn't make sense if we never intend to delete a user, we'll just be opening up a hole in the system we probably don't want.
 
 If This Was a Real Project
 --------------
@@ -148,11 +148,12 @@ Things That Are Missing or Could Be Different This Submission
 * Proper error codes and message being kicked back to the mobile app
 * Proper data storage (though the json files work pretty well for this)
 * API for cities could be cleaner, maybe a url friendly name? May be nicer to lookup with /cities/pittsburgh-pa/restaurant
-* Speaking of nice urls, using generic entities that are typed caught me in a trap where my urls suck because they end up singular rather than plural. At one point I was thinking /cities/pittsburgh-pa/by-type/restaraunt then thought I've already sunk a lot of time I shouldn't into this. I need to stop myself before this becomes a complete application.
-* It really bugs me people can post reviews without proper authentication, again I could keep going for awhile but I need to stop.
-* Did I really just pass a success/failure boolen back from ReviewService.RemoveUserReview? It should at least indicate if the user wasn't authenicated to delete it or if it wasn't there... yeah, I could spend a couple more hours on this but I think the theme of what you're looking for is met here.
+* Speaking of nice urls, using generic entities that are typed caught me in a trap where my urls suck because they end up singular rather than plural. Maybe /cities/pittsburgh-pa/by-type/restaraunt?
+* It really bugs me people can post reviews without proper authentication.
+* Did I really just pass a success/failure boolen back from ReviewService.RemoveUserReview? It should at least indicate if the user wasn't authenicated to delete it or if it wasn't there... 
 * There's a good bit of happy path testing here, I'm certain there are several non-happy path bugs sitting in here somewhere.
 * Probably should move posting an entity from /entities to /cities/{guid}/entities. Seems a little more natural, but doesn't really work if you switch to a geo location model rather than direct city mapping. Hmmm...
+* I know I can make these changes and more, however I need to stop at some point before I end up writing a complete application.
 
 RestaurantReviews
 =================
