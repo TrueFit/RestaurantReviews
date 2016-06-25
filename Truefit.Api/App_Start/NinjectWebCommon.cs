@@ -1,5 +1,11 @@
+using System.Web.Hosting;
 using System.Web.Http;
+using Biggy.Data.Json;
 using Ninject.Web.WebApi;
+using RestaurantReviews.Data;
+using RestaurantReviews.Data.Repositories;
+using Truefit.Reviews;
+using Truefit.Reviews.Repositories;
 using Truefit.Users;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Truefit.Api.NinjectWebCommon), "Start")]
@@ -66,6 +72,12 @@ namespace Truefit.Api
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUserService>().To<UserService>().InRequestScope();
+            kernel.Bind<IReviewRepository>().To<ReviewJsonRepository>().InSingletonScope();
+            kernel.Bind<IReviewService>().To<ReviewService>().InRequestScope();
+            kernel.Bind<ICityRepository>().To<CityJsonRepository>().InSingletonScope();
+            kernel.Bind<IEntityRepository>().To<EntityJsonRepository>().InSingletonScope();
+            kernel.Bind<IEntityService>().To<EntityService>().InRequestScope();
+            kernel.Bind<JsonDbCore>().ToConstant(new JsonDbCore(AppDomain.CurrentDomain.BaseDirectory + "Data", "demo"));
         }        
     }
 }

@@ -22,6 +22,7 @@ namespace Truefit.Reviews
 
         public async Task AddUserReview(ReviewModel review)
         {
+            review.Guid = Guid.NewGuid();
             await this._reviewRepository.Insert(review);
         }
 

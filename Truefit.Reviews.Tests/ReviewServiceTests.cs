@@ -33,13 +33,14 @@ namespace Truefit.Reviews.Tests
         }
 
         [Test]
-        public async Task AddUserReview_Is_Repo_Passthrough()
+        public async Task AddUserReview_Sets_New_Guid()
         {
-            var review = new ReviewModel();
+            var guid = Guid.NewGuid();
+            var review = new ReviewModel {Guid = guid};
 
             await this._reviewService.AddUserReview(review);
 
-            this._reviewRepository.Verify(x => x.Insert(review));
+            this._reviewRepository.Verify(x => x.Insert(It.Is<ReviewModel>(r => r.Guid != guid)));
         }
 
         [Test]

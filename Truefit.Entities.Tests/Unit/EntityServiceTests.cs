@@ -82,5 +82,14 @@ namespace Truefit.Entities.Tests.Unit
             await this._entityService.AddUserEntity(entity);
             this._entityRepository.Verify(x => x.Insert(It.Is<EntityModel>(e => !e.IsActive)));
         }
+
+        [Test]
+        public async Task AddUserEntity_Should_Set_New_Guid()
+        {
+            var guid = Guid.NewGuid();
+            var entity = new EntityModel {Guid = guid};
+            await this._entityService.AddUserEntity(entity);
+            this._entityRepository.Verify(x => x.Insert(It.Is<EntityModel>(e => e.Guid != guid)));
+        }
     }
 }

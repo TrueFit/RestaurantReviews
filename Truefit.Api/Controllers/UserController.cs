@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Truefit.Reviews;
 using Truefit.Users;
 
 namespace Truefit.Api.Controllers
@@ -9,10 +10,12 @@ namespace Truefit.Api.Controllers
     public class UserController : ApiController
     {
         private readonly IUserService _userService;
+        private readonly IReviewService _reviewService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IReviewService reviewService)
         {
             this._userService = userService;
+            this._reviewService = reviewService;
         }
 
         [HttpGet]
@@ -26,7 +29,7 @@ namespace Truefit.Api.Controllers
         [Route("{userId:guid}/reviews")]
         public async Task<IHttpActionResult> GetReviews(Guid userId)
         {
-            return this.Ok(userId);
+            return this.Ok();
         }
     }
 }

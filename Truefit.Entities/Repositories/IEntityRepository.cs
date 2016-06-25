@@ -17,10 +17,10 @@ namespace RestaurantReviews.Data.Repositories
         /// <summary>
         /// Gets a City by Guid
         /// </summary>
-        /// <param name="guid"></param>
+        /// <param name="cityId"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        Task<IEnumerable<EntityModel>> GetByCityAndType(Guid guid, string type);
+        Task<IEnumerable<EntityModel>> GetByCityAndType(Guid cityId, string type);
 
         /// <summary>
         /// Inserts a City into the Repository

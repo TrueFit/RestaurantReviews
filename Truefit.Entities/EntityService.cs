@@ -39,6 +39,7 @@ namespace RestaurantReviews.Data
 
         public async Task AddUserEntity(EntityModel entity)
         {
+            entity.Guid = Guid.NewGuid();
             entity.IsActive = false;
             entity.NeedsReviewed = true;
             await this._entityRepository.Insert(entity);

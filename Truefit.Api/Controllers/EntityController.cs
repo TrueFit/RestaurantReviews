@@ -44,8 +44,9 @@ namespace Truefit.Api.Controllers
 
         [HttpPost]
         [Route("{entityId:guid}/reviews")]
-        public async Task<IHttpActionResult> PostReview(ReviewModel review)
+        public async Task<IHttpActionResult> PostReview(Guid entityId, ReviewModel review)
         {
+            review.EntityGuid = entityId;
             await this._reviewService.AddUserReview(review);
             return this.Ok();
         }
