@@ -144,7 +144,7 @@ If This Was a Real Project
 Things That Are Missing or Could Be Different This Submission
 --------------
 * User authentication is obviously just a stub, and only used in a fairly simple manner when deleting reviews
-* No where near enough validation
+* Nowhere near enough validation
 * Proper error codes and message being kicked back to the mobile app
 * Proper data storage (though the json files work pretty well for this)
 * API for cities could be cleaner, maybe a url friendly name? May be nicer to lookup with /cities/pittsburgh-pa/restaurant
