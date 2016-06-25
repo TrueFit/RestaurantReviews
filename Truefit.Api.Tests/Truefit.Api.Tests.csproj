@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Controllers\CityControllerTests.cs" />
     <Compile Include="Unit\Controllers\EntityControllerTests.cs" />
+    <Compile Include="Unit\Controllers\ReviewControllerTests.cs" />
     <Compile Include="Unit\Controllers\UserControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>

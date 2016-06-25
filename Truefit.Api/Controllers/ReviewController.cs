@@ -23,8 +23,8 @@ namespace Truefit.Api.Controllers
         public async Task<IHttpActionResult> DeleteReview(Guid reviewId, string authToken)
         {
             var user = await this._userService.Authenticate(authToken);
-            await this._reviewService.RemoveUserReview(reviewId, user.Guid);
-            return this.Ok();
+            var success = await this._reviewService.RemoveUserReview(reviewId, user.Guid);
+            return success ? (IHttpActionResult) this.Ok() : this.NotFound();
         }
     }
 }
