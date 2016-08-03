@@ -60,7 +60,6 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="City.sql" />
     <Build Include="Restaurant.sql" />
     <Build Include="Review.sql" />
     <Build Include="APIRequest.sql" />

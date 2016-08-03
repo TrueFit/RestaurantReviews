@@ -28,4 +28,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Address2" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="4b7dec2d-7cd9-44eb-9c61-8a0b4be51439" ChangeDateTime="08/03/2016 20:47:10">
+    <Property Name="ElementName" Value="[dbo].[Restaurant].[CityID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Restaurant]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="City" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="330a5864-1e4d-4da1-95d0-d8ae302af56d" ChangeDateTime="08/03/2016 21:14:16">
+    <Property Name="ElementName" Value="[dbo].[AK_Restaurant_Column]" />
+    <Property Name="ElementType" Value="SqlUniqueConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Restaurant]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[AK_Restaurant_Name_Address1_Zip]" />
+  </Operation>
 </Operations>
