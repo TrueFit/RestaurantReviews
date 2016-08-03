@@ -1,0 +1,5 @@
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\bin\Debug\RestaurantReviews.DB.dacpac
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\bin\Debug\RestaurantReviews.DB.dll
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\bin\Debug\RestaurantReviews.DB.pdb
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\obj\Debug\RestaurantReviews.DB.dll
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\obj\Debug\RestaurantReviews.DB.pdb
