@@ -3,3 +3,7 @@ D:\projects\git\RestaurantReviews\RestaurantReviews.DB\bin\Debug\RestaurantRevie
 D:\projects\git\RestaurantReviews\RestaurantReviews.DB\bin\Debug\RestaurantReviews.DB.pdb
 D:\projects\git\RestaurantReviews\RestaurantReviews.DB\obj\Debug\RestaurantReviews.DB.dll
 D:\projects\git\RestaurantReviews\RestaurantReviews.DB\obj\Debug\RestaurantReviews.DB.pdb
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\obj\Debug\Model.xml
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\obj\Debug\refactor.xml
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\obj\Debug\postdeploy.sql
+D:\projects\git\RestaurantReviews\RestaurantReviews.DB\obj\Debug\predeploy.sql
