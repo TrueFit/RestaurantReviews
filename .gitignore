@@ -247,4 +247,4 @@ ModelManifest.xml
 
 #DBML file(s) in the DB project prevent committing changes. 
 #I don't see the need for it in the repo, so I'm going to tell git to ignore it
-*.dbml
+*.dbmdl
