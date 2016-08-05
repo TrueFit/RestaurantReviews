@@ -1,0 +1,50 @@
+Notes:
+---------------
+Had an issue with SQLite EF installing on my machine, so I decided to use a Micro-ORM called Massive (https://github.com/FransBouma/Massive) instead of using ADO.NET.
+That ended up being not a very good idea, because Massive is based on dynamically typed objects which are annoying to work with in a strongly typed environment. Should have just went with ADO.
+
+I did not add in exception catching, ideally that would be something to have for auditing purposes and generally for making the API fail gracefully.
+
+There is no validation of data coming from the client, but because in the database the primary key must not be null and it is allowed to be null for autoincremented inserts, a client could pass a null id and get back an undesired result. Also, other unique fields are not checked, which will lead to failed updates and inserts if it constraints are violated.
+
+Usage:
+---------------
+Accepted Verbs:
+GET for fetching
+PUT for updating
+POST for inserting
+DELETE for deleting
+
+Getting a list of restaurants:
+http://localhost/api/v1/Restaurants
+Getting information about a restaurant:
+http://localhost/api/v1/Restaurants/{restaurantId}
+Getting detailed info about a restaurant:
+http://localhost/api/v1/Restaurants/{restaurantId}/FullDetail
+
+Searching:
+http://localhost/api/v1/Search/(Restaurants|Reviews|Users|City)?term=searchterm
+
+User and User's Reviews:
+http://localhost/api/v1/User/{userid}
+http://localhost/api/v1/User/{userid}/Reviews
+
+How to insert a new restaurant in a new city:
+	1. Insert new City -- if city exists, look up ID instead
+	POST - http://localhost/api/v1/City with the body being in json format:
+	{ name: 'CityName' }
+	You will get a json returned with the name and id if successful.
+
+	2. Insert new Restaurant -- if restaurant exists and you are just adding a branch, skip this step and lookup the restaurant id instead.
+	POST - http://localhost/api/v1/Restaurant with the body being in json format:
+	{ name: 'RestaurantName' }
+	You will get a json returned with the name and id if successful.
+
+	3. Insert new Location -- This is basically a branch office, 1-m relationship to restaurant.
+	POST - http://localhost/api/v1/Location with the body being in json format:
+	{ 
+		CityId: id from above,
+		RestaurantId: id from above,
+		StreetAddress: 'Address of branch location'
+	}
+	You will get a json returned with the assigned id if successful.

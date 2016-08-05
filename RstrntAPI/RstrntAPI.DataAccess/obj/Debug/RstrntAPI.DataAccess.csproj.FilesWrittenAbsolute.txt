@@ -1,0 +1,12 @@
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/obj/Debug/.NETFramework,Version=v4.5.2.AssemblyAttribute.cs
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/bin/Debug/RstrntAPI.DataAccess.dll.config
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/bin/Debug/RstrntAPI.DataAccess.dll.mdb
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/bin/Debug/RstrntAPI.DataAccess.pdb
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/bin/Debug/RstrntAPI.DataAccess.dll
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/obj/Debug/RstrntAPI.DataAccess.dll
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/obj/Debug/RstrntAPI.DataAccess.dll.mdb
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/obj/Debug/RstrntAPI.DataAccess.pdb
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/bin/Debug/System.Data.SQLite.dll
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/bin/Debug/System.Data.SQLite.EF6.dll
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/bin/Debug/System.Data.SQLite.Linq.dll
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DataAccess/bin/Debug/EntityFramework.dll

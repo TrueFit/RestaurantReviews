@@ -1,0 +1,7 @@
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DTO/obj/Debug/.NETFramework,Version=v4.5.2.AssemblyAttribute.cs
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DTO/bin/Debug/RstrntAPI.DTO.dll.mdb
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DTO/bin/Debug/RstrntAPI.DTO.pdb
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DTO/bin/Debug/RstrntAPI.DTO.dll
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DTO/obj/Debug/RstrntAPI.DTO.dll
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DTO/obj/Debug/RstrntAPI.DTO.dll.mdb
+/Users/greg/Desktop/Restaurant/RestaurantReviews/RstrntAPI/RstrntAPI.DTO/obj/Debug/RstrntAPI.DTO.pdb
