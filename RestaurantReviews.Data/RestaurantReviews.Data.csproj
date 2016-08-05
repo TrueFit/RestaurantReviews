@@ -55,12 +55,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIRequest.StaticMethods.cs" />
     <Compile Include="APIRequest.cs" />
     <Compile Include="C__RefactorLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Restaurant.StaticMethods.cs" />
     <Compile Include="Restaurant.cs" />
     <Compile Include="Restaurant.Data.cs" />
+    <Compile Include="Review.StaticMethods.cs" />
     <Compile Include="Review.cs" />
+    <Compile Include="User.StaticMethods.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

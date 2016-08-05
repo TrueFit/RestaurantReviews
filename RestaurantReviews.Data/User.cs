@@ -1,11 +1,8 @@
-namespace RestaurantReviews.Data
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace RestaurantReviews.Data {
+    
     [Table("User")]
     public partial class User
     {
@@ -16,18 +13,5 @@ namespace RestaurantReviews.Data
         public string Username { get; set; }
 
         public bool Locked { get; set; }
-
-        /// <summary>
-        /// Create a new user in the db
-        /// </summary>
-        /// <param name="Username"></param>
-        /// <param name="Locked"></param>
-        /// <returns></returns>
-        public static User AddUser(User NewUser) {
-            using (var db = new RestaurantReviewsEntities()) {
-                db.Users.Add(NewUser);
-                return NewUser;
-            }
-        }
     }
 }
