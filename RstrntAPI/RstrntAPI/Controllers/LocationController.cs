@@ -5,8 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Ninject;
-using RstrntAPI.Business;
-using RstrntAPI.Business.Repositories;
+using RstrntAPI.Repository;
+using RstrntAPI.Repository.Repositories;
 using RstrntAPI.DTO;
 using RstrntAPI.Models;
 
@@ -46,7 +46,7 @@ namespace RstrntAPI.Controllers
 
         [HttpPost()]
         [Route("")]
-        public LocationDTO Create(RestaurantDTO location)
+        public LocationDTO Create(LocationDTO location)
         {
             return RepoRegistry.Get<ILocationRepository>().Create(location);
         }

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RstrntAPI.DTO", "RstrntAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RstrntAPI.DataAccess", "RstrntAPI.DataAccess\RstrntAPI.DataAccess.csproj", "{A954CA74-9C93-423B-9240-601FE5D2A1A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RstrntAPI.Business", "RstrntAPI.Repo\RstrntAPI.Business.csproj", "{C7C3C48E-FE1F-4114-962C-0A3FAF0F2C26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RstrntAPI.Repository", "RstrntAPI.Repo\RstrntAPI.Repository.csproj", "{C7C3C48E-FE1F-4114-962C-0A3FAF0F2C26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

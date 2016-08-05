@@ -64,9 +64,9 @@
       <Project>{66fad77d-a679-4970-839c-b9bc73b035d0}</Project>
       <Name>RstrntAPI.DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RstrntAPI.Repo\RstrntAPI.Business.csproj">
+    <ProjectReference Include="..\RstrntAPI.Repo\RstrntAPI.Repository.csproj">
       <Project>{c7c3c48e-fe1f-4114-962c-0a3faf0f2c26}</Project>
-      <Name>RstrntAPI.Business</Name>
+      <Name>RstrntAPI.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\RstrntAPI\RstrntAPI.csproj">
       <Project>{80EBE412-B17E-4797-940C-F111B2EDB277}</Project>

@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -101,7 +102,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\RestrLocalResponse.cs" />
-    <Compile Include="Models\UserReviews.cs" />
+    <Compile Include="Models\UserReviewResponse.cs" />
+    <Compile Include="Models\UserReviewsResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +123,9 @@
       <Project>{66fad77d-a679-4970-839c-b9bc73b035d0}</Project>
       <Name>RstrntAPI.DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RstrntAPI.Repo\RstrntAPI.Business.csproj">
+    <ProjectReference Include="..\RstrntAPI.Repo\RstrntAPI.Repository.csproj">
       <Project>{c7c3c48e-fe1f-4114-962c-0a3faf0f2c26}</Project>
-      <Name>RstrntAPI.Business</Name>
+      <Name>RstrntAPI.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

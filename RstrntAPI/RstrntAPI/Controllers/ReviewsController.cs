@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using RstrntAPI.Business;
-using RstrntAPI.Business.Repositories;
+using RstrntAPI.Repository;
+using RstrntAPI.Repository.Repositories;
 using RstrntAPI.DTO;
 
 namespace RstrntAPI.Controllers

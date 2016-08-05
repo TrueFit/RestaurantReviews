@@ -25,11 +25,11 @@ T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\System.Net.Http
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\obj\Debug\RstrntAPI.Tests.csprojResolveAssemblyReference.cache
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\obj\Debug\RstrntAPI.Tests.dll
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\obj\Debug\RstrntAPI.Tests.pdb
-T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\RstrntAPI.Business.dll
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\RstrntAPI.DataAccess.dll
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\RstrntAPI.DTO.dll
-T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\RstrntAPI.Business.pdb
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\RstrntAPI.DataAccess.pdb
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\RstrntAPI.DTO.pdb
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\Ninject.dll
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\Ninject.xml
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\RstrntAPI.Repository.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Tests\bin\Debug\RstrntAPI.Repository.pdb

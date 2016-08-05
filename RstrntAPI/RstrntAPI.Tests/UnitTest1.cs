@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using RstrntAPI.DataAccess.Models;
 using System.Collections.Generic;
-using RstrntAPI.Business.Repositories;
+using RstrntAPI.Repository.Repositories;
 
 namespace RstrntAPI.Tests
 {

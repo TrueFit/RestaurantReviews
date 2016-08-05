@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RstrntAPI.Models
 {
-    public class UserReviews
+    public class UserReviewsResponse
     {
         public UserDTO User { get; set; }
         public List<ReviewDTO> Reviews { get; set; }

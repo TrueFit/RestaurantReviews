@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using RstrntAPI.DTO;
 
-namespace RstrntAPI.Business.Repositories
+namespace RstrntAPI.Repository.Repositories
 {
     public interface ILocationRepository
     {
         LocationDTO Create(LocationDTO location);
-        int Delete(LocationDTO location);
+        bool Delete(LocationDTO location);
+        bool Delete(int locationId);
         List<LocationDTO> Find(string term);
         LocationDTO Get(int locationId);
         List<LocationDTO> GetAll();

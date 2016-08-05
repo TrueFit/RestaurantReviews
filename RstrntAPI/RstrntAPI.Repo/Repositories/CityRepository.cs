@@ -3,10 +3,10 @@ using RstrntAPI.DataAccess.Models;
 using RstrntAPI.DataAccess.Massive;
 using System.Collections.Generic;
 using System.Linq;
-using RstrntAPI.Business.Transforms;
+using RstrntAPI.Repository.Transforms;
 using System.Dynamic;
 
-namespace RstrntAPI.Business.Repositories
+namespace RstrntAPI.Repository.Repositories
 {
     public class CityRepository : ICityRepository
     {

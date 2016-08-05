@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject;
 using Ninject.Modules;
-using RstrntAPI.Business.Modules;
+using RstrntAPI.Repository.Modules;
 
-namespace RstrntAPI.Business
+namespace RstrntAPI.Repository
 {
     public class RepoRegistry
     {

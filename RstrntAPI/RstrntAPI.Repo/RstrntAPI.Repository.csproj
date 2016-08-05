@@ -7,8 +7,8 @@
     <ProjectGuid>{C7C3C48E-FE1F-4114-962C-0A3FAF0F2C26}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RstrntAPI.Business</RootNamespace>
-    <AssemblyName>RstrntAPI.Business</AssemblyName>
+    <RootNamespace>RstrntAPI.Repository</RootNamespace>
+    <AssemblyName>RstrntAPI.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

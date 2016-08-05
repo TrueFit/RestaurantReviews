@@ -28,9 +28,9 @@ T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\System.Web.Http.WebHost.xml
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\obj\Debug\RstrntAPI.csprojResolveAssemblyReference.cache
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\obj\Debug\RstrntAPI.dll
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\obj\Debug\RstrntAPI.pdb
-T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\RstrntAPI.Business.dll
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\RstrntAPI.DTO.dll
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\RstrntAPI.DataAccess.dll
-T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\RstrntAPI.Business.pdb
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\RstrntAPI.DTO.pdb
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\RstrntAPI.DataAccess.pdb
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\RstrntAPI.Repository.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI\bin\RstrntAPI.Repository.pdb

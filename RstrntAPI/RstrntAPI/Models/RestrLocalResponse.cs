@@ -10,7 +10,8 @@ namespace RstrntAPI.Models
     public class RestrLocalResponse
     {
         public int? RestaurantId { get; set; }
-        public int? BranchId { get; set; }
+        public int? LocationId { get; set; }
+        public int? CityId { get; set; }
 
         public string RestaurantName { get; set; }
         public string StreetAddress { get; set; }

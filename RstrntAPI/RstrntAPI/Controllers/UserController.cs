@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using RstrntAPI.Business;
-using RstrntAPI.Business.Repositories;
+using RstrntAPI.Repository;
+using RstrntAPI.Repository.Repositories;
 using RstrntAPI.DTO;
 using RstrntAPI.Models;
 
@@ -30,12 +30,12 @@ namespace RstrntAPI.Controllers
 
         [HttpGet()]
         [Route("{userId:int}/Reviews")]
-        public UserReviews GetReviews(int userId)
+        public UserReviewsResponse GetReviews(int userId)
         {
             var user = RepoRegistry.Get<IUserRepository>().Get(userId);
             var reviews = RepoRegistry.Get<IReviewRepository>().ListByUser(userId);
 
-            return new UserReviews
+            return new UserReviewsResponse
             {
                 User = user,
                 Reviews = reviews

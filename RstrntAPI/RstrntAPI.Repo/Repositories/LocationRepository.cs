@@ -3,10 +3,10 @@ using RstrntAPI.DataAccess.Models;
 using RstrntAPI.DataAccess.Massive;
 using System.Collections.Generic;
 using System.Linq;
-using RstrntAPI.Business.Transforms;
+using RstrntAPI.Repository.Transforms;
 using System.Dynamic;
 
-namespace RstrntAPI.Business.Repositories
+namespace RstrntAPI.Repository.Repositories
 {
     public class LocationRepository : ILocationRepository
     {
@@ -33,11 +33,17 @@ namespace RstrntAPI.Business.Repositories
             return Get(location.Id.Value);
         }
 
-        public int Delete(LocationDTO location)
+        public bool Delete(LocationDTO location)
         {
             var table = new DataAccess.Models.Locations();
-            var returnValue = table.Delete(location.Id);
-            return returnValue;
+            return Delete(location.Id.Value);
+        }
+
+        public bool Delete(int locationId)
+        {
+            var table = new DataAccess.Models.Locations();
+            var returnValue = table.Delete(locationId);
+            return returnValue == 0 ? false : true;
         }
 
         #endregion
@@ -50,6 +56,7 @@ namespace RstrntAPI.Business.Repositories
 
         public List<LocationDTO> Find(string term)
         {
+            // 100% believe Massive is BSing us when they say this is a DSL and not SQL.
             var locations = new DataAccess.Models.Locations().Query(
                 "SELECT Locations.*, Restaurants.name as rest_name, City.name as city_name FROM Locations INNER JOIN Restaurants ON Restaurants.id = Locations.restaurant_id INNER JOIN City ON City.id = Locations.city_id"
                 );
@@ -61,7 +68,6 @@ namespace RstrntAPI.Business.Repositories
         public List<LocationDTO> ListByRestaurant(int restaurantId)
         {
             var rTable = new DataAccess.Models.Locations();
-            // This is Massive's DSL, not SQL
             var locations = rTable.Query(
                 "SELECT Locations.* FROM Locations WHERE Locations.restaurant_id = @0",
                 restaurantId);
@@ -71,7 +77,6 @@ namespace RstrntAPI.Business.Repositories
         public List<LocationDTO> ListByCity(int cityId)
         {
             var rTable = new DataAccess.Models.Locations();
-            // This is Massive's DSL, not SQL
             var locations = rTable.Query(
                 "SELECT Locations.* FROM Locations WHERE Locations.city_id = @0",
                 cityId);

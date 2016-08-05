@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RstrntAPI.DTO;
 using RstrntAPI.DataAccess.Models;
 
-namespace RstrntAPI.Business.Transforms
+namespace RstrntAPI.Repository.Transforms
 {
     public static class RepositoryTransforms
     {

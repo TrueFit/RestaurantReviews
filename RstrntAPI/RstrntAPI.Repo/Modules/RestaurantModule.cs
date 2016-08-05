@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
-using RstrntAPI.Business.Repositories;
+using RstrntAPI.Repository.Repositories;
 
-namespace RstrntAPI.Business.Modules
+namespace RstrntAPI.Repository.Modules
 {
     class RestaurantModule : NinjectModule
     {

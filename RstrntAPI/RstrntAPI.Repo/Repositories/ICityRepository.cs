@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using RstrntAPI.DTO;
 
-namespace RstrntAPI.Business.Repositories
+namespace RstrntAPI.Repository.Repositories
 {
     public interface ICityRepository
     {
