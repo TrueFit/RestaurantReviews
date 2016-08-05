@@ -62,8 +62,8 @@
   <ItemGroup>
     <Build Include="Restaurant.sql" />
     <Build Include="Review.sql" />
-    <Build Include="APIRequest.sql" />
     <Build Include="User.sql" />
+    <Build Include="ApiLogEntry.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RestaurantReviews.DB.refactorlog" />
