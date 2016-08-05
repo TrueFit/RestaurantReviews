@@ -15,7 +15,7 @@ namespace RestaurantReviews.Data {
         public static List<Restaurant> GetByCity(string City) {
             using (var db = new RestaurantReviewsEntities()) {
                 var ReturnList = db.Restaurants
-                    .Where(r => r.City.IndexOf(City, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .Where(r => String.Compare(r.City, City, StringComparison.OrdinalIgnoreCase) == 0)
                     .OrderBy(r => r.Name);
 
                 return ReturnList.ToList();
@@ -25,7 +25,7 @@ namespace RestaurantReviews.Data {
         public static List<Restaurant> GetByZipCode(string Zip) {
             using (var db = new RestaurantReviewsEntities()) {
                 var ReturnList = db.Restaurants
-                    .Where(r => r.City.IndexOf(Zip, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .Where(r => String.Compare(r.ZipCode, Zip, StringComparison.OrdinalIgnoreCase) == 0)
                     .OrderBy(r => r.Name);
 
                 return ReturnList.ToList();

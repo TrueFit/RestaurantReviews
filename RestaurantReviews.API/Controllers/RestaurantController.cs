@@ -45,5 +45,48 @@ namespace RestaurantReviews.API.Controllers
                 return InternalServerError(x);
             }
         }
+
+        [Route("{id:int}/reviews/{order?}")]
+        public IHttpActionResult GetReviews(int id, string order = "desc") {
+            try {
+                var sortReverse = order.ToLower().Trim().Equals("desc");
+                var reviews = Restaurant.GetReviews(id, sortReverse);
+                return Ok(reviews);
+            }
+            catch (Exception x) {
+                return NotFound();
+            }
+        }
+
+        /// <summary>
+        /// TODO: There is no concept of user admin, and for the purpose of this exercise,
+        /// TODO: I'm not implementing this feature, although the DAL can handle this at this juncture.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("{id:int}/users")]
+        public IHttpActionResult GetUsers(int id) {
+            return InternalServerError(new NotImplementedException());
+        }
+
+        [Route("byzip/{zipcode}")]
+        public IHttpActionResult GetByZipCode(string ZipCode) {
+            try {
+                return Ok(Restaurant.GetByZipCode(ZipCode));
+            }
+            catch (Exception x) {
+                return NotFound();
+            }
+        }
+
+        [Route("bycity/{city}")]
+        public IHttpActionResult GetByCity(string City) {
+            try {
+                return Ok(Restaurant.GetByCity(City));
+            }
+            catch (Exception x) {
+                return NotFound();
+            }
+        }
     }
 }
