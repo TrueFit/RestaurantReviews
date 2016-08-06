@@ -1,0 +1,11 @@
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\obj\Debug\RstrntAPI.DataAccess.csprojResolveAssemblyReference.cache
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\bin\Debug\RstrntAPI.DataAccess.dll.config
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\bin\Debug\RstrntAPI.DataAccess.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\bin\Debug\RstrntAPI.DataAccess.pdb
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\bin\Debug\System.Data.SQLite.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\bin\Debug\System.Data.SQLite.EF6.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\bin\Debug\System.Data.SQLite.Linq.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\bin\Debug\EntityFramework.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\bin\Debug\System.Data.SQLite.xml
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\obj\Debug\RstrntAPI.DataAccess.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DataAccess\obj\Debug\RstrntAPI.DataAccess.pdb

@@ -1,0 +1,5 @@
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DTO\bin\Debug\RstrntAPI.DTO.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DTO\bin\Debug\RstrntAPI.DTO.pdb
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DTO\obj\Debug\RstrntAPI.DTO.csprojResolveAssemblyReference.cache
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DTO\obj\Debug\RstrntAPI.DTO.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.DTO\obj\Debug\RstrntAPI.DTO.pdb
