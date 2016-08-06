@@ -59,7 +59,7 @@ namespace RstrntAPI.Repository.Repositories
         public List<ReviewDTO> Find(string term)
         {
             var reviews = new DataAccess.Models.Reviews();
-            return reviews.All().Where(x => x.subject.Contains(term) || x.body.Contains(term)).Select(x => ((ExpandoObject)x).ToEntity<ReviewsEntity>().ToDTO()).ToList();
+            return reviews.All().Where(x => x.subject.ToLower().Contains(term.ToLower()) || x.body.ToLower().Contains(term.ToLower())).Select(x => ((ExpandoObject)x).ToEntity<ReviewsEntity>().ToDTO()).ToList();
         }
 
         public List<ReviewDTO> ListByLocation(int location_id)

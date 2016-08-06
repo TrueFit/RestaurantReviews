@@ -10,6 +10,7 @@ namespace RstrntAPI.Repository.Repositories
         bool Delete(int userId);
         List<UserDTO> Find(string term);
         UserDTO Get(int userId);
+        UserDTO Get(string acctName);
         List<UserDTO> GetAll();
         List<UserDTO> ListByHometown(int cityId);
         List<UserDTO> ListByHometown(CityDTO city);

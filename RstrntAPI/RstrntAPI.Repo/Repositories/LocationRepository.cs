@@ -60,7 +60,7 @@ namespace RstrntAPI.Repository.Repositories
             var locations = new DataAccess.Models.Locations().Query(
                 "SELECT Locations.*, Restaurants.name as rest_name, City.name as city_name FROM Locations INNER JOIN Restaurants ON Restaurants.id = Locations.restaurant_id INNER JOIN City ON City.id = Locations.city_id"
                 );
-            return locations.Where(x => x.rest_name.Contains(term) || x.street_address.Contains(term) || x.city_name.Contains(term)).Select(
+            return locations.Where(x => x.rest_name.ToLower().Contains(term.ToLower()) || x.street_address.ToLower().Contains(term.ToLower()) || x.city_name.ToLower().Contains(term.ToLower())).Select(
                 x => ((ExpandoObject)x).ToEntity<LocationsEntity>().ToDTO()
                 ).ToList();
         }

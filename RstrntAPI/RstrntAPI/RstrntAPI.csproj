@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -93,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
@@ -101,10 +106,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\RestrLocalResponse.cs" />
-    <Compile Include="Models\UserReviewResponse.cs" />
-    <Compile Include="Models\UserReviewsResponse.cs" />
+    <Compile Include="Models\Request\CityRequest.cs" />
+    <Compile Include="Models\Request\LocationRequest.cs" />
+    <Compile Include="Models\Request\RestaurantRequest.cs" />
+    <Compile Include="Models\Request\ReviewRequest.cs" />
+    <Compile Include="Models\Request\UserRequest.cs" />
+    <Compile Include="Models\Response\CityModelResponse.cs" />
+    <Compile Include="Models\Response\LocationDetailResponse.cs" />
+    <Compile Include="Models\Response\LocationModelResponse.cs" />
+    <Compile Include="Models\Response\RestaurantModelResponse.cs" />
+    <Compile Include="Models\Response\RestrLocalResponse.cs" />
+    <Compile Include="Models\Response\ReviewModelResponse.cs" />
+    <Compile Include="Models\Response\UserModelResponse.cs" />
+    <Compile Include="Models\Response\UserReviewsResponse.cs" />
+    <Compile Include="Models\Transforms\RequestTransform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\CityValidator.cs" />
+    <Compile Include="Validation\LocationValidator.cs" />
+    <Compile Include="Validation\RestaurantValidator.cs" />
+    <Compile Include="Validation\ReviewValidator.cs" />
+    <Compile Include="Validation\SearchValidator.cs" />
+    <Compile Include="Validation\UserValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -119,13 +141,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RstrntAPI.Business\RstrntAPI.Business.csproj">
+      <Project>{8502f11b-94e9-4805-aa7a-57de220b89c1}</Project>
+      <Name>RstrntAPI.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RstrntAPI.DTO\RstrntAPI.DTO.csproj">
       <Project>{66fad77d-a679-4970-839c-b9bc73b035d0}</Project>
       <Name>RstrntAPI.DTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RstrntAPI.Repo\RstrntAPI.Repository.csproj">
-      <Project>{c7c3c48e-fe1f-4114-962c-0a3faf0f2c26}</Project>
-      <Name>RstrntAPI.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

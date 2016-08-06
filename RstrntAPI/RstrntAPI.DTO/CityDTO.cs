@@ -9,6 +9,7 @@ namespace RstrntAPI.DTO
     public class CityDTO
     {
         public int? Id { get; set; }
-        public string Name { get; set; } // cannot be null
+        public string Name { get; set; }
+        public string KeyedName { get; set; }
     }
 }

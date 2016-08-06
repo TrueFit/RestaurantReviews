@@ -18,6 +18,12 @@ namespace RstrntAPI.Repository.Repositories
             return table.All(where: "id=@0", args: userId).Select(x => ((ExpandoObject)x).ToEntity<UsersEntity>().ToDTO()).FirstOrDefault();
         }
 
+        public UserDTO Get(string acctName)
+        {
+            var table = new DataAccess.Models.Users();
+            return table.All(where: "acct_name=@0", args: acctName).Select(x => ((ExpandoObject)x).ToEntity<UsersEntity>().ToDTO()).FirstOrDefault();
+        }
+
         public UserDTO Create(UserDTO user)
         {
             var table = new DataAccess.Models.Users();
@@ -59,7 +65,7 @@ namespace RstrntAPI.Repository.Repositories
         public List<UserDTO> Find(string term)
         {
             var users = new DataAccess.Models.Users();
-            return users.All().Where(x => x.acct_name.Contains(term) || x.full_name.Contains(term)).Select(x => ((ExpandoObject)x).ToEntity<UsersEntity>().ToDTO()).ToList();
+            return users.All().Where(x => x.acct_name.ToLower().Contains(term.ToLower()) || x.full_name.ToLower().Contains(term.ToLower())).Select(x => ((ExpandoObject)x).ToEntity<UsersEntity>().ToDTO()).ToList();
         }
 
         public List<UserDTO> ListByHometown(int cityId)

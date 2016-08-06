@@ -31,8 +31,8 @@ namespace RstrntAPI.DataAccess.Massive
                     if (t.Value.GetType() == prop.PropertyType || 
                         t.Value.GetType() == Nullable.GetUnderlyingType(prop.PropertyType))
                         prop.SetValue(output, t.Value);
-                    else if(t.Value.GetType().Name.Substring(0, 3) == (Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType).Name.Substring(0, 3))
-                        if(Int32.MaxValue > (Int64)t.Value)
+                    else if(t.Value.GetType().Name.Substring(0, 3) == (Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType).Name.Substring(0, 3)) // Hilariously horrible hack for 64vs32bit
+                        if(Int32.MaxValue > (Int64)t.Value) // if it will cause a buffer overflow, just throw it out
                             prop.SetValue(output, Convert.ToInt32(t.Value));
                 }
             }

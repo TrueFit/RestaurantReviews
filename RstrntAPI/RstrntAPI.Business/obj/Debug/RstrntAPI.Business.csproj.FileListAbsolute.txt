@@ -5,3 +5,9 @@ T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\bin\Debug\Ninject.xml
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\obj\Debug\RstrntAPI.Business.csprojResolveAssemblyReference.cache
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\obj\Debug\RstrntAPI.Business.dll
 T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\obj\Debug\RstrntAPI.Business.pdb
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\bin\Debug\RstrntAPI.DTO.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\bin\Debug\RstrntAPI.Repository.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\bin\Debug\RstrntAPI.DataAccess.dll
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\bin\Debug\RstrntAPI.DTO.pdb
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\bin\Debug\RstrntAPI.Repository.pdb
+T:\TrueFit\RestaurantReviews\RstrntAPI\RstrntAPI.Business\bin\Debug\RstrntAPI.DataAccess.pdb

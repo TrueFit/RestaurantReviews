@@ -4,9 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using RstrntAPI.Repository;
-using RstrntAPI.Repository.Repositories;
-using RstrntAPI.DTO;
+using RstrntAPI.Business;
+using RstrntAPI.Business.Services;
+using RstrntAPI.Models.Request;
+using RstrntAPI.Models.Response;
+using RstrntAPI.Models.Transforms;
+using RstrntAPI.Validation;
 
 namespace RstrntAPI.Controllers
 {
@@ -15,30 +18,110 @@ namespace RstrntAPI.Controllers
     {
         [HttpGet()]
         [Route("Restaurants")]
-        public List<RestaurantDTO> SearchRestaurants(string term)
+        public RestaurantModelResponse SearchRestaurants(string term)
         {
-            return RepoRegistry.Get<IRestaurantRepository>().Find(term);
+            var response = new RestaurantModelResponse();
+            try
+            {
+                var modelValidate = new SearchValidator().Validate(term);
+                if (modelValidate.IsValid)
+                {
+                    response.Restaurant = ServiceRegistry.Get<IRestaurantService>().Find(term).GroupBy(x => x.Id).Select(x => x.First().ToRequest()).ToList();
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("Reviews")]
-        public List<ReviewDTO> SearchReviews(string term)
+        public ReviewModelResponse SearchReviews(string term)
         {
-            return RepoRegistry.Get<IReviewRepository>().Find(term);
+            var response = new ReviewModelResponse();
+            try
+            {
+                var modelValidate = new SearchValidator().Validate(term);
+                if (modelValidate.IsValid)
+                {
+                    response.Review = ServiceRegistry.Get<IReviewService>().Find(term).Select(x => x.ToRequest()).ToList();
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("Users")]
-        public List<UserDTO> SearchUsers(string term)
+        public UserModelResponse SearchUsers(string term)
         {
-            return RepoRegistry.Get<IUserRepository>().Find(term);
+            var response = new UserModelResponse();
+            try
+            {
+                var modelValidate = new SearchValidator().Validate(term);
+                if (modelValidate.IsValid)
+                {
+                    response.User = ServiceRegistry.Get<IUserService>().Find(term).Select(x => x.ToRequest()).ToList();
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("City")]
-        public List<CityDTO> SearchCity(string term)
+        public CityModelResponse SearchCity(string term)
         {
-            return RepoRegistry.Get<ICityRepository>().Find(term);
+            var response = new CityModelResponse();
+            try
+            {
+                var modelValidate = new SearchValidator().Validate(term);
+                if (modelValidate.IsValid)
+                {
+                    response.City = ServiceRegistry.Get<ICityService>().Find(term).GroupBy(x => x.Id).Select(x => x.First().ToRequest()).ToList();
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
     }
 }

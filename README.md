@@ -1,76 +1,178 @@
 Notes:
 --------------
+```
 Had an issue with SQLite with EF drivers installing on my machine, so I decided to use a Micro-ORM called Massive (https://github.com/FransBouma/Massive) instead of using ADO.NET.
-That ended up being not a very good idea, because Massive is based on dynamically typed objects which are annoying to work with in a strongly typed environment. Should have just went with ADO.
+That ended up being not a very good idea; Massive is dynamically typed and not quite as mature as I hoped. Would have been better to use ADO or EF6.
 
-No exception catching, failures dump to output.
-
-There is no validation of data coming from the client, but because in the database the primary key must not be null and it is allowed to be null for autoincremented inserts, a client could pass a null id and get back an undesired result. Also, other unique fields are not checked, which will lead to failed updates and inserts if it constraints are violated. Would have used something like Fluent Validation.
+Validation doesn't check for constraints on the database.
 
 No authentication. Someone could wipe all the records or carpet bomb the database without even trying. There's also no throttling, you can hit the api as much as you want.
+```
 
-Everything is integer-based IDs, would have rather used a unique name instead in retrospect.
-
-Code Layout:
+Assumptions:
 --------------
-RstrntAPI.DataAccess - data access layer, contains Massive ORM and entities.
-RstrntAPI.DTO - data transfer objects used to pass information between layers.
-RstrntAPI.Repository - Uses DataAccess to fill DTOs
-RstrntAPI - API, uses DTOs as response models, not exactly how it's supposed to be used but it works with a small project like this.
+Assumes Content-Type is application/json
 
-Did not implement a business layer, it would have been nearly identical to Repository since there is no logging, auditing, or any logic taking place.
+City is as broad as it gets, no sense of state, country, zip code, etc. Cities with the same name are possible, but not recommended.
+
+There can be two of the same restaurant name, again not recommended.
+
+AccountName (username) is unique. No checking for this constraint is done, it will just response as a failure if you try to create it more than once.
 
 Usage:
 --------------
+```
 Accepted Verbs:
 GET for fetching
 PUT for updating
 POST for inserting
 DELETE for deleting
 
-Getting a list of restaurants:
-http://localhost/api/v1/Restaurants
+For create, omit "Id" from the request model, as it is autoincremented.
 
-Getting information about a restaurant and all of it's branches:
-http://localhost/api/v1/Restaurants/{restaurantId}
+Restaurants
+GET api/v1/Restaurant/
+GET api/v1/Restaurant/{RestaurantId}/Detail
+GET api/v1/Restaurant/{RestaurantId}/Location/{LocationId}
+GET api/v1/Restaurant/{RestaurantId}/City/{CityId}
+GET api/v1/Restaurant/City/{CityId}
+POST api/v1/Restaurant/
+DELETE api/v1/Restaurant/{RestaurantId}
+PUT api/v1/Restaurant/
 
-Getting detailed info about a restaurant and it's branches:
-http://localhost/api/v1/Restaurants/{restaurantId}/Detail
+Request Model:
+{
+	Id: int,
+	Name: string[1024]
+}
 
-Getting detailed info about a restaurant branch:
-http://localhost/api/v1/Restaurants/{restaurantId}/Location/{locationId}
+City
+GET api/v1/City/
+GET api/v1/City/Restaurant/{RestaurantId}
+GET api/v1/City/{CityId}
+POST api/v1/City
+DELETE api/v1/City/{CityId}
+PUT api/v1/City
 
-Getting detailed info about restaurant branch within a city:
-http://localhost/api/v1/Restaurants/{restaurantId}/City/{cityId}
+Request Model:
+{
+	Id: int,
+	Name: string[1024]
+}
 
-Searching:
-http://localhost/api/v1/Search/(Restaurants|Reviews|Users|City)?term=searchterm
+Location
+GET api/v1/Location/
+GET api/v1/Location/City/{CityId}
+GET api/v1/Location/Restaurant/{RestaurantId}
+GET api/v1/Location/{LocationId}
+POST api/v1/Location
+DELETE api/v1/Location/{LocationId}
+PUT api/v1/Location
 
-User and User's Reviews:
-http://localhost/api/v1/User/{userid}
-http://localhost/api/v1/User/{userid}/Reviews
+Request Model:
+{
+	Id: int,
+	CityId: int,
+	RestaurantId: int,
+	StreetAddress: string[1024]
+}
+
+Reviews
+GET api/v1/Reviews/
+GET api/v1/Reviews/{ReviewsId}
+POST api/v1/Reviews
+DELETE api/v1/Reviews/{ReviewsId}
+PUT api/v1/Reviews
+
+Request Model:
+{
+	Id: int,
+	LocationId: int,
+	UserId: int,
+	Subject: string[1024],
+	Body: string[4096]
+}
+
+User
+GET api/v1/User
+GET api/v1/User/{ReviewId}
+POST api/v1/User
+DELETE api/v1/User/{ReviewsId}
+PUT api/v1/Reviews
+
+Request Model:
+{
+	Id: int,
+	AccountName: string[1024],
+	FullName: string[1024],
+	Hometown: int:CityId
+}
+
+Search
+GET api/v1/Search/Restaurants?term=
+GET api/v1/Search/Reviews?term=
+GET api/v1/Search/Users?term=
+GET api/v1/Search/City?term=
+
+
+Response Model for all requests except restaurant detail/loc/city and user reviews:
+{
+	NameOfObject: array of type of Request Model
+	HasErrors: boolean,
+	ErrorMessages: array of string, or null if no errors
+}
+Response Model for user reviews
+{
+	User: array of User request model,
+	Reviews: array of Review request model,
+	HasErrors: boolean,
+	ErrorMessages: array of string, or null if no errors
+}
+Response Model for restaurant detail/, location/, and city/ requests
+{
+	Restaurants: array of locations
+	[
+		{
+			RestaurantId,
+			LocationId,
+			CityId,
+			RestaurantName,
+			StreetAddress,
+			City
+			Reviews: []
+		}
+	]
+	HasErrors: boolean,
+	ErrorMessages: array of string, or null if no errors
+}
+```
 
 How to insert a new restaurant in a new city:
 --------------
+```
 1. Insert new City -- if city exists, look up ID instead
-POST - http://localhost/api/v1/City with the body being in json format:
-{ name: 'CityName' }
-You will get a json returned with the name and id if successful.
+POST - http://localhost/api/v1/City
+Request model:
+{ 
+	name: 'CityName' 
+}
 
 2. Insert new Restaurant -- if restaurant exists and you are just adding a branch, skip this step and lookup the restaurant id instead.
-POST - http://localhost/api/v1/Restaurant with the body being in json format:
-{ name: 'RestaurantName' }
-You will get a json returned with the name and id if successful.
+POST - http://localhost/api/v1/Restaurant
+Request model:
+{ 
+	name: 'RestaurantName' 
+}
 
 3. Insert new Location -- This is basically a branch office, 1-m relationship to restaurant.
-POST - http://localhost/api/v1/Location with the body being in json format:
+POST - http://localhost/api/v1/Location
+Request model:
 { 
 	CityId: id from above,
 	RestaurantId: id from above,
 	StreetAddress: 'Address of branch location'
 }
-You will get a json returned with the assigned id if successful.
-
+```
 
 RestaurantReviews
 =================

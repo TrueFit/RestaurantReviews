@@ -15,7 +15,7 @@ namespace RstrntAPI.DataAccess.Models
     public class ReviewsEntity
     {
         public int? id { get; set; }
-        public int restaurant_id { get; set; }
+        public int location_id { get; set; }
         public int user_id { get; set; }
         public string subject { get; set; }
         public string body { get; set; }

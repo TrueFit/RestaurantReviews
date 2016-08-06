@@ -5,10 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Ninject;
-using RstrntAPI.Repository;
-using RstrntAPI.Repository.Repositories;
-using RstrntAPI.DTO;
-using RstrntAPI.Models;
+using RstrntAPI.Business;
+using RstrntAPI.Business.Services;
+using RstrntAPI.Models.Transforms;
+using RstrntAPI.Models.Request;
+using RstrntAPI.Models.Response;
+using RstrntAPI.Validation;
+using FluentValidation;
 
 namespace RstrntAPI.Controllers
 {
@@ -17,134 +20,185 @@ namespace RstrntAPI.Controllers
     {
         [HttpGet()]
         [Route("")]
-        public List<RestaurantDTO> GetAll()
+        public RestaurantModelResponse GetAll()
         {
-            return RepoRegistry.Get<IRestaurantRepository>().GetAll();
+            var response = new RestaurantModelResponse();
+            try
+            {
+                response.Restaurant = ServiceRegistry.Get<IRestaurantService>().GetAll().Select(x => x.ToRequest()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("{restaurantId:int}/Detail")]
-        public List<RestrLocalResponse> FullDescription(int restaurantId)
+        public RestrLocalResponse FullDescription(int restaurantId)
         {
-            var responseList = new List<RestrLocalResponse>();
-            var restaurant = RepoRegistry.Get<IRestaurantRepository>().Get(restaurantId);
-            var location = RepoRegistry.Get<ILocationRepository>().ListByRestaurant(restaurantId);
-
-            if (restaurant != null && location != null)
-                foreach (var l in location)
-                {
-                    var city = RepoRegistry.Get<ICityRepository>().Get(l.CityId);
-                    var reviews = RepoRegistry.Get<IReviewRepository>().ListByLocation(l.Id.Value);
-
-                    responseList.Add(
-                        new RestrLocalResponse
-                        {
-                            RestaurantId = restaurant.Id,
-                            LocationId = l.Id,
-                            CityId = city.Id,
-                            RestaurantName = restaurant.Name,
-                            StreetAddress = l.StreetAddress,
-                            City = city.Name,
-                            Reviews = reviews
-                        });
-                }
-
-            return responseList;
+            var response = new RestrLocalResponse();
+            try
+            {
+                var restaurants = ServiceRegistry.Get<ILocationService>().FullDescription(restaurantId);
+                response.Restaurants = restaurants.Select(x => x.ToResponse()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("{restaurantId:int}/Location/{locationId:int}")]
         public RestrLocalResponse FullDescriptionBranch(int restaurantId, int locationId)
         {
-            var restaurant = RepoRegistry.Get<IRestaurantRepository>().Get(restaurantId);
-            var location = RepoRegistry.Get<ILocationRepository>().Get(locationId);
-
-            if (restaurant != null && location != null)
+            var response = new RestrLocalResponse();
+            try
             {
-                var city = RepoRegistry.Get<ICityRepository>().Get(location.CityId) ?? new CityDTO();
-                var reviews = RepoRegistry.Get<IReviewRepository>().ListByLocation(location.Id.Value);
-
-                return
-                    new RestrLocalResponse
-                    {
-                        RestaurantId = restaurant.Id,
-                        LocationId = location.Id,
-                        CityId = city.Id,
-                        RestaurantName = restaurant.Name,
-                        StreetAddress = location.StreetAddress,
-                        City = city.Name,
-                        Reviews = reviews
-                    };
+                var branch = ServiceRegistry.Get<ILocationService>().FullDescriptionBranch(restaurantId, locationId);
+                response.Restaurants = new List<LocationDetailResponse> { branch.ToResponse() };
+                response.HasError = false;
             }
-
-            return new RestrLocalResponse();
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("{restaurantId:int}/City/{cityId:int}")]
-        public List<RestrLocalResponse> FullDescriptionCity(int restaurantId, int cityId)
+        public RestrLocalResponse FullDescriptionCity(int restaurantId, int cityId)
         {
-            var responseList = new List<RestrLocalResponse>();
-            var restaurant = RepoRegistry.Get<IRestaurantRepository>().Get(restaurantId) ?? new RestaurantDTO();
-            var location = RepoRegistry.Get<ILocationRepository>().ListByRestaurant(restaurantId).Where(x => x.CityId == cityId);
-
-            if (restaurant != null && location != null)
-                foreach (var l in location)
-                {
-                    var city = RepoRegistry.Get<ICityRepository>().Get(l.CityId);
-                    var reviews = RepoRegistry.Get<IReviewRepository>().ListByLocation(l.Id.Value);
-
-                    responseList.Add(
-                        new RestrLocalResponse
-                        {
-                            RestaurantId = restaurant.Id,
-                            LocationId = l.Id,
-                            CityId = city.Id,
-                            RestaurantName = restaurant.Name,
-                            StreetAddress = l.StreetAddress,
-                            City = city.Name,
-                            Reviews = reviews
-                        });
-                }
-
-            return responseList;
+            var response = new RestrLocalResponse();
+            try
+            {
+                var restaurants = ServiceRegistry.Get<ILocationService>().FullDescriptionCity(restaurantId, cityId);
+                response.Restaurants = restaurants.Select(x => x.ToResponse()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("City/{cityId:int}")]
-        public List<RestaurantDTO> ListByCity(int cityId)
+        public RestaurantModelResponse ListByCity(int cityId)
         {
-            return RepoRegistry.Get<IRestaurantRepository>().ListByCity(cityId);
+            var response = new RestaurantModelResponse();
+            try
+            {
+                response.Restaurant = ServiceRegistry.Get<IRestaurantService>().ListByCity(cityId).Select(x => x.ToRequest()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("{restaurantId:int}"), Route("")]
-        public RestaurantDTO Get(int restaurantId)
+        public RestaurantModelResponse Get(int restaurantId)
         {
-            return RepoRegistry.Get<IRestaurantRepository>().Get(restaurantId);
+            var response = new RestaurantModelResponse();
+            try
+            {
+                response.Restaurant = new List<RestaurantRequest> { ServiceRegistry.Get<IRestaurantService>().Get(restaurantId).ToRequest() };
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpPost()]
         [Route("")]
-        public RestaurantDTO Create(RestaurantDTO restaurant)
+        public RestaurantModelResponse Create(RestaurantRequest restaurant)
         {
-            // Validation
-            return RepoRegistry.Get<IRestaurantRepository>().Create(restaurant);
+            var response = new RestaurantModelResponse();
+            try
+            {
+                var modelValidate = new RestaurantValidator().Validate(restaurant, ruleSet: "Create");
+                if (modelValidate.IsValid)
+                {
+                    response.HasError = false;
+                    response.Restaurant = new List<RestaurantRequest> { ServiceRegistry.Get<IRestaurantService>().Create(restaurant.ToDTO()).ToRequest() };
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpDelete()]
         [Route("{restaurantId:int}"), Route("")]
-        public bool Delete(int restaurantId)
+        public RestaurantModelResponse Delete(int restaurantId)
         {
-            return RepoRegistry.Get<IRestaurantRepository>().Delete(restaurantId);
+            var response = new RestaurantModelResponse();
+            try
+            {
+                response.Restaurant = null;
+                response.HasError = !ServiceRegistry.Get<IRestaurantService>().Delete(restaurantId);
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpPut()]
         [Route("")]
-        public RestaurantDTO Update(RestaurantDTO restaurant)
+        public RestaurantModelResponse Update(RestaurantRequest restaurant)
         {
-            // Validation
-            return RepoRegistry.Get<IRestaurantRepository>().Update(restaurant);
+            var response = new RestaurantModelResponse();
+            try
+            {
+                var modelValidate = new RestaurantValidator().Validate(restaurant, ruleSet: "Update");
+                if (modelValidate.IsValid)
+                {
+                    response.Restaurant = new List<RestaurantRequest> { ServiceRegistry.Get<IRestaurantService>().Update(restaurant.ToDTO()).ToRequest() };
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
     }
 }

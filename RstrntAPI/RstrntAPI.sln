@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RstrntAPI.DataAccess", "Rst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RstrntAPI.Repository", "RstrntAPI.Repo\RstrntAPI.Repository.csproj", "{C7C3C48E-FE1F-4114-962C-0A3FAF0F2C26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RstrntAPI.Business", "RstrntAPI.Business\RstrntAPI.Business.csproj", "{8502F11B-94E9-4805-AA7A-57DE220B89C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C7C3C48E-FE1F-4114-962C-0A3FAF0F2C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7C3C48E-FE1F-4114-962C-0A3FAF0F2C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7C3C48E-FE1F-4114-962C-0A3FAF0F2C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8502F11B-94E9-4805-AA7A-57DE220B89C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8502F11B-94E9-4805-AA7A-57DE220B89C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8502F11B-94E9-4805-AA7A-57DE220B89C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8502F11B-94E9-4805-AA7A-57DE220B89C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

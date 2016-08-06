@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CityDTO.cs" />
+    <Compile Include="LocationDetailDTO.cs" />
     <Compile Include="LocationDTO.cs" />
     <Compile Include="RestaurantDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

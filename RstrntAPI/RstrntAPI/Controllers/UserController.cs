@@ -4,10 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using RstrntAPI.Repository;
-using RstrntAPI.Repository.Repositories;
-using RstrntAPI.DTO;
-using RstrntAPI.Models;
+using RstrntAPI.Business;
+using RstrntAPI.Business.Services;
+using RstrntAPI.Models.Request;
+using RstrntAPI.Models.Response;
+using RstrntAPI.Models.Transforms;
+using RstrntAPI.Validation;
+using FluentValidation;
 
 namespace RstrntAPI.Controllers
 {
@@ -16,51 +19,132 @@ namespace RstrntAPI.Controllers
     {
         [HttpGet()]
         [Route("")]
-        public List<UserDTO> GetAll()
+        public UserModelResponse GetAll()
         {
-            return RepoRegistry.Get<IUserRepository>().GetAll();
+            var response = new UserModelResponse();
+            try
+            {
+                response.User = ServiceRegistry.Get<IUserService>().GetAll().Select(x => x.ToRequest()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("{userId:int}"), Route("")]
-        public UserDTO Get(int userId)
+        public UserModelResponse Get(int userId)
         {
-            return RepoRegistry.Get<IUserRepository>().Get(userId);
+            var response = new UserModelResponse();
+            try
+            {
+                response.User = new List<UserRequest> { ServiceRegistry.Get<IUserService>().Get(userId).ToRequest() };
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("{userId:int}/Reviews")]
         public UserReviewsResponse GetReviews(int userId)
         {
-            var user = RepoRegistry.Get<IUserRepository>().Get(userId);
-            var reviews = RepoRegistry.Get<IReviewRepository>().ListByUser(userId);
-
-            return new UserReviewsResponse
+            var response = new UserReviewsResponse();
+            try
             {
-                User = user,
-                Reviews = reviews
-            };
+                var user = ServiceRegistry.Get<IUserService>().Get(userId);
+                var reviews = ServiceRegistry.Get<IReviewService>().ListByUser(userId);
+                response.User = new List<UserRequest> { user.ToRequest() };
+                response.Reviews = reviews.Select(x => x.ToRequest()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpPost()]
         [Route("")]
-        public UserDTO Create(UserDTO user)
+        public UserModelResponse Create(UserRequest user)
         {
-            return RepoRegistry.Get<IUserRepository>().Create(user);
+            var response = new UserModelResponse();
+            try
+            {
+
+                var modelValidate = new UserValidator().Validate(user, ruleSet: "Create");
+                if (modelValidate.IsValid)
+                {
+                    response.User = new List<UserRequest> { ServiceRegistry.Get<IUserService>().Create(user.ToDTO()).ToRequest() };
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpDelete()]
         [Route("{userId:int}"), Route("")]
-        public bool Delete(int userId)
+        public UserModelResponse Delete(int userId)
         {
-            return RepoRegistry.Get<IUserRepository>().Delete(userId);
+            var response = new UserModelResponse();
+            try
+            {
+                response.User = null;
+                response.HasError = !ServiceRegistry.Get<IUserService>().Delete(userId);
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpPut()]
         [Route("")]
-        public UserDTO Update(UserDTO user)
+        public UserModelResponse Update(UserRequest user)
         {
-            return RepoRegistry.Get<IUserRepository>().Update(user);
+            var response = new UserModelResponse();
+            try
+            {
+                var modelValidate = new UserValidator().Validate(user, ruleSet: "Update");
+                if (modelValidate.IsValid)
+                {
+                    response.User = new List<UserRequest> { ServiceRegistry.Get<IUserService>().Update(user.ToDTO()).ToRequest() };
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
     }
 }

@@ -8,14 +8,15 @@ using RstrntAPI.DataAccess.Models;
 
 namespace RstrntAPI.Repository.Transforms
 {
-    public static class RepositoryTransforms
+    internal static class RepositoryTransforms
     {
         public static CityDTO ToDTO(this CityEntity item)
         {
             return new CityDTO
             {
                 Id = item.id,
-                Name = item.name
+                Name = item.name,
+                KeyedName = item.keyed_name
             };
         }
         public static CityEntity ToEntity(this CityDTO item)
@@ -23,7 +24,8 @@ namespace RstrntAPI.Repository.Transforms
             return new CityEntity
             {
                 id = item.Id,
-                name = item.Name
+                name = item.Name,
+                keyed_name = item.KeyedName
             };
         }
 
@@ -53,7 +55,8 @@ namespace RstrntAPI.Repository.Transforms
             return new RestaurantDTO
             {
                 Id = item.id,
-                Name = item.name
+                Name = item.name,
+                KeyedName = item.keyed_name
             };
         }
         public static RestaurantsEntity ToEntity(this RestaurantDTO item)
@@ -61,7 +64,8 @@ namespace RstrntAPI.Repository.Transforms
             return new RestaurantsEntity
             {
                 id = item.Id,
-                name = item.Name
+                name = item.Name,
+                keyed_name = item.KeyedName
             };
         }
 
@@ -70,7 +74,7 @@ namespace RstrntAPI.Repository.Transforms
             return new ReviewDTO
             {
                 Id = item.id,
-                RestaurantId = item.restaurant_id,
+                LocationId = item.location_id,
                 UserId = item.user_id,
                 Body = item.body,
                 Subject = item.subject
@@ -81,7 +85,7 @@ namespace RstrntAPI.Repository.Transforms
             return new ReviewsEntity
             {
                 id = item.Id,
-                restaurant_id = item.RestaurantId,
+                location_id = item.LocationId,
                 user_id = item.UserId,
                 body = item.Body,
                 subject = item.Subject

@@ -10,6 +10,7 @@ namespace RstrntAPI.Repository.Repositories
         bool Delete(int restaurantId);
         List<RestaurantDTO> Find(string term);
         RestaurantDTO Get(int restaurantId);
+        RestaurantDTO Get(string restaurantName);
         List<RestaurantDTO> GetAll();
         List<RestaurantDTO> ListByCity(int cityId);
         List<RestaurantDTO> ListByCity(CityDTO city);

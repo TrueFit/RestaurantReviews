@@ -5,10 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Ninject;
-using RstrntAPI.Repository;
-using RstrntAPI.Repository.Repositories;
-using RstrntAPI.DTO;
-using RstrntAPI.Models;
+using RstrntAPI.Business;
+using RstrntAPI.Models.Transforms;
+using RstrntAPI.Models.Request;
+using RstrntAPI.Models.Response;
+using RstrntAPI.Business.Services;
+using RstrntAPI.Validation;
+using FluentValidation;
 
 namespace RstrntAPI.Controllers
 {
@@ -17,52 +20,147 @@ namespace RstrntAPI.Controllers
     {
         [HttpGet()]
         [Route("")]
-        public List<LocationDTO> GetAll()
+        public LocationModelResponse GetAll()
         {
             // this isnt very helpful, probably should just be removed
-            return RepoRegistry.Get<ILocationRepository>().GetAll();
+            var response = new LocationModelResponse();
+            try
+            {
+                response.Location = ServiceRegistry.Get<ILocationService>().GetAll().Select(x => x.ToRequest()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("City/{cityId:int}")]
-        public List<LocationDTO> ListByCity(int cityId)
+        public LocationModelResponse ListByCity(int cityId)
         {
-            return RepoRegistry.Get<ILocationRepository>().ListByCity(cityId);
+            var response = new LocationModelResponse();
+            try
+            {
+                response.Location = ServiceRegistry.Get<ILocationService>().ListByCity(cityId).Select(x => x.ToRequest()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("Restaurant/{restaurantId:int}")]
-        public List<LocationDTO> ListByRestaurant(int restaurantId)
+        public LocationModelResponse ListByRestaurant(int restaurantId)
         {
-            return RepoRegistry.Get<ILocationRepository>().ListByRestaurant(restaurantId);
+            var response = new LocationModelResponse();
+            try
+            {
+                response.Location = ServiceRegistry.Get<ILocationService>().ListByRestaurant(restaurantId).Select(x => x.ToRequest()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("{locationId:int}"), Route("")]
-        public LocationDTO Get(int locationId)
+        public LocationModelResponse Get(int locationId)
         {
-            return RepoRegistry.Get<ILocationRepository>().Get(locationId);
+            var response = new LocationModelResponse();
+            try
+            {
+                response.Location = new List<LocationRequest> { ServiceRegistry.Get<ILocationService>().Get(locationId).ToRequest() };
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpPost()]
         [Route("")]
-        public LocationDTO Create(LocationDTO location)
+        public LocationModelResponse Create(LocationRequest location)
         {
-            return RepoRegistry.Get<ILocationRepository>().Create(location);
+            var response = new LocationModelResponse();
+            try
+            {
+                var modelValidate = new LocationValidator().Validate(location, ruleSet: "Create");
+                if (modelValidate.IsValid)
+                {
+                    response.Location = new List<LocationRequest> { ServiceRegistry.Get<ILocationService>().Create(location.ToDTO()).ToRequest() };
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpDelete()]
         [Route("{locationId:int}"), Route("")]
-        public bool Delete(int locationId)
+        public LocationModelResponse Delete(int locationId)
         {
-            return RepoRegistry.Get<ILocationRepository>().Delete(locationId);
+            var response = new LocationModelResponse();
+            try
+            {
+                response.Location = null;
+                response.HasError = !ServiceRegistry.Get<ILocationService>().Delete(locationId);
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpPut()]
         [Route("")]
-        public LocationDTO Update(LocationDTO location)
+        public LocationModelResponse Update(LocationRequest location)
         {
-            return RepoRegistry.Get<ILocationRepository>().Update(location);
+            var response = new LocationModelResponse();
+            try
+            {
+                var modelValidate = new LocationValidator().Validate(location, ruleSet: "Update");
+                if (modelValidate.IsValid)
+                {
+                    response.Location = new List<LocationRequest> { ServiceRegistry.Get<ILocationService>().Update(location.ToDTO()).ToRequest() };
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
     }
 }

@@ -18,12 +18,22 @@ namespace RstrntAPI.Repository.Repositories
             return table.All(where: "id=@0", args: cityId).Select(x => ((ExpandoObject)x).ToEntity<CityEntity>().ToDTO()).FirstOrDefault();
         }
 
+        public CityDTO Get(string cityKeyedName)
+        {
+            // Name is unique in the database
+            var table = new DataAccess.Models.City();
+            return table.All(where: "keyed_name=@0", args: cityKeyedName).Select(x => ((ExpandoObject)x).ToEntity<CityEntity>().ToDTO()).FirstOrDefault();
+        }
+
         public CityDTO Create(CityDTO city)
         {
-            var table = new DataAccess.Models.City();
-            var returnValue = table.Insert(city.ToEntity());
-
-            return ((ExpandoObject)returnValue).ToEntity<CityEntity>().ToDTO();
+            if (Get(city.Name) == null)
+            {
+                var table = new DataAccess.Models.City();
+                var returnValue = table.Insert(city.ToEntity());
+                return ((ExpandoObject)returnValue).ToEntity<CityEntity>().ToDTO();
+            }
+            return null;
         }
 
         public CityDTO Update(CityDTO city)
@@ -33,11 +43,17 @@ namespace RstrntAPI.Repository.Repositories
             return Get(city.Id.Value);
         }
 
-        public int Delete(CityDTO city)
+        public bool Delete(CityDTO city)
         {
             var table = new DataAccess.Models.City();
-            var returnValue = table.Delete(city.Id);
-            return returnValue;
+            return Delete(city.Id.Value);
+        }
+
+        public bool Delete(int cityId)
+        {
+            var table = new DataAccess.Models.City();
+            var returnValue = table.Delete(cityId);
+            return returnValue == 0 ? false : true;
         }
 
         #endregion
@@ -51,9 +67,9 @@ namespace RstrntAPI.Repository.Repositories
         public List<CityDTO> Find(string term)
         {
             var cities = new DataAccess.Models.City().Query(
-                "SELECT City.id, City.name, Locations.street_address FROM City INNER JOIN Locations ON Locations.city_id = City.id"
+                "SELECT City.id, City.name, City.keyed_name, Locations.street_address FROM City INNER JOIN Locations ON Locations.city_id = City.id"
                 );
-            return cities.Where(x => x.name.Contains(term) || x.street_address.Contains(term)).Select(x => new CityDTO { Id = x.id, Name = x.name }).ToList();
+            return cities.Where(x => x.name.ToLower().Contains(term.ToLower()) || x.street_address.ToLower().Contains(term.ToLower())).Select(x => ((ExpandoObject)x).ToEntity<CityEntity>().ToDTO()).ToList();
         }
 
         public List<CityDTO> ListByRestaurant(int restaurantId)
@@ -61,7 +77,7 @@ namespace RstrntAPI.Repository.Repositories
             var rTable = new DataAccess.Models.City();
             // This is Massive's DSL, not SQL
             var restaurants = rTable.Query(
-                "SELECT City.id, City.name FROM City INNER JOIN Locations ON Locations.city_id = City.id WHERE Location.restaurant_id = @0",
+                "SELECT City.id, City.name, City.keyed_name FROM City INNER JOIN Locations ON Locations.city_id = City.id WHERE Location.restaurant_id = @0",
                 restaurantId);
             return restaurants.Select(x => ((ExpandoObject)x).ToEntity<CityEntity>().ToDTO()).ToList();
         }

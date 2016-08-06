@@ -17,13 +17,23 @@ namespace RstrntAPI.Repository.Repositories
             var table = new DataAccess.Models.Restaurants();
             return table.All(where: "id=@0", args:restaurantId).Select(x => ((ExpandoObject)x).ToEntity<RestaurantsEntity>().ToDTO()).FirstOrDefault();
         }
-        
-        public RestaurantDTO Create(RestaurantDTO restaurant)
+
+        public RestaurantDTO Get(string restaurantKeyedName)
         {
             var table = new DataAccess.Models.Restaurants();
-            var returnValue = table.Insert(restaurant.ToEntity());
+            return table.All(where: "keyed_name=@0", args: restaurantKeyedName).Select(x => ((ExpandoObject)x).ToEntity<RestaurantsEntity>().ToDTO()).FirstOrDefault();
+        }
 
-            return ((ExpandoObject)returnValue).ToEntity<RestaurantsEntity>().ToDTO();
+        public RestaurantDTO Create(RestaurantDTO restaurant)
+        {
+            if (Get(restaurant.KeyedName) == null)
+            {
+                var table = new DataAccess.Models.Restaurants();
+                var returnValue = table.Insert(restaurant.ToEntity());
+
+                return ((ExpandoObject)returnValue).ToEntity<RestaurantsEntity>().ToDTO();
+            }
+            return null;
         }
 
         public RestaurantDTO Update(RestaurantDTO restaurant)
@@ -60,9 +70,9 @@ namespace RstrntAPI.Repository.Repositories
         public List<RestaurantDTO> Find(string term)
         {
             var restaurants = new DataAccess.Models.Restaurants().Query(
-                "SELECT Restaurants.id, Restaurants.name, Locations.street_address FROM Restaurants INNER JOIN Locations ON Locations.restaurant_id = Restaurants.id"
+                "SELECT Restaurants.id, Restaurants.name, Restaurants.keyed_name, Locations.street_address FROM Restaurants INNER JOIN Locations ON Locations.restaurant_id = Restaurants.id"
                 );
-            return restaurants.Where(x => x.name.Contains(term) || x.street_address.Contains(term)).Select(x => new RestaurantDTO { Id = x.id, Name = x.name }).ToList();
+            return restaurants.Where(x => x.name.Contains(term) || x.street_address.Contains(term)).Select(x => ((ExpandoObject)x).ToEntity<RestaurantsEntity>().ToDTO()).ToList();
         }
 
         public List<RestaurantDTO> ListByCity(int cityId)
@@ -70,7 +80,7 @@ namespace RstrntAPI.Repository.Repositories
             var rTable = new DataAccess.Models.Restaurants();            
             // Massive claims this isn't SQL, but rather a DSL, but sure looks like SQL to me.
             var restaurants = rTable.Query(
-                "SELECT Restaurants.id, Restaurants.name FROM Restaurants INNER JOIN Locations ON Locations.restaurant_id = Restaurants.id WHERE Locations.city_id = @0",
+                "SELECT Restaurants.id, Restaurants.name, Restaurants.keyed_name FROM Restaurants INNER JOIN Locations ON Locations.restaurant_id = Restaurants.id WHERE Locations.city_id = @0",
                 cityId);
             return restaurants.Select(x => ((ExpandoObject)x).ToEntity<RestaurantsEntity>().ToDTO()).ToList();
         }
@@ -84,7 +94,7 @@ namespace RstrntAPI.Repository.Repositories
         {
             var rTable = new DataAccess.Models.Restaurants();
             var restaurants = rTable.Query(
-                "SELECT Restaurants.id, Restaurants.name FROM Restaurants INNER JOIN Reviews ON Reviews.restaurant_id = Restaurants.id WHERE Reviews.id = @0",
+                "SELECT Restaurants.id, Restaurants.name, Restaurants.keyed_name FROM Restaurants INNER JOIN Reviews ON Reviews.restaurant_id = Restaurants.id WHERE Reviews.id = @0",
                 userId);
             return restaurants.Select(x => ((ExpandoObject)x).ToEntity<RestaurantsEntity>().ToDTO()).ToList();
         }

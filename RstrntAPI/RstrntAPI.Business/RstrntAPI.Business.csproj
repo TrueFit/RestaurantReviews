@@ -44,12 +44,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Modules\ServiceModule.cs" />
+    <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\Interfaces\ILocationService.cs" />
+    <Compile Include="Services\Interfaces\ICityService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\Interfaces\IRestaurantService.cs" />
+    <Compile Include="Services\Interfaces\IReviewService.cs" />
+    <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\RestaurantService.cs" />
+    <Compile Include="ServiceRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ReviewService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="UniqueKeyName.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RstrntAPI.DTO\RstrntAPI.DTO.csproj">
+      <Project>{66fad77d-a679-4970-839c-b9bc73b035d0}</Project>
+      <Name>RstrntAPI.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RstrntAPI.Repo\RstrntAPI.Repository.csproj">
+      <Project>{c7c3c48e-fe1f-4114-962c-0a3faf0f2c26}</Project>
+      <Name>RstrntAPI.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

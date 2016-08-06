@@ -4,9 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using RstrntAPI.Repository;
-using RstrntAPI.Repository.Repositories;
+using RstrntAPI.Business;
+using RstrntAPI.Business.Services;
 using RstrntAPI.DTO;
+using RstrntAPI.Models.Request;
+using RstrntAPI.Models.Response;
+using RstrntAPI.Models.Transforms;
+using RstrntAPI.Validation;
+using FluentValidation;
 
 namespace RstrntAPI.Controllers
 {
@@ -15,37 +20,110 @@ namespace RstrntAPI.Controllers
     {
         [HttpGet()]
         [Route("")]
-        public List<ReviewDTO> GetAll()
+        public ReviewModelResponse GetAll()
         {
-            return RepoRegistry.Get<IReviewRepository>().GetAll();
+            var response = new ReviewModelResponse();
+            try
+            {
+                response.Review = ServiceRegistry.Get<IReviewService>().GetAll().Select(x => x.ToRequest()).ToList();
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpGet()]
         [Route("{reviewId:int}"), Route("")]
-        public ReviewDTO Get(int reviewId)
+        public ReviewModelResponse Get(int reviewId)
         {
-            return RepoRegistry.Get<IReviewRepository>().Get(reviewId);
+            var response = new ReviewModelResponse();
+            try
+            {
+                response.Review = new List<ReviewRequest> { ServiceRegistry.Get<IReviewService>().Get(reviewId).ToRequest() };
+                response.HasError = false;
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpPost()]
         [Route("")]
-        public ReviewDTO Create(ReviewDTO review)
+        public ReviewModelResponse Create(ReviewRequest review)
         {
-            return RepoRegistry.Get<IReviewRepository>().Create(review);
+            var response = new ReviewModelResponse();
+            try
+            {
+                var modelValidate = new ReviewValidator().Validate(review, ruleSet: "Create");
+                if (modelValidate.IsValid)
+                {
+                    response.Review = new List<ReviewRequest> { ServiceRegistry.Get<IReviewService>().Create(review.ToDTO()).ToRequest() };
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpDelete()]
         [Route("{reviewId:int}"), Route("")]
-        public bool Delete(int reviewId)
+        public ReviewModelResponse Delete(int reviewId)
         {
-            return RepoRegistry.Get<IReviewRepository>().Delete(reviewId);
+            var response = new ReviewModelResponse();
+            try
+            {
+                response.Review = null;
+                response.HasError = !ServiceRegistry.Get<IReviewService>().Delete(reviewId);
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
 
         [HttpPut()]
         [Route("")]
-        public ReviewDTO Update(ReviewDTO review)
+        public ReviewModelResponse Update(ReviewRequest review)
         {
-            return RepoRegistry.Get<IReviewRepository>().Update(review);
+            var response = new ReviewModelResponse();
+            try
+            {
+                var modelValidate = new ReviewValidator().Validate(review, ruleSet: "Update");
+                if (modelValidate.IsValid)
+                {
+                    response.Review = new List<ReviewRequest> { ServiceRegistry.Get<IReviewService>().Update(review.ToDTO()).ToRequest() };
+                    response.HasError = false;
+                }
+                else
+                {
+                    response.HasError = true;
+                    response.ErrorMessages = modelValidate.Errors.Select(x => x.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                response.HasError = true;
+                response.ErrorMessages = new List<string>() { "Unexpected Error" };
+            }
+            return response;
         }
     }
 }
