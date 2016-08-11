@@ -10,8 +10,9 @@ namespace RestaurantReviews.API.Controllers.Tests {
     [TestClass()]
     public class RestaurantControllerTests {
         [TestMethod()]
-        public void GetByIDTest() {
-            Assert.Fail();
+        public void GetByIDTest_ShouldReturnRestaurant() {
+            var 
+            //Assert.Fail();
         }
 
         [TestMethod()]
