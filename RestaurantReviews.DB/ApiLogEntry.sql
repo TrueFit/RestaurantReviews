@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[ApiLogEntry]
+﻿--Table schema script for creating new ApiLogEntry table
+CREATE TABLE [dbo].[ApiLogEntry]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Application] VARCHAR(50) NULL, 

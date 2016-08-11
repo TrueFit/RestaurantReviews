@@ -3,6 +3,9 @@ using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace RestaurantReviews.Data {
+    /// <summary>
+    /// RestaurantReviews DB Data context
+    /// </summary>
     internal partial class RestaurantReviewsEntities : DbContext {
         public RestaurantReviewsEntities()
             : base("name=RestaurantDataEntities") {

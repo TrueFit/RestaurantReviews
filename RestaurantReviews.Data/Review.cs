@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantReviews.Data {
     
+    /// <summary>
+    /// Review model class
+    /// </summary>
     [Table("Review")]
     public partial class Review
     {

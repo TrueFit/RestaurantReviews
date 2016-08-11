@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantReviews.Data {
 
+    /// <summary>
+    /// Restaurant Model Class
+    /// </summary>
     [Table("Restaurant")]
     public partial class Restaurant
     {

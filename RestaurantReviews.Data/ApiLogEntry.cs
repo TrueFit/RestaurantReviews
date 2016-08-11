@@ -6,6 +6,9 @@ namespace RestaurantReviews.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    /// <summary>
+    /// ApiLogEntry model class
+    /// </summary>
     [Table("ApiLogEntry")]
     public partial class ApiLogEntry
     {

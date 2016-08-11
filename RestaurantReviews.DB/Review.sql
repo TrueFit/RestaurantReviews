@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Review]
+﻿--Table schema script for creating new Review table
+CREATE TABLE [dbo].[Review]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [UserID] INT NOT NULL, 

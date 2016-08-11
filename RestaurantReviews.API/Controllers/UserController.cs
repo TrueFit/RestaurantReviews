@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Web.Http;
-using System.Web.UI.WebControls;
 using RestaurantReviews.API.Interfaces;
 using RestaurantReviews.Data;
 
 namespace RestaurantReviews.API.Controllers
 {
+    /// <summary>
+    /// The User portion of the RestaurantReviews API. 
+    /// </summary>
     [RoutePrefix("api/users")]
     public class UserController : ApiController, IRestaurantApiController<User> {
 
+        /// <summary>
+        /// Get a single user by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A user object</returns>
         [Route("{id:int}")]
         public IHttpActionResult GetByID(int id) {
 
@@ -26,6 +33,12 @@ namespace RestaurantReviews.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Create a new user in the database
+        /// </summary>
+        /// <param name="Data"></param>
+        /// <param name="UserID"></param>
+        /// <returns>The newly-created user</returns>
         [HttpPost]
         [Route("create")]
         public IHttpActionResult Create(User Data, int UserID) {
@@ -48,6 +61,11 @@ namespace RestaurantReviews.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Get a list of reviews left by the user
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <returns>A list of reviews</returns>
         [Route("{id:int}/reviews")]
         public IHttpActionResult GetReviews(int UserID) {
             try {

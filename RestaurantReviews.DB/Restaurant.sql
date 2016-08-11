@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Restaurant]
+﻿--Table schema script for creating new Restaurant table
+CREATE TABLE [dbo].[Restaurant]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Name] VARCHAR(100) NOT NULL, 

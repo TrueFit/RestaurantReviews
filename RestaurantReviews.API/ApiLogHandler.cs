@@ -11,7 +11,18 @@ using Newtonsoft.Json;
 using RestaurantReviews.Data;
 
 namespace RestaurantReviews.API {
+
+    /// <summary>
+    /// This class will handle the API access logging.
+    /// </summary>
     public class ApiLogHandler : DelegatingHandler {
+
+        /// <summary>
+        /// OVERRIDE: Send an HTTP request to the inner handler to send to the server as an asynchronous operation
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>An HTTP response</returns>
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
             var apiLogEntry = CreateApiLogEntryWithRequestData(request);
             if (request.Content != null) {
@@ -25,7 +36,6 @@ namespace RestaurantReviews.API {
                 .ContinueWith(task => {
                     var response = task.Result;
 
-                    // Update the API log entry with response info
                     apiLogEntry.ResponseStatusCode = (int)response.StatusCode;
                     apiLogEntry.ResponseTimeStamp = DateTime.Now;
 
@@ -41,6 +51,11 @@ namespace RestaurantReviews.API {
                 }, cancellationToken);
         }
 
+        /// <summary>
+        /// Create an API Log entry that includes request data
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>The newly-created log entry</returns>
         private ApiLogEntry CreateApiLogEntryWithRequestData(HttpRequestMessage request) {
             var context = ((HttpContextBase)request.Properties["MS_HttpContext"]);
             var routeData = request.GetRouteData();
@@ -60,8 +75,14 @@ namespace RestaurantReviews.API {
             };
         }
 
+        /// <summary>
+        /// Serialize the Web API 2 route date.
+        /// TODO: Solve the issue with the JSON serializer. The IHttpRouteData object contains a circular referene that the serializer
+        /// can't handle. Thusly, this method is not implemented at this time and will return a new NotImplementedException();
+        /// </summary>
+        /// <param name="routeData"></param>
+        /// <returns>new NotImplementedException()</returns>
         private string SerializeRouteData(IHttpRouteData routeData) {
-            //TODO: figure out the circular reference (that can't be handled by configuring the Json.NET serializer??)
             return JsonConvert.SerializeObject(routeData, Formatting.Indented);
         }
 
