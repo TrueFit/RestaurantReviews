@@ -20,3 +20,37 @@ Please use whatever technology and techniques you feel are applicable to solve t
 Please fork this repository. When you have completed your solution, please issue a pull request to notify us that you are ready.
 
 Have fun.
+
+
+The Solution
+--------------
+This solution is divided up into three projects:
+
+	1. RestaurantReviews.API  - This is the public-facing HTTP Restful API. It is broken up into three separate controllers:
+	    a. RestaurantController - handles actions specific to restuarants or actions over data in the context of a particular restaurant.
+	    b. ReviewController     - handles actions specific to reviews or actions over data in the context of a particular review.
+	    c. UserController       - handles actions specific to users or actions over data in the context of a particular user.
+
+	2. RestaurantReviews.Data - This is the data acess layer which handles all of the interaction with the data storage engine. In this
+	   project, I implement data access via Entity Framework. Classes in this project are split into partial classes:
+	    - <EntityClass>.cs               - This partial contains the model's properties and EF-specific attributes.
+	    - <EntityClass>.StaticMethods.cs - This partial contains static methods used to directly access the database.
+
+	3. RestaurantReviews.DB   - This is the database project used for maintaining the schema for our database as well as (for the future) managing
+	                            data migrations.
+
+There are a set of stubbed unit tests for both the .API and .Data projects, however I did not implement these unit tests at this time. If it becomes necessary, they
+will be added and this document will be updated to reflect the new projects. Additionally, MSDN-style API documentation has been produced for both the .API and
+.Data projects. This was generated via Doxygen (http://www.doxygen.org).
+
+This API (and data layer) are by no means a complete implementation. This code base is to serve the purpose of demonstrating coding and architectural style. Given tighter
+specifications, I may have made changes to architecture. One such change might be to not spin up a new connection to the DB each time data needs to be fetched for 
+the API. Another might be to create DTO's for moving data between client and server. The model classes used to solve this problem are small enough (and devoid of instance)
+logic, so there need not be API-specific model classes, but as the scope and implementation of this API grows, using models might be beneficial to improve throughput.
+
+I did not take caching into consideration as I believe that to be outside the scope of the project given the current requirements, but for any public-facing API where
+performance is a concern, caching data - rather than performing a DB fetch on each request - would be beneficial here. 
+
+User administration is virtually nonexistent in this API because it is not the job of a restaurant reviews API to handle user-specific functions. Another API could/should
+be developed for that purpose. I've only included the getter and setter as a matter of convenience. In a real world implementation, I would not task this API with any 
+user admin.
