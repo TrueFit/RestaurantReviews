@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Web.Http;
+using RestaurantReviews.API.Interfaces;
 using RestaurantReviews.Data;
 
 namespace RestaurantReviews.API.Controllers
 {
     [RoutePrefix("api/restaurants")]
-    public class RestaurantController : ApiController {
+    public class RestaurantController : ApiController, IRestaurantApiController<Restaurant> {
 
         [Route("{id:int}")]
         public IHttpActionResult GetByID(int id) {
@@ -26,20 +27,25 @@ namespace RestaurantReviews.API.Controllers
 
         [HttpPost]
         [Route("create")]
-        public IHttpActionResult Create(Restaurant Data) {
+        public IHttpActionResult Create(Restaurant Data, int UserID) {
             try {
-                var restaurant = new Restaurant() {
-                    Name = Data.Name,
-                    Address1 = Data.Address1,
-                    Address2 = Data.Address2,
-                    City = Data.City,
-                    State = Data.State,
-                    ZipCode = Data.ZipCode,
-                    Phone = Data.Phone,
-                    WebsiteURL = Data.WebsiteURL
-                };
+                if (RestaurantReviews.Data.User.IsValid(UserID)) {
+                    var restaurant = new Restaurant() {
+                        Name = Data.Name,
+                        Address1 = Data.Address1,
+                        Address2 = Data.Address2,
+                        City = Data.City,
+                        State = Data.State,
+                        ZipCode = Data.ZipCode,
+                        Phone = Data.Phone,
+                        WebsiteURL = Data.WebsiteURL
+                    };
 
-                return Ok(Restaurant.AddRestaurant(restaurant));
+                    return Ok(Restaurant.AddRestaurant(restaurant));
+                }
+                else {
+                    return InternalServerError(new Exception(string.Format("User having ID = {0} is not valid. New restaurant cannot be created.", UserID)));
+                }
             }
             catch (Exception x) {
                 return InternalServerError(x);
@@ -58,12 +64,6 @@ namespace RestaurantReviews.API.Controllers
             }
         }
 
-        /// <summary>
-        /// TODO: There is no concept of user admin, and for the purpose of this exercise,
-        /// TODO: I'm not implementing this feature, although the DAL can handle this at this juncture.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         [Route("{id:int}/users")]
         public IHttpActionResult GetUsers(int id) {
             return InternalServerError(new NotImplementedException());

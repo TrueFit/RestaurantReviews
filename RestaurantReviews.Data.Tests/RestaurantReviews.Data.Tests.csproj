@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1761E94E-6666-44F0-B603-F99C9DABD28C}</ProjectGuid>
+    <ProjectGuid>{D39B0151-F3CD-4AA3-AEB1-DF799F48AFAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestaurantReviews.API.Tests</RootNamespace>
-    <AssemblyName>RestaurantReviews.API.Tests</AssemblyName>
+    <RootNamespace>RestaurantReviews.Data.Tests</RootNamespace>
+    <AssemblyName>RestaurantReviews.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -51,13 +51,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Controllers\RestaurantControllerTests.cs" />
+    <Compile Include="ApiLogEntryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RestaurantReviews.API\RestaurantReviews.API.csproj">
-      <Project>{A65E93EE-D17F-4A90-8FF8-F1C686749C10}</Project>
-      <Name>RestaurantReviews.API</Name>
+    <ProjectReference Include="..\RestaurantReviews.Data\RestaurantReviews.Data.csproj">
+      <Project>{0302FA53-005A-4CD9-8A1D-AAB4944544E1}</Project>
+      <Name>RestaurantReviews.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

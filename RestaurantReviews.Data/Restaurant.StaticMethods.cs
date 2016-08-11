@@ -64,5 +64,16 @@ namespace RestaurantReviews.Data {
                 return ReturnList;
             }
         }
+
+        /// <summary>
+        /// Validate the restuarant. This method could/should be much more robust, but for now we'll just ensure
+        /// that the restaurant requested by the ID is present. If so, we'll consider it valid.
+        /// </summary>
+        /// <param name="RestaurantID"></param>
+        /// <returns></returns>
+        public static bool IsValid(int RestaurantID) {
+            var restaurant = GetByID(RestaurantID);
+            return restaurant != null;
+        }
     }
 }
