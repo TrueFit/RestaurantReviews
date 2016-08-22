@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['create',['Create',['../class_restaurant_reviews_1_1_a_p_i_1_1_controllers_1_1_restaurant_controller.html#a8f91f199a1dbce68756f5379805e3f20',1,'RestaurantReviews.API.Controllers.RestaurantController.Create()'],['../class_restaurant_reviews_1_1_a_p_i_1_1_controllers_1_1_review_controller.html#a53ab32d4786fe0f35bace5cf4566cd88',1,'RestaurantReviews.API.Controllers.ReviewController.Create()'],['../class_restaurant_reviews_1_1_a_p_i_1_1_controllers_1_1_user_controller.html#a5f2f012122d5783db2180d9a1adc6a1c',1,'RestaurantReviews.API.Controllers.UserController.Create()'],['../interface_restaurant_reviews_1_1_a_p_i_1_1_interfaces_1_1_i_restaurant_api_controller.html#a983365b0017fb8c8677169ca66167c96',1,'RestaurantReviews.API.Interfaces.IRestaurantApiController.Create()']]]
+];
