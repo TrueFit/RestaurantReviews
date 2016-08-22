@@ -1,0 +1,148 @@
+\hypertarget{class_restaurant_reviews_1_1_data_1_1_user}{}\section{Restaurant\+Reviews.\+Data.\+User Class Reference}
+\label{class_restaurant_reviews_1_1_data_1_1_user}\index{Restaurant\+Reviews.\+Data.\+User@{Restaurant\+Reviews.\+Data.\+User}}
+
+
+\hyperlink{class_restaurant_reviews_1_1_data_1_1_user}{User} Model class  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_restaurant_reviews_1_1_data_1_1_user}{User} \hyperlink{class_restaurant_reviews_1_1_data_1_1_user_a01205bc47f0a30e236c97de0d145c44d}{Add\+User} (\hyperlink{class_restaurant_reviews_1_1_data_1_1_user}{User} New\+User)
+\begin{DoxyCompactList}\small\item\em Add a new user to the DB \end{DoxyCompactList}\item 
+static \hyperlink{class_restaurant_reviews_1_1_data_1_1_user}{User} \hyperlink{class_restaurant_reviews_1_1_data_1_1_user_a01ad4b75fc4c5c81f716cfc943d8e5b2}{Get\+By\+ID} (int User\+ID)
+\begin{DoxyCompactList}\small\item\em Get a user from the DB \end{DoxyCompactList}\item 
+static List$<$ \hyperlink{class_restaurant_reviews_1_1_data_1_1_user}{User} $>$ \hyperlink{class_restaurant_reviews_1_1_data_1_1_user_ad46a52bf9590a9e44ce130eec5d37665}{Get\+All} ()
+\begin{DoxyCompactList}\small\item\em Get all users from the DB \end{DoxyCompactList}\item 
+static List$<$ \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} $>$ \hyperlink{class_restaurant_reviews_1_1_data_1_1_user_a67268e44bc1a1af84051c0400b065237}{Get\+Reviews} (int User\+ID, bool Sort\+Reverse\+By\+Date=true)
+\begin{DoxyCompactList}\small\item\em Get alist of reviews for a given user (User\+ID) from the DB \end{DoxyCompactList}\item 
+static bool \hyperlink{class_restaurant_reviews_1_1_data_1_1_user_adc76df0960b94edef140885bbb0c447c}{Is\+Valid} (int User\+ID)
+\begin{DoxyCompactList}\small\item\em Verify that the user (User\+ID) is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_restaurant_reviews_1_1_data_1_1_user_a4ba58b39b7d5ee1669ed59236d5c82a6}{Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{class_restaurant_reviews_1_1_data_1_1_user_adecb7ed110e15ef004cc6fc274e22014}{Username}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{class_restaurant_reviews_1_1_data_1_1_user_a697babda5d94389397c64acf50bf8937}{Locked}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_restaurant_reviews_1_1_data_1_1_user}{User} Model class 
+
+
+
+\subsection{Member Function Documentation}
+\index{Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}!Add\+User@{Add\+User}}
+\index{Add\+User@{Add\+User}!Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}}
+\subsubsection[{\texorpdfstring{Add\+User(\+User New\+User)}{AddUser(User NewUser)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf User} Restaurant\+Reviews.\+Data.\+User.\+Add\+User (
+\begin{DoxyParamCaption}
+\item[{{\bf User}}]{New\+User}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_user_a01205bc47f0a30e236c97de0d145c44d}{}\label{class_restaurant_reviews_1_1_data_1_1_user_a01205bc47f0a30e236c97de0d145c44d}
+
+
+Add a new user to the DB 
+
+
+\begin{DoxyParams}{Parameters}
+{\em New\+User} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the newly-\/created \hyperlink{class_restaurant_reviews_1_1_data_1_1_user}{User} object
+\end{DoxyReturn}
+\index{Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}!Get\+All@{Get\+All}}
+\index{Get\+All@{Get\+All}!Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}}
+\subsubsection[{\texorpdfstring{Get\+All()}{GetAll()}}]{\setlength{\rightskip}{0pt plus 5cm}static List$<${\bf User}$>$ Restaurant\+Reviews.\+Data.\+User.\+Get\+All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_user_ad46a52bf9590a9e44ce130eec5d37665}{}\label{class_restaurant_reviews_1_1_data_1_1_user_ad46a52bf9590a9e44ce130eec5d37665}
+
+
+Get all users from the DB 
+
+\begin{DoxyReturn}{Returns}
+a list of \hyperlink{class_restaurant_reviews_1_1_data_1_1_user}{User} objects
+\end{DoxyReturn}
+\index{Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}!Get\+By\+ID@{Get\+By\+ID}}
+\index{Get\+By\+ID@{Get\+By\+ID}!Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}}
+\subsubsection[{\texorpdfstring{Get\+By\+I\+D(int User\+I\+D)}{GetByID(int UserID)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf User} Restaurant\+Reviews.\+Data.\+User.\+Get\+By\+ID (
+\begin{DoxyParamCaption}
+\item[{int}]{User\+ID}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_user_a01ad4b75fc4c5c81f716cfc943d8e5b2}{}\label{class_restaurant_reviews_1_1_data_1_1_user_a01ad4b75fc4c5c81f716cfc943d8e5b2}
+
+
+Get a user from the DB 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+ID} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the found user or null if not found
+\end{DoxyReturn}
+\index{Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}!Get\+Reviews@{Get\+Reviews}}
+\index{Get\+Reviews@{Get\+Reviews}!Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}}
+\subsubsection[{\texorpdfstring{Get\+Reviews(int User\+I\+D, bool Sort\+Reverse\+By\+Date=true)}{GetReviews(int UserID, bool SortReverseByDate=true)}}]{\setlength{\rightskip}{0pt plus 5cm}static List$<${\bf Review}$>$ Restaurant\+Reviews.\+Data.\+User.\+Get\+Reviews (
+\begin{DoxyParamCaption}
+\item[{int}]{User\+ID, }
+\item[{bool}]{Sort\+Reverse\+By\+Date = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_user_a67268e44bc1a1af84051c0400b065237}{}\label{class_restaurant_reviews_1_1_data_1_1_user_a67268e44bc1a1af84051c0400b065237}
+
+
+Get alist of reviews for a given user (User\+ID) from the DB 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+ID} & \\
+\hline
+{\em Sort\+Reverse\+By\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\index{Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}!Is\+Valid@{Is\+Valid}}
+\index{Is\+Valid@{Is\+Valid}!Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}}
+\subsubsection[{\texorpdfstring{Is\+Valid(int User\+I\+D)}{IsValid(int UserID)}}]{\setlength{\rightskip}{0pt plus 5cm}static bool Restaurant\+Reviews.\+Data.\+User.\+Is\+Valid (
+\begin{DoxyParamCaption}
+\item[{int}]{User\+ID}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_user_adc76df0960b94edef140885bbb0c447c}{}\label{class_restaurant_reviews_1_1_data_1_1_user_adc76df0960b94edef140885bbb0c447c}
+
+
+Verify that the user (User\+ID) is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+ID} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the user is valid, false otherwise
+\end{DoxyReturn}
+
+
+\subsection{Property Documentation}
+\index{Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}!Id@{Id}}
+\index{Id@{Id}!Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}}
+\subsubsection[{\texorpdfstring{Id}{Id}}]{\setlength{\rightskip}{0pt plus 5cm}int Restaurant\+Reviews.\+Data.\+User.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_user_a4ba58b39b7d5ee1669ed59236d5c82a6}{}\label{class_restaurant_reviews_1_1_data_1_1_user_a4ba58b39b7d5ee1669ed59236d5c82a6}
+\index{Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}!Locked@{Locked}}
+\index{Locked@{Locked}!Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}}
+\subsubsection[{\texorpdfstring{Locked}{Locked}}]{\setlength{\rightskip}{0pt plus 5cm}bool Restaurant\+Reviews.\+Data.\+User.\+Locked\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_user_a697babda5d94389397c64acf50bf8937}{}\label{class_restaurant_reviews_1_1_data_1_1_user_a697babda5d94389397c64acf50bf8937}
+\index{Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}!Username@{Username}}
+\index{Username@{Username}!Restaurant\+Reviews\+::\+Data\+::\+User@{Restaurant\+Reviews\+::\+Data\+::\+User}}
+\subsubsection[{\texorpdfstring{Username}{Username}}]{\setlength{\rightskip}{0pt plus 5cm}string Restaurant\+Reviews.\+Data.\+User.\+Username\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_user_adecb7ed110e15ef004cc6fc274e22014}{}\label{class_restaurant_reviews_1_1_data_1_1_user_adecb7ed110e15ef004cc6fc274e22014}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/projects/git/\+Restaurant\+Reviews/\+Restaurant\+Reviews.\+Data/\hyperlink{_user_8cs}{User.\+cs}\item 
+D\+:/projects/git/\+Restaurant\+Reviews/\+Restaurant\+Reviews.\+Data/\hyperlink{_user_8_static_methods_8cs}{User.\+Static\+Methods.\+cs}\end{DoxyCompactItemize}

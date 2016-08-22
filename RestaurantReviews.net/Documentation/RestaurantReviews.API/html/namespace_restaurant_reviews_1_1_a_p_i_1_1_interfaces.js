@@ -1,0 +1,4 @@
+var namespace_restaurant_reviews_1_1_a_p_i_1_1_interfaces =
+[
+    [ "IRestaurantApiController", "interface_restaurant_reviews_1_1_a_p_i_1_1_interfaces_1_1_i_restaurant_api_controller.html", "interface_restaurant_reviews_1_1_a_p_i_1_1_interfaces_1_1_i_restaurant_api_controller" ]
+];
