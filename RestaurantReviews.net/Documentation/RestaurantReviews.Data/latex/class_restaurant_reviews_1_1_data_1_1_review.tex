@@ -1,0 +1,150 @@
+\hypertarget{class_restaurant_reviews_1_1_data_1_1_review}{}\section{Restaurant\+Reviews.\+Data.\+Review Class Reference}
+\label{class_restaurant_reviews_1_1_data_1_1_review}\index{Restaurant\+Reviews.\+Data.\+Review@{Restaurant\+Reviews.\+Data.\+Review}}
+
+
+\hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} model class  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_af34bbc94f5ace68af551950114eac88c}{Add\+Review} (\hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} New\+Review)
+\begin{DoxyCompactList}\small\item\em Add a new review to the DB \end{DoxyCompactList}\item 
+static List$<$ \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} $>$ \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a564a8f2d56413888dd209e7f05a1c1c7}{Get\+By\+User} (int \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a61b089604a847d3137f398e711c8fecd}{User\+ID}, bool Sort\+Reverse\+By\+Date=true)
+\begin{DoxyCompactList}\small\item\em Get a list of reviews created by a given user (User\+ID) from the DB \end{DoxyCompactList}\item 
+static List$<$ \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} $>$ \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a8a1b700037a79a0d532f8ff534dd5b95}{Get\+By\+Restaurant} (int \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a7684403f30d07e4fc84a235940d9d5f1}{Restaurant\+ID}, bool Sort\+Reverse\+By\+Date=true)
+\begin{DoxyCompactList}\small\item\em Get a list of reviews for a given restaurant (Restaurant\+ID) frim the DB \end{DoxyCompactList}\item 
+static \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a1554166df0dad7bdf56440417dd97f48}{Remove} (\hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} Review\+To\+Remove)
+\begin{DoxyCompactList}\small\item\em Remove a review from the DB \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a4226eaf109005a38ea25e2325759616e}{Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a61b089604a847d3137f398e711c8fecd}{User\+ID}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a7684403f30d07e4fc84a235940d9d5f1}{Restaurant\+ID}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Date\+Time \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a82fe5d1077e5dfcf115bf6530d3030f9}{Created\+Date\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a53f6a32aa99be61ab67ff942826a0a80}{Is\+Positive}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{class_restaurant_reviews_1_1_data_1_1_review_a0c4351d03351e10d546c6d52d697a271}{Comments}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} model class 
+
+
+
+\subsection{Member Function Documentation}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Add\+Review@{Add\+Review}}
+\index{Add\+Review@{Add\+Review}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Add\+Review(\+Review New\+Review)}{AddReview(Review NewReview)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Review} Restaurant\+Reviews.\+Data.\+Review.\+Add\+Review (
+\begin{DoxyParamCaption}
+\item[{{\bf Review}}]{New\+Review}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_af34bbc94f5ace68af551950114eac88c}{}\label{class_restaurant_reviews_1_1_data_1_1_review_af34bbc94f5ace68af551950114eac88c}
+
+
+Add a new review to the DB 
+
+
+\begin{DoxyParams}{Parameters}
+{\em New\+Review} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the newly-\/created \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review}
+\end{DoxyReturn}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Get\+By\+Restaurant@{Get\+By\+Restaurant}}
+\index{Get\+By\+Restaurant@{Get\+By\+Restaurant}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Get\+By\+Restaurant(int Restaurant\+I\+D, bool Sort\+Reverse\+By\+Date=true)}{GetByRestaurant(int RestaurantID, bool SortReverseByDate=true)}}]{\setlength{\rightskip}{0pt plus 5cm}static List$<${\bf Review}$>$ Restaurant\+Reviews.\+Data.\+Review.\+Get\+By\+Restaurant (
+\begin{DoxyParamCaption}
+\item[{int}]{Restaurant\+ID, }
+\item[{bool}]{Sort\+Reverse\+By\+Date = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a8a1b700037a79a0d532f8ff534dd5b95}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a8a1b700037a79a0d532f8ff534dd5b95}
+
+
+Get a list of reviews for a given restaurant (Restaurant\+ID) frim the DB 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Restaurant\+ID} & \\
+\hline
+{\em Sort\+Reverse\+By\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a list of \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} objects
+\end{DoxyReturn}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Get\+By\+User@{Get\+By\+User}}
+\index{Get\+By\+User@{Get\+By\+User}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Get\+By\+User(int User\+I\+D, bool Sort\+Reverse\+By\+Date=true)}{GetByUser(int UserID, bool SortReverseByDate=true)}}]{\setlength{\rightskip}{0pt plus 5cm}static List$<${\bf Review}$>$ Restaurant\+Reviews.\+Data.\+Review.\+Get\+By\+User (
+\begin{DoxyParamCaption}
+\item[{int}]{User\+ID, }
+\item[{bool}]{Sort\+Reverse\+By\+Date = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a564a8f2d56413888dd209e7f05a1c1c7}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a564a8f2d56413888dd209e7f05a1c1c7}
+
+
+Get a list of reviews created by a given user (User\+ID) from the DB 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+ID} & \\
+\hline
+{\em Sort\+Reverse\+By\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a list of \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} objects
+\end{DoxyReturn}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Remove@{Remove}}
+\index{Remove@{Remove}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Remove(\+Review Review\+To\+Remove)}{Remove(Review ReviewToRemove)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Review} Restaurant\+Reviews.\+Data.\+Review.\+Remove (
+\begin{DoxyParamCaption}
+\item[{{\bf Review}}]{Review\+To\+Remove}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a1554166df0dad7bdf56440417dd97f48}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a1554166df0dad7bdf56440417dd97f48}
+
+
+Remove a review from the DB 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Review\+To\+Remove} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the removed \hyperlink{class_restaurant_reviews_1_1_data_1_1_review}{Review} object
+\end{DoxyReturn}
+
+
+\subsection{Property Documentation}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Comments@{Comments}}
+\index{Comments@{Comments}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Comments}{Comments}}]{\setlength{\rightskip}{0pt plus 5cm}string Restaurant\+Reviews.\+Data.\+Review.\+Comments\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a0c4351d03351e10d546c6d52d697a271}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a0c4351d03351e10d546c6d52d697a271}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Created\+Date\+Time@{Created\+Date\+Time}}
+\index{Created\+Date\+Time@{Created\+Date\+Time}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Created\+Date\+Time}{CreatedDateTime}}]{\setlength{\rightskip}{0pt plus 5cm}Date\+Time Restaurant\+Reviews.\+Data.\+Review.\+Created\+Date\+Time\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a82fe5d1077e5dfcf115bf6530d3030f9}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a82fe5d1077e5dfcf115bf6530d3030f9}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Id@{Id}}
+\index{Id@{Id}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Id}{Id}}]{\setlength{\rightskip}{0pt plus 5cm}int Restaurant\+Reviews.\+Data.\+Review.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a4226eaf109005a38ea25e2325759616e}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a4226eaf109005a38ea25e2325759616e}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Is\+Positive@{Is\+Positive}}
+\index{Is\+Positive@{Is\+Positive}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Is\+Positive}{IsPositive}}]{\setlength{\rightskip}{0pt plus 5cm}bool Restaurant\+Reviews.\+Data.\+Review.\+Is\+Positive\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a53f6a32aa99be61ab67ff942826a0a80}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a53f6a32aa99be61ab67ff942826a0a80}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!Restaurant\+ID@{Restaurant\+ID}}
+\index{Restaurant\+ID@{Restaurant\+ID}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{Restaurant\+ID}{RestaurantID}}]{\setlength{\rightskip}{0pt plus 5cm}int Restaurant\+Reviews.\+Data.\+Review.\+Restaurant\+ID\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a7684403f30d07e4fc84a235940d9d5f1}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a7684403f30d07e4fc84a235940d9d5f1}
+\index{Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}!User\+ID@{User\+ID}}
+\index{User\+ID@{User\+ID}!Restaurant\+Reviews\+::\+Data\+::\+Review@{Restaurant\+Reviews\+::\+Data\+::\+Review}}
+\subsubsection[{\texorpdfstring{User\+ID}{UserID}}]{\setlength{\rightskip}{0pt plus 5cm}int Restaurant\+Reviews.\+Data.\+Review.\+User\+ID\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}\hypertarget{class_restaurant_reviews_1_1_data_1_1_review_a61b089604a847d3137f398e711c8fecd}{}\label{class_restaurant_reviews_1_1_data_1_1_review_a61b089604a847d3137f398e711c8fecd}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/projects/git/\+Restaurant\+Reviews/\+Restaurant\+Reviews.\+Data/\hyperlink{_review_8cs}{Review.\+cs}\item 
+D\+:/projects/git/\+Restaurant\+Reviews/\+Restaurant\+Reviews.\+Data/\hyperlink{_review_8_static_methods_8cs}{Review.\+Static\+Methods.\+cs}\end{DoxyCompactItemize}

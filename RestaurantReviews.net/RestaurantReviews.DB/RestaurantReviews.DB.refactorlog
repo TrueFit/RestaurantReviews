@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="593fabc3-11d6-4c91-9d7d-ccfbb6145700" ChangeDateTime="08/03/2016 18:17:48">
+    <Property Name="ElementName" Value="[dbo].[Review].[Comments]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Review]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RestaurantID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="39e3b56b-ce0a-4c49-884b-2e0ae23b3ec0" ChangeDateTime="08/03/2016 18:19:43">
+    <Property Name="ElementName" Value="[dbo].[Restaurant].[Street Address]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Restaurant]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Address1" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4c58676a-7740-4d56-8378-c7449aa6d2dc" ChangeDateTime="08/03/2016 18:19:59">
+    <Property Name="ElementName" Value="[dbo].[Restaurant].[CityID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Restaurant]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Address1" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="305eeaf6-cfd7-41b5-a352-aa6405cd61fb" ChangeDateTime="08/03/2016 18:20:13">
+    <Property Name="ElementName" Value="[dbo].[Restaurant].[Address1]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Restaurant]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Address2" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4b7dec2d-7cd9-44eb-9c61-8a0b4be51439" ChangeDateTime="08/03/2016 20:47:10">
+    <Property Name="ElementName" Value="[dbo].[Restaurant].[CityID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Restaurant]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="City" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="330a5864-1e4d-4da1-95d0-d8ae302af56d" ChangeDateTime="08/03/2016 21:14:16">
+    <Property Name="ElementName" Value="[dbo].[AK_Restaurant_Column]" />
+    <Property Name="ElementType" Value="SqlUniqueConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Restaurant]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[AK_Restaurant_Name_Address1_Zip]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="31a70e80-3ae1-4acc-812a-03cc92f572ba" ChangeDateTime="08/05/2016 18:05:57">
+    <Property Name="ElementName" Value="[dbo].[APIRequest].[AccessDateTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[APIRequest]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Application" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a5802294-ccb7-43bf-84cf-7c42017d14d1" ChangeDateTime="08/05/2016 18:07:16">
+    <Property Name="ElementName" Value="[dbo].[APIRequest].[Path]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[APIRequest]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="User" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="96b7ed0d-4909-4f07-a9e9-10a212c9190b" ChangeDateTime="08/05/2016 18:07:32">
+    <Property Name="ElementName" Value="[dbo].[APIRequest].[PayloadDetails]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[APIRequest]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Machine" />
+  </Operation>
+</Operations>
