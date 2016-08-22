@@ -54,3 +54,14 @@ performance is a concern, caching data - rather than performing a DB fetch on ea
 User administration is virtually nonexistent in this API because it is not the job of a restaurant reviews API to handle user-specific functions. Another API could/should
 be developed for that purpose. I've only included the getter and setter as a matter of convenience. In a real world implementation, I would not task this API with any 
 user admin.
+
+
+Addendum
+--------------
+With some time on my hands, I re-implemented the API (from spec) in JavaScript over Node.JS, Express, and MongoDB. The public-facing API is basically the same, although I didn't mirror the .NET API.
+
+My Node.JS architecture feels "Angular-ish". My application will start up (app.js) create an Express router, and load all of my routes onto that router by dependency injection. Each route is defined in its own js file in the routes folder and again uses dependency injection to specify the callback method for each route. The callback handlers are each defined in controller specific to the type of data it will handle, thusly I have created two controllers: one for handling restaurants and another for handling reviews.
+
+In each of the controllers, I variablize the functions and expose only those which are needed outside of the controller itself. While not present in the current version of any controller, this will allow for the expansion of the controller, without expanding the API unnecessarily (thinking validation, helpers, and private configuration).
+
+I prefer to dissect the architecture this way to split up the implementation of the routing, the data modeling, and the API. There is easier code to read and follow than this, but this is very extensible and limits regressions.
