@@ -19,4 +19,4 @@ Please use whatever technology and techniques you feel are applicable to solve t
 
 Please fork this repository. When you have completed your solution, please issue a pull request to notify us that you are ready.
 
-Have fun.
+Have fun
