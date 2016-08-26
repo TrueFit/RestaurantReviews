@@ -1,0 +1,12 @@
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\RestaurantReviews.Service.dll
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\RestaurantReviews.Service.pdb
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\obj\Debug\RestaurantReviews.Service.csprojResolveAssemblyReference.cache
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\obj\Debug\RestaurantReviews.Service.dll
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\obj\Debug\RestaurantReviews.Service.pdb
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\RestaurantReviews.Core.dll
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\RestaurantReviews.Data.dll
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\RestaurantReviews.Core.pdb
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\RestaurantReviews.Data.pdb
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\EntityFramework.xml
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\keith.lewis\Documents\Visual Studio 2015\Projects\RestaurantReviews\RestaurantReviews.Service\bin\Debug\EntityFramework.SqlServer.xml
