@@ -4,6 +4,11 @@ I did not implement any security or membership for the users. I would probably s
 
 I would usually do much more commenting within the project adding XML comments above methods to outline description and parameters.
 
+I didn't get too detailed with the Address as far as State objects, Country objects as I normally would have.
+
+I also probably should have created interfaces for the Repository and Service layer components and used DI but wanted to get this commited ASAP so I left some of that out. I normally create the project with direct dependencies then break it out towards the end.
+
+The code does break some of the DRY principals but I feel it is necessary to break the code up into functional objects rather than keep everything in a single project. A project this small probably wouldn't require this type of modularization but I wanted to develop it as if it were a large scale application for review purposes.
 
 Project Structure
 -------------- 
