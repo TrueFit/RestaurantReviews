@@ -39,7 +39,12 @@ class ReviewsController < ApplicationController
 
   # DELETE /reviews/:review_id - deletes a review (users are only able to delete their own reviews)
   def destroy
-    @review.destroy
+    @requesting_user = authenticate_with_http_token { |token, options| User.find_by(auth_token: token) }
+    if @requesting_user.id == @review.user_id
+      @review.destroy
+    else
+      render json: { error: 'Unauthorized'}, status: 401
+    end
   end
 
   private
