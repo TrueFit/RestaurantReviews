@@ -1,19 +1,23 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :update, :destroy]
 
-  # GET /restaurants
+  # GET /restaurants - returns all restaurants, or all restaurants for a particular city if specified
   def index
-    @restaurants = Restaurant.all
+    if params[:city].blank?
+      @restaurants = Restaurant.all
+    else
+      @restaurants = Restaurant.where(location: params[:city])
+    end
 
     render json: @restaurants
   end
 
-  # GET /restaurants/:restaurant_id
+  # GET /restaurants/:restaurant_id - returns a restaurant given its ID
   def show
     render json: @restaurant
   end
 
-  # POST /restaurants
+  # POST /restaurants - creates a new restaurant
   def create
     @restaurant = Restaurant.new(restaurant_params)
 
@@ -24,7 +28,7 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /restaurants/:restaurant_id
+  # PATCH/PUT /restaurants/:restaurant_id - updates a particular restaurant
   def update
     if @restaurant.update(restaurant_params)
       render json: @restaurant
@@ -33,7 +37,7 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  # DELETE /restaurants/:restaurant_id
+  # DELETE /restaurants/:restaurant_id - deletes a restaurant
   def destroy
     @restaurant.destroy
   end
