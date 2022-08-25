@@ -1,4 +1,6 @@
-﻿namespace NoREST.Auth
+﻿using NoREST.Models.DomainModels;
+
+namespace NoREST.Api.Auth
 {
     public static class CognitoPoolAddressBuilder
     {

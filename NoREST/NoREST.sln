@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoREST", "NoREST\NoREST.csproj", "{0A360934-56CF-4DB6-A72A-F1CFB3B7F89B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoREST.Api", "NoREST\NoREST.Api.csproj", "{0A360934-56CF-4DB6-A72A-F1CFB3B7F89B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoREST.Tests", "NoREST.Tests\NoREST.Tests.csproj", "{0B3E6FC9-48B8-4921-834D-3DC5D69DEA2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoREST.Tests", "NoREST.Tests\NoREST.Tests.csproj", "{0B3E6FC9-48B8-4921-834D-3DC5D69DEA2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoREST.DataAccess", "DataAccess\NoREST.DataAccess\NoREST.DataAccess.csproj", "{5FA4B847-621D-46F9-918C-D2B360B7158B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoREST.DataAccess", "DataAccess\NoREST.DataAccess\NoREST.DataAccess.csproj", "{5FA4B847-621D-46F9-918C-D2B360B7158B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoREST.Domain", "Domain\NoREST.Domain\NoREST.Domain.csproj", "{3785600E-5153-4BC3-8F66-E567287A9145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoREST.Models", "Models\NoREST.Models\NoREST.Models.csproj", "{320F7621-EB14-4A3A-9C85-71137AC9D560}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{5FA4B847-621D-46F9-918C-D2B360B7158B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FA4B847-621D-46F9-918C-D2B360B7158B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FA4B847-621D-46F9-918C-D2B360B7158B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3785600E-5153-4BC3-8F66-E567287A9145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3785600E-5153-4BC3-8F66-E567287A9145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3785600E-5153-4BC3-8F66-E567287A9145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3785600E-5153-4BC3-8F66-E567287A9145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320F7621-EB14-4A3A-9C85-71137AC9D560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320F7621-EB14-4A3A-9C85-71137AC9D560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320F7621-EB14-4A3A-9C85-71137AC9D560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320F7621-EB14-4A3A-9C85-71137AC9D560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

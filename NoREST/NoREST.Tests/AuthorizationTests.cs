@@ -2,7 +2,8 @@ using AutoFixture;
 using AutoFixture.Kernel;
 using FluentAssertions;
 using Moq;
-using NoREST.Auth;
+using NoREST.Api.Auth;
+using NoREST.Models.DomainModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,7 +107,7 @@ namespace NoREST.Tests
                 var token = testFacility.BuildAValidToken();
                 tokenWrecker.Wreck(token);
 
-                var error = await sut.AuthorizeToken(token, testFacility.Now);
+                var error = await sut.ValidateToken(token, testFacility.Now);
 
                 Assert.NotNull(error);
             }
@@ -124,9 +125,9 @@ namespace NoREST.Tests
                 var token = testFacility.BuildAValidToken();
                 token.ValidTo = testFacility.Now.AddMinutes(-61);
 
-                var result = await sut.AuthorizeToken(token, testFacility.Now);
+                var (error, result) = await sut.ValidateToken(token, testFacility.Now);
 
-                result.Should().Contain("expired");
+                error.Should().Contain("expired");
             }
         }
 
@@ -141,9 +142,9 @@ namespace NoREST.Tests
                 var sut = testFacility.BuildSut();
                 var token = testFacility.BuildAValidToken();
 
-                var result = await sut.AuthorizeToken(token, testFacility.Now);
+                var (error, result) = await sut.ValidateToken(token, testFacility.Now);
 
-                result.Should().BeNull();
+                error.Should().BeNull();
             }
         }
 
@@ -157,9 +158,9 @@ namespace NoREST.Tests
                 var token = testFacility.BuildAValidToken();
                 token.Claims = null;
 
-                var result = await sut.AuthorizeToken(token, testFacility.Now);
+                var (error, result) = await sut.ValidateToken(token, testFacility.Now);
 
-                result.Should().Contain("claims").And.Contain("not granted");
+                error.Should().Contain("claims").And.Contain("not granted");
             }
         }
 
@@ -171,7 +172,7 @@ namespace NoREST.Tests
             {
                 var sut = testFacility.BuildSut();
                 var token = testFacility.BuildAValidToken();
-                Func<Task> attemptingToAuthenticate = async () => await sut.AuthorizeToken(token, testFacility.Now);
+                Func<Task> attemptingToAuthenticate = async () => await sut.ValidateToken(token, testFacility.Now);
                 attemptingToAuthenticate.Should().ThrowAsync<ApplicationException>();
             }
         }
@@ -222,7 +223,7 @@ namespace NoREST.Tests
 
             public CognitoTokenValidator BuildSut()
             {
-                return new CognitoTokenValidator(KeyIdHandlerMock.Object, CognitoPoolInfo);
+                return new CognitoTokenValidator(KeyIdHandlerMock.Object, CognitoPoolInfo, null /* fix this up when I update tests... */);
             }
 
             public void ExpectMatchingKeyId()
@@ -246,7 +247,7 @@ namespace NoREST.Tests
             public JwtModel BuildAValidToken() =>
                 _fixture.Build<JwtModel>()
                     .With(t => t.Issuer, CognitoPoolAddressBuilder.GetCognitoUserPoolBaseAddress(CognitoPoolInfo))
-                    .With(t => t.Subject, CognitoPoolInfo.ClientIds.First())
+                    .With(t => t.Subject, CognitoPoolInfo.IntegrationClientIds.First())
                     .With(t => t.Kid, Kid)
                     .With(t => t.ValidTo, Now.AddHours(1))
                     .With(t => t.Claims, new Claim[] { new Claim("token_use", "access"), new Claim("scope", CognitoPoolInfo.Scopes.First()) })
@@ -261,10 +262,12 @@ namespace NoREST.Tests
 
         private class TestCognitoPoolInfo : ICognitoPoolInfo
         {
-            public List<string> ClientIds { get; set; }
+            public List<string> IntegrationClientIds { get; set; }
             public string PoolId { get; set; }
             public string Region { get; set; }
             public string[] Scopes { get; set; }
+
+            public string Secret { get; set; }
         }
     }
 }

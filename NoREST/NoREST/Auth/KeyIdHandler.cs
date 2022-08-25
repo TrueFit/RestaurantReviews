@@ -1,6 +1,6 @@
-﻿namespace NoREST.Auth
+﻿namespace NoREST.Api.Auth
 {
-    public class KeyIdHandler: IKeyIdHandler
+    public class KeyIdHandler : IKeyIdHandler
     {
         private static IEnumerable<string> Kids;
         private readonly IKeyIdFetcher _keyIdFetcher;

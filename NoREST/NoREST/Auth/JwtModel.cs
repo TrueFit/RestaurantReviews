@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.JsonWebTokens;
 using System.Security.Claims;
 
-namespace NoREST.Auth
+namespace NoREST.Api.Auth
 {
     public class JwtModel
     {

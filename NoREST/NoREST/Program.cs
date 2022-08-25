@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NoREST;
-using NoREST.Auth;
+using NoREST.Api;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,7 +53,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 
 app.UseHttpsRedirection();

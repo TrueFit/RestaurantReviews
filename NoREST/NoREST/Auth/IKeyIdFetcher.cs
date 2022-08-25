@@ -1,4 +1,4 @@
-﻿namespace NoREST.Auth
+﻿namespace NoREST.Api.Auth
 {
     public interface IKeyIdFetcher
     {

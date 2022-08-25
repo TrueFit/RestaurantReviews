@@ -1,4 +1,4 @@
-﻿namespace NoREST.Auth
+﻿namespace NoREST.Api.Auth
 {
     //Maybe we don't needthis?
     public interface IKeyIdHandler

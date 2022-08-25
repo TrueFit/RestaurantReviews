@@ -1,4 +1,4 @@
-﻿namespace NoREST.ViewModels
+﻿namespace NoREST.Models
 {
     public class UserLogin
     {

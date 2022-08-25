@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System.Text.Json;
 
-namespace NoREST.Auth
+namespace NoREST.Api.Auth
 {
     public class KeyIdFetcher : IKeyIdFetcher
     {
