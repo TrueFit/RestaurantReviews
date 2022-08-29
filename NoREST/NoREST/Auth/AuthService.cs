@@ -7,7 +7,8 @@ namespace NoREST.Api.Auth
         UserProfile GetCurrentlyAuthenticatedUser();
     }
 
-    public class AuthService : IAuthService
+    //Keep this internal. HttpContextAccessor should only be used within the context of a web request.
+    internal class AuthService : IAuthService
     {
         public const string UserKey = "user";
         private readonly IHttpContextAccessor _contextAccessor;

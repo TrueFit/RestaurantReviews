@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NoREST.DataAccess.Entities;
+using NoREST.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,39 +13,81 @@ namespace NoREST.DataAccess.Repositories
 {
     public interface IUserRepository
     {
-        Task<User> CreateUser(User user);
-        Task<User> GetUserByIdentityProviderId(string identityProviderId);
-        Task<User> GetUser(int userId);
+        Task<UserProfile> CreateUser(User user);
+        Task<UserProfile> GetUserByIdentityProviderId(string identityProviderId);
+        Task<UserProfile> GetUser(int userId);
+        Task<bool> BanUserFromRestaurant(UserRestaurantBan userRestaurantBan);
     }
 
     public class UserRepository : IUserRepository
     {
-        private readonly NoRESTContext _dbContext;
+        private readonly IDbContextFactory<NoRESTContext> _dbFactory;
+        private readonly ILogger<IUserRepository> _logger;
+        private readonly IMapper _mapper;
 
-        public UserRepository(NoRESTContext dbContext)
+        public UserRepository(IDbContextFactory<NoRESTContext> dbFactory, ILogger<IUserRepository> logger, IMapper mapper)
         {
-            _dbContext = dbContext;
+            _dbFactory = dbFactory;
+            _logger = logger;
+            _mapper = mapper;
         }
 
-        public async Task<User> CreateUser(User user)
+        public async Task<bool> BanUserFromRestaurant(UserRestaurantBan userRestaurantBan)
         {
-            _dbContext.Add(user);
-
-            await _dbContext.SaveChangesAsync();
-
-            return user;
+            try
+            {
+                using (var context = _dbFactory.CreateDbContext())
+                {
+                    context.UserRestaurantBans.Add(userRestaurantBan);
+                    await context.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Unexpected Error attempting to ban user {userRestaurantBan.UserId} from Restaurant {userRestaurantBan.RestaurantId}.");
+                return false;
+            }
         }
 
-        public async Task<User> GetUser(int userId)
+        public async Task<UserProfile> CreateUser(User user)
         {
-            return await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            try
+            {
+                using (var context = _dbFactory.CreateDbContext())
+                {
+                    context.Add(user);
+                    await context.SaveChangesAsync();
+                    return _mapper.Map<UserProfile>(user);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Unexpected Error attempting to create user {user.UserName}");
+                return null;
+            }
+            
         }
 
-        public async Task<User> GetUserByIdentityProviderId(string identityProviderId)
+        public async Task<UserProfile> GetUser(int userId)
         {
-            var allUsers = await _dbContext.Users.ToListAsync();
+            using (var context = _dbFactory.CreateDbContext())
+            {
+                var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+                return user == null ? null : _mapper.Map<UserProfile>(user);
+            }
+            
+        }
 
-            return await _dbContext.Users.FirstOrDefaultAsync(u => u.IdentityProviderId == identityProviderId);
+        public async Task<UserProfile> GetUserByIdentityProviderId(string identityProviderId)
+        {
+            using (var context = _dbFactory.CreateDbContext())
+            {
+                var user = await context.Users.FirstOrDefaultAsync(u => u.IdentityProviderId == identityProviderId);
+                return user == null ? null : _mapper.Map<UserProfile>(user);
+            }
+                
         }
     }
 }

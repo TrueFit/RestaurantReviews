@@ -7,16 +7,14 @@ using System.Text;
 
 namespace NoREST.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _authService;
         private readonly IIdentityProviderService _identityProviderService;
 
-        public AuthController(IAuthService authService, IIdentityProviderService identityProviderService)
+        public AuthController(IIdentityProviderService identityProviderService)
         {
-            _authService = authService;
             _identityProviderService = identityProviderService;
         }
 
@@ -31,7 +29,8 @@ namespace NoREST.Api.Controllers
         [Route("")]
         public async Task<IActionResult> Authenticate([FromBody] string authorizationCode, [FromQuery] string redirectUri)
         {
-            var token = _identityProviderService.GetTokenFromAuthorizationCode(authorizationCode, redirectUri);
+            var token = await _identityProviderService.GetTokenFromAuthorizationCode(authorizationCode, redirectUri);
+            if (string.IsNullOrWhiteSpace(token)) return Unauthorized();
             return Ok(token);
         }
 

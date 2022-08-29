@@ -113,8 +113,6 @@ namespace NoREST.Tests
             }
         }
 
-
-
         [Fact]
         public async Task ExpiredToken_ThrowsUnauthorizedException_WithRelevantMessage()
         {
@@ -247,7 +245,7 @@ namespace NoREST.Tests
             public JwtModel BuildAValidToken() =>
                 _fixture.Build<JwtModel>()
                     .With(t => t.Issuer, CognitoPoolAddressBuilder.GetCognitoUserPoolBaseAddress(CognitoPoolInfo))
-                    .With(t => t.Subject, CognitoPoolInfo.IntegrationClientIds.First())
+                    .With(t => t.Subject, CognitoPoolInfo.ClientId)
                     .With(t => t.Kid, Kid)
                     .With(t => t.ValidTo, Now.AddHours(1))
                     .With(t => t.Claims, new Claim[] { new Claim("token_use", "access"), new Claim("scope", CognitoPoolInfo.Scopes.First()) })
@@ -262,12 +260,20 @@ namespace NoREST.Tests
 
         private class TestCognitoPoolInfo : ICognitoPoolInfo
         {
-            public List<string> IntegrationClientIds { get; set; }
             public string PoolId { get; set; }
             public string Region { get; set; }
             public string[] Scopes { get; set; }
 
-            public string Secret { get; set; }
+            public string ClientSecret { get; set; }
+
+            public string ClientId { get; set; }
+
+            public string UiClientId { get; set; }
+
+            public string ComputeSecretHash(string username)
+            {
+                return username;
+            }
         }
     }
 }

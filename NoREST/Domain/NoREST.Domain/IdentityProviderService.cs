@@ -1,7 +1,9 @@
 ﻿using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
+using Microsoft.Extensions.Logging;
 using NoREST.Models;
 using NoREST.Models.DomainModels;
+using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 
@@ -11,20 +13,26 @@ namespace NoREST.Domain
     {
         private readonly IAmazonCognitoIdentityProvider _client;
         private readonly ICognitoPoolInfo _poolInfo;
+        private readonly ILogger<IIdentityProviderService> _logger;
 
-        public IdentityProviderService(IAmazonCognitoIdentityProvider client, ICognitoPoolInfo poolInfo)
+        public IdentityProviderService(IAmazonCognitoIdentityProvider client, ICognitoPoolInfo poolInfo, ILogger<IIdentityProviderService> logger)
         {
             _client = client;
             _poolInfo = poolInfo;
+            _logger = logger;
         }
 
-        public async Task CreateUser(UserCreation user)
+        public async Task<UserCreationResponse> CreateUser(UserCreation user)
         {
+            var clientId = _poolInfo.ClientId;
+            string secretHash = _poolInfo.ComputeSecretHash(user.Username);
+
             var request = new SignUpRequest
             {
-                ClientId = _poolInfo.IntegrationClientIds.First(),
+                ClientId = clientId,
                 Username = user.Username,
-                Password = user.Password
+                Password = user.Password,
+                SecretHash = secretHash                
             };
 
             var emailAttribute = new AttributeType
@@ -35,17 +43,60 @@ namespace NoREST.Domain
 
             request.UserAttributes.Add(emailAttribute);
 
-            var response = _client.SignUpAsync(request);
-            ;
+            try
+            {
+                var response = await _client.SignUpAsync(request);
+                if (response != null && response.HttpStatusCode == HttpStatusCode.OK)
+                {
+                    var confirmation = await _client.AdminConfirmSignUpAsync(new AdminConfirmSignUpRequest
+                    {
+                        UserPoolId = _poolInfo.PoolId,
+                        Username = user.Username
+                    });
+                    return new UserCreationResponse
+                    {
+                        IsSuccess = true,
+                        IdentityProviderId = response.UserSub
+                    };
+                }
+                else 
+                {
+                    return new UserCreationResponse
+                    {
+                        IsSuccess = false,
+                        Error = "Unable to create user. Unsuccessful response from Identity Provider"
+                    };
+                }
+            }
+            catch (AmazonCognitoIdentityProviderException awsex)
+            {
+                _logger.LogInformation(awsex.Message);
+                return new UserCreationResponse
+                {
+                    IsSuccess = false,
+                    Error = awsex.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error attempting to create user");
+                return new UserCreationResponse
+                {
+                    Error = "Unexpected error",
+                    IsSuccess = false
+                };
+            }
         }
 
         public async Task<string> GetTokenFromAuthorizationCode(string authorizationCode, string redirectUrl)
         {
-            using (var httpClient = new HttpClient())
+            try
             {
-                var clientId = _poolInfo.IntegrationClientIds.First();/* Just get the first for now-- possibly adding more clients later */
-                var authHeader = Convert.ToBase64String(Encoding.Default.GetBytes($"{clientId}:{_poolInfo.Secret}"));
-                var content = new FormUrlEncodedContent(new Dictionary<string, string>
+                using (var httpClient = new HttpClient())
+                {
+                    var clientId = _poolInfo.UiClientId;
+                    var authHeader = Convert.ToBase64String(Encoding.Default.GetBytes($"{clientId}:{_poolInfo.ClientSecret}"));
+                    var content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
                     {"client_id", clientId },
                     {"grant_type", "authorization_code" },
@@ -53,14 +104,33 @@ namespace NoREST.Domain
                     {"redirect_uri", redirectUrl }
                 });
 
-                content.Headers.Add("Authorization", "Basic " + authHeader);
+                    content.Headers.TryAddWithoutValidation("Authorization", "Basic " + authHeader);
 
-                var response = await httpClient.PostAsync("https://norest.auth.us-east-1.amazoncognito.com/oauth2/token", content);
-                var result = await response.Content.ReadFromJsonAsync<CognitoTokenResult>();
-                return result?.access_token;
+                    var response = await httpClient.PostAsync("https://norest.auth.us-east-1.amazoncognito.com/oauth2/token", content);
+                    var result = await response.Content.ReadFromJsonAsync<CognitoTokenResult>();
+                    return result?.access_token;
+                }
             }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            
         }
 
+        public async Task<bool> RemoveUser(UserCreation user)
+        {
+            try
+            {
+                await _client.AdminDeleteUserAsync(new AdminDeleteUserRequest() { Username = user.Username, UserPoolId = _poolInfo.PoolId });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
+        }
 
         private class CognitoTokenResult
         {

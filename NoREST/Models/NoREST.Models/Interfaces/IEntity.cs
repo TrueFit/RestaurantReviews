@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoREST.DataAccess.Entities
+namespace NoREST.Models.Interfaces
 {
-    public interface IEntity<T>
+    public interface IEntity<T> : IAuditEntity
     {
-        [Key]
         T Id { get; set; }
     }
 }

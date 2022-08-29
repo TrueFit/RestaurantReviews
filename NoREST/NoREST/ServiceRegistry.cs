@@ -15,14 +15,13 @@ namespace NoREST.Api
         {
             services.AddAutoMapper(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
             services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddLogging();
+            services.AddDbContextFactory<NoRESTContext>(
+                opt => opt.UseSqlServer(config.GetConnectionString("NoRestConnection")));            
             services.AddHttpContextAccessor();
             services.Add(new ServiceDescriptor(typeof(IConfiguration), config));
             services.Add(new ServiceDescriptor(typeof(ICognitoPoolInfo), new CognitoPoolInfo(config)));
-            services.AddDbContext<NoRESTContext>(opt =>
-                opt.UseInMemoryDatabase("NoREST"));
+            
             RegisterApplicationServices(services);
         }
 
@@ -38,8 +37,15 @@ namespace NoREST.Api
             });
             services.AddTransient<ICognitoTokenValidator, CognitoTokenValidator>();
             services.AddTransient<IUserLogic, UserLogic>();
+            services.AddTransient<IRestaurantLogic, RestaurantLogic>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRestaurantRepository, RestaurantRepository>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
             services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IBanManager, BanManager>();
+            services.AddTransient<IAuditLogic, AuditLogic>();
+            services.AddTransient<IPermissionLogic, PermissionLogic>();
+            
         }
     }
 }
