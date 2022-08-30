@@ -1,6 +1,6 @@
 ﻿using NoREST.Domain;
-using NoREST.Models;
 using NoREST.Models.DomainModels;
+using NoREST.Models.ViewModels.Outgoing;
 
 namespace NoREST.Api.Auth
 {
@@ -24,7 +24,6 @@ namespace NoREST.Api.Auth
                 var isValidToken = true;
 
                 isValidToken &= MatchesIssuer(tokenModel.Issuer);
-                // isValidToken &= _cognitoConfig.ClientIds.Contains(tokenModel.Subject);
                 isValidToken &= await _keyIdHandler.HasMatchingKeyId(tokenModel.Kid, BuildWellKnownConfigurationUrl()).ConfigureAwait(false);
 
                 if (!isValidToken)
@@ -32,7 +31,7 @@ namespace NoREST.Api.Auth
                     return ("Unauthorized", null);
                 }
 
-                //    isValidToken &= tokenModel.ValidTo > now;
+                isValidToken &= tokenModel.ValidTo > now;
 
                 if (!isValidToken)
                 {
@@ -51,7 +50,19 @@ namespace NoREST.Api.Auth
                 return ("Unexpected error validating token", null);
             }
 
+            
+
             var user = await _userLogic.GetUserProfileFromIdentityProviderId(tokenModel.Subject);
+
+            if (user == null)
+            {
+                if (_cognitoConfig.ClientId == tokenModel.Subject)
+                {
+                    return (null, null);
+                }
+
+                return ("Token is valid, but user unknown", null);
+            }
 
             return (null, user);
         }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using NoREST.DataAccess.Entities;
-using NoREST.Models.ViewModels;
+using NoREST.Models.DomainModels;
 
 namespace NoREST.Api.MapperProfiles
 {

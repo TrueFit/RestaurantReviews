@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using NoREST.DataAccess.Entities;
-using NoREST.Models;
-using NoREST.Models.ViewModels;
+using NoREST.Models.ViewModels.Creation;
+using NoREST.Models.ViewModels.Profile;
 
 namespace NoREST.Api.MapperProfiles
 {

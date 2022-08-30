@@ -1,5 +1,5 @@
-﻿using NoREST.Models;
-using NoREST.Models.DomainModels;
+﻿using NoREST.Models.DomainModels;
+using NoREST.Models.ViewModels.Creation;
 
 namespace NoREST.Domain
 {

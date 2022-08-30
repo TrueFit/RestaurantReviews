@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NoREST.Api.Auth;
 using NoREST.Domain;
-using NoREST.Models;
 using NoREST.Models.DomainModels;
+using NoREST.Models.ViewModels.Creation;
 
 namespace NoREST.Api.Controllers
 {
@@ -68,14 +68,7 @@ namespace NoREST.Api.Controllers
             try
             {
                 var reviews = await _restaurantLogic.SearchReviews(new ReviewSearchFilter { UserId = id });
-                if (reviews.Any())
-                {
-                    return Ok(reviews);
-                }
-                else
-                {
-                    return NoContent();
-                }                
+                return Ok(reviews);
             }
             catch (Exception ex)
             {

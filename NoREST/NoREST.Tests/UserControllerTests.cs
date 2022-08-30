@@ -8,9 +8,10 @@ using NoREST.Api.Controllers;
 using NoREST.DataAccess.Entities;
 using NoREST.DataAccess.Repositories;
 using NoREST.Domain;
-using NoREST.Models;
 using NoREST.Models.DomainModels;
-using NoREST.Models.ViewModels;
+using NoREST.Models.ViewModels.Creation;
+using NoREST.Models.ViewModels.Outgoing;
+using NoREST.Models.ViewModels.Profile;
 using NoREST.Tests.Utilities;
 using System;
 using System.Collections.Generic;
@@ -121,10 +122,12 @@ namespace NoREST.Tests
                 var restaurantId = _fixture.Create<int>();
                 var reason = _fixture.Create<string>();
                 testFacility.ExpectGetRestaurantResult(restaurantId, null);
+                var expectedCurrentUser = _fixture.Create<UserProfile>();
+                testFacility.ExpectGetCurrentUser(expectedCurrentUser);
 
                 var result = await testFacility.Sut.BanUserFromRestaurant(targetUserId, restaurantId, reason);
 
-                result.Should().BeAssignableTo<NotFoundObjectResult>()
+                result.Should().BeAssignableTo<ObjectResult>()
                     .Which.Value.As<string>().Should().Contain(restaurantId.ToString());
             }
         }
@@ -137,13 +140,15 @@ namespace NoREST.Tests
                 var targetUserId = _fixture.Create<int>();
                 var restaurantId = _fixture.Create<int>();
                 var reason = _fixture.Create<string>();
+                var expectedCurrentUser = _fixture.Create<UserProfile>();
+                testFacility.ExpectGetCurrentUser(expectedCurrentUser);
                 var expectedRestaurant = _fixture.Create<RestaurantProfile>();                
                 testFacility.ExpectGetRestaurantResult(restaurantId, expectedRestaurant);
                 testFacility.ExpectGetUserResult(targetUserId, null);
 
                 var result = await testFacility.Sut.BanUserFromRestaurant(targetUserId, restaurantId, reason);
 
-                result.Should().BeAssignableTo<NotFoundObjectResult>()
+                result.Should().BeAssignableTo<ObjectResult>()
                     .Which.Value.As<string>().Should().Contain(targetUserId.ToString());
             }
         }
@@ -223,7 +228,7 @@ namespace NoREST.Tests
 
         private class UserTestFacility : IDisposable
         {
-            private static readonly MockRepository _mockRepo = new MockRepository(MockBehavior.Strict);
+            private readonly MockRepository _mockRepo = new MockRepository(MockBehavior.Strict);
 
             public UserController Sut { get; set; }
             public Mock<IUserRepository> UserRepoMock { get; set; }
@@ -252,7 +257,9 @@ namespace NoREST.Tests
                     PermissionLogicMock.Object,
                     AuditLogicMock.Object);
 
-                Sut = new UserController(userLogic, AuthServiceMock.Object, RestaurantLogicMock.Object, logger.Object, null);
+                var banner = new BanManager(RestaurantLogicMock.Object, userLogic, PermissionLogicMock.Object, mapper, UserRepoMock.Object, AuditLogicMock.Object);
+
+                Sut = new UserController(userLogic, AuthServiceMock.Object, RestaurantLogicMock.Object, logger.Object, banner);
             }
 
             public void ExpectIdentityProviderException(Exception theUnexpected)

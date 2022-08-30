@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NoREST.Api.Auth;
 using NoREST.Domain;
-using NoREST.Models;
 using NoREST.Models.DomainModels;
+using NoREST.Models.ViewModels.Creation;
 
 namespace NoREST.Api.Controllers
 {
@@ -73,7 +73,7 @@ namespace NoREST.Api.Controllers
             }
         }
 
-        [HttpDelete("review/{id}")]
+        [HttpDelete("review/{reviewId}")]
         [CognitoAuthorization]
         public async Task<IActionResult> DeleteReview([FromRoute] int reviewId)
         {
@@ -124,7 +124,7 @@ namespace NoREST.Api.Controllers
         }
 
         [HttpGet("reviews/search")]
-        public async Task<IActionResult> GetReviews([FromQuery] int? restaurantId, string restaurantName, int? userId, bool? isActive)
+        public async Task<IActionResult> GetReviews([FromQuery] int? restaurantId, string? restaurantName, int? userId, bool? isActive)
         {
             var filter = new ReviewSearchFilter
             {

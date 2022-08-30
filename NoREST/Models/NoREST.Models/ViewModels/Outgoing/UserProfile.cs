@@ -1,6 +1,6 @@
 ﻿using NoREST.Models.Interfaces;
 
-namespace NoREST.Models
+namespace NoREST.Models.ViewModels.Outgoing
 {
     public class UserProfile : IEntity<int>, IPermissioned
     {

@@ -18,12 +18,18 @@ namespace NoREST.Tests
 {
     public class IoCTests
     {
+        private void MockConfigurationForStartup(Mock<IConfiguration> mock)
+        {
+            mock.Setup(m => m["DbContextType"]).Returns("InMemory");
+        }
+
+
         [Fact]
         public void AllControllers_CanBeInstantiated_FromServiceRegistry()
         {
             var serviceCollection = new ServiceCollection();
             var mockConfig = new Mock<IConfiguration>(MockBehavior.Loose);
-
+            MockConfigurationForStartup(mockConfig);
             ServiceRegistry.RegisterServices(serviceCollection, mockConfig.Object);
             serviceCollection.AddTransient(x => new Mock<IAmazonCognitoIdentityProvider>().Object);
             var controllerTypes = ReflectionTricks.GetAllTypesOfType(typeof(ServiceRegistry), typeof(ControllerBase));
@@ -49,7 +55,7 @@ namespace NoREST.Tests
         {
             var serviceCollection = new ServiceCollection();
             var mockConfig = new Mock<IConfiguration>(MockBehavior.Loose);
-
+            MockConfigurationForStartup(mockConfig);
             ServiceRegistry.RegisterServices(serviceCollection, mockConfig.Object);
             serviceCollection.AddTransient(x => new Mock<IAmazonCognitoIdentityProvider>().Object);
 

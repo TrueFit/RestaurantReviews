@@ -1,4 +1,4 @@
-﻿using NoREST.Models;
+﻿using NoREST.Models.ViewModels.Outgoing;
 
 namespace NoREST.Api.Auth
 {

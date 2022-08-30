@@ -20,5 +20,6 @@ namespace NoREST.DataAccess.Entities
         public int CreatedById { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "f76dfdcb-b418-4495-bbea-473d331cef76",
+		"name": "NoREST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1747497"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic NXFnNG9uZTh2ZTJvNzAyNHN0OGRrczhlanE6MTkzNjBsbzFwMjI1dTM2cDFkNmFib2FsNHJzbmpvNm9oaHNmOWppYTVmY2o0bXRvYjl1aQ==",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "5qg4one8ve2o7024st8dks8ejq",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "19360lo1p225u36p1d6aboal4rsnjo6ohhsf9jia5fcj4mtob9ui",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "https://norest.auth.us-east-1.amazoncognito.com/all",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{cognitoAuthUrl}}/oauth2/token",
+					"host": [
+						"{{cognitoAuthUrl}}"
+					],
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJNVXl3emthZ1hrRGkyV0VETzZabWNUVlRPUUVJREtWWXBpNmdtV3FwcDVFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1cWc0b25lOHZlMm83MDI0c3Q4ZGtzOGVqcSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL25vcmVzdC5hdXRoLnVzLWVhc3QtMS5hbWF6b25jb2duaXRvLmNvbVwvYWxsIiwiYXV0aF90aW1lIjoxNjYxNzg5NTgzLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9DWUFJcW5mTlYiLCJleHAiOjE2NjE3OTMxODMsImlhdCI6MTY2MTc4OTU4MywidmVyc2lvbiI6MiwianRpIjoiYzAwOWNlM2UtYmIxZC00NTYzLWI4YmItNzcyZDU3MzY5NjJlIiwiY2xpZW50X2lkIjoiNXFnNG9uZTh2ZTJvNzAyNHN0OGRrczhlanEifQ.lZ3Ib55KCDdYbOjwyPFGRZZ8H7-zC3GhYXanVsTzNxnNG_6uQigqEplizOmwCrkU5jx5y-GcLgMOG8BVkTRkslZNYRNBF_dM-uCUng-Z0da2svSws6CAEy1-HRQrqJAQveCTJdsgTubT5hAgmw0k-WNGpNCuvp6gBNU2xBYDbW9ovd_oODGYvyWeja7f6PG0ARuXT38T3ywOHVerC0nkIOnamRZwHwYEOLwuQlJcA_CEy3NcIc-FmLBEtayK0ogJ5klrsNR3B3RdV_TTbyuNcRqiBsWFCwhLMaTiMOLenbNuhs_sSAD2sZPYQ0UIG4AyCx7GS1pgPAVsGzIF3PoNKA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin.user2\",\r\n    \"password\": \"1234owewopevnjowievjnwoiejvowienjvowienvowievn\",\r\n    \"email\": \"email@email.email\",\r\n    \"isAdmin\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiBaseUrl}}/api/v1/user/",
+					"host": [
+						"{{apiBaseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -16,7 +16,7 @@ namespace NoREST.DataAccess.Entities
         [ForeignKey(nameof(User.Id))]
         public int? CreatedById { get; set; }
         public virtual User CreatedBy { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true; //Will this appear in migrations?
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }
     }

@@ -3,7 +3,9 @@ using AutoFixture.Kernel;
 using FluentAssertions;
 using Moq;
 using NoREST.Api.Auth;
+using NoREST.Domain;
 using NoREST.Models.DomainModels;
+using NoREST.Models.ViewModels.Outgoing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,6 +109,11 @@ namespace NoREST.Tests
                 var token = testFacility.BuildAValidToken();
                 tokenWrecker.Wreck(token);
 
+                if (tokenWrecker.WillCheckSubject)
+                {
+                    testFacility.ExpectGetUser(null, token.Subject);
+                }
+
                 var error = await sut.ValidateToken(token, testFacility.Now);
 
                 Assert.NotNull(error);
@@ -139,7 +146,7 @@ namespace NoREST.Tests
                 testFacility.ExpectMatchingKeyId();
                 var sut = testFacility.BuildSut();
                 var token = testFacility.BuildAValidToken();
-
+                testFacility.ExpectGetUser(null, token.Subject);
                 var (error, result) = await sut.ValidateToken(token, testFacility.Now);
 
                 error.Should().BeNull();
@@ -175,24 +182,19 @@ namespace NoREST.Tests
             }
         }
 
-
-
-
-
         public static IEnumerable<object[]> GetInvalidTokens()
         {
             yield return new object[] { new TokenWrecker((JwtModel token) => token.Issuer = "invalidValue") };
-            yield return new object[] { new TokenWrecker((JwtModel token) => token.Subject = "invalidValue") };
+            yield return new object[] { new TokenWrecker((JwtModel token) => token.Subject = "invalidValue") { WillCheckSubject = true } };
             yield return new object[] { new TokenWrecker((JwtModel token) => token.Kid = "invalidValue") { WillCheckValidKey = false } };
             yield return new object[] { new TokenWrecker((JwtModel token) => token.Claims = new Claim[] { new Claim("token_use", "invalid") }) };
         }
-
-
 
         public class TokenWrecker
         {
             private readonly Action<JwtModel> _invalidation;
             public bool WillCheckValidKey { get; set; } = true;
+            public bool WillCheckSubject { get; set; }
             public TokenWrecker(Action<JwtModel> invalidation)
             {
                 _invalidation = invalidation;
@@ -204,24 +206,26 @@ namespace NoREST.Tests
 
         private class CognitoTokenValidatorTestFacility : IDisposable
         {
-            private static MockRepository _mockRepo = new MockRepository(MockBehavior.Strict);
+            private MockRepository _mockRepo = new MockRepository(MockBehavior.Strict);
 
             public Mock<IKeyIdHandler> KeyIdHandlerMock { get; set; }
             public TestCognitoPoolInfo CognitoPoolInfo { get; set; }
             public DateTime Now { get; set; }
             public string Kid { get; set; }
+            public Mock<IUserLogic> UserLogicMock { get; set; }
 
             public CognitoTokenValidatorTestFacility()
             {
                 KeyIdHandlerMock = _mockRepo.Create<IKeyIdHandler>();
                 CognitoPoolInfo = _fixture.Create<TestCognitoPoolInfo>();
+                UserLogicMock = _mockRepo.Create<IUserLogic>();
                 Kid = _fixture.Create<string>();
                 Now = _fixture.Create<DateTime>();
             }
 
             public CognitoTokenValidator BuildSut()
             {
-                return new CognitoTokenValidator(KeyIdHandlerMock.Object, CognitoPoolInfo, null /* fix this up when I update tests... */);
+                return new CognitoTokenValidator(KeyIdHandlerMock.Object, CognitoPoolInfo, UserLogicMock.Object);
             }
 
             public void ExpectMatchingKeyId()
@@ -233,6 +237,12 @@ namespace NoREST.Tests
             {
                 KeyIdHandlerMock.Setup(m => m.HasMatchingKeyId(It.IsAny<string>(), It.IsAny<string>()))
                     .ReturnsAsync(false);
+            }
+
+            public void ExpectGetUser(UserProfile userProfile, string subject)
+            {
+                UserLogicMock.Setup(m => m.GetUserProfileFromIdentityProviderId(subject))
+                    .ReturnsAsync(userProfile);
             }
 
             public CognitoTokenValidatorTestFacility ExpectKeyHandlerToThrow()

@@ -2,9 +2,10 @@
 using Microsoft.Extensions.Logging;
 using NoREST.DataAccess.Entities;
 using NoREST.DataAccess.Repositories;
-using NoREST.Models;
 using NoREST.Models.DomainModels;
-using NoREST.Models.ViewModels;
+using NoREST.Models.ViewModels.Creation;
+using NoREST.Models.ViewModels.Outgoing;
+using NoREST.Models.ViewModels.Profile;
 
 namespace NoREST.Domain
 {
@@ -52,6 +53,7 @@ namespace NoREST.Domain
                 var createdId = await _restaurantRepository.Create(_mapper.Map<Restaurant>(profile));
                 if (createdId == null) return null;
                 profile.Id = createdId.Value;
+                // We don't populate the CreatedBy user on return...
                 return profile;
             }
             catch (Exception ex)

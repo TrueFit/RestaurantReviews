@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NoREST.DataAccess.Entities;
 using NoREST.Models.DomainModels;
-using NoREST.Models.ViewModels;
+using NoREST.Models.ViewModels.Profile;
 
 namespace NoREST.DataAccess.Repositories
 {

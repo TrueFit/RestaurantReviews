@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NoREST.DataAccess.Entities;
 using NoREST.Models.DomainModels;
-using NoREST.Models.ViewModels;
+using NoREST.Models.ViewModels.Profile;
 
 namespace NoREST.DataAccess.Repositories
 {
@@ -35,7 +35,7 @@ namespace NoREST.DataAccess.Repositories
                     return restaurant.Id;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -56,7 +56,7 @@ namespace NoREST.DataAccess.Repositories
             {
                 var query = context.Restaurants.AsNoTracking();
 
-                if (string.IsNullOrWhiteSpace(searchFilter.City))
+                if (!string.IsNullOrWhiteSpace(searchFilter.City))
                     query = query.Where(x => x.City == searchFilter.City);
 
                 var restaurants = await query.ToListAsync();

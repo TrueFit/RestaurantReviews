@@ -20,7 +20,6 @@ namespace NoREST.Domain
             SetAuditValues(entity, isNew, now);
 
             entity.CreatedById = owner.Id;
-            entity.CreatedBy = owner;
         }
     }
 }

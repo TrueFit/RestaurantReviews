@@ -1,8 +1,8 @@
 ﻿using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using Microsoft.Extensions.Logging;
-using NoREST.Models;
 using NoREST.Models.DomainModels;
+using NoREST.Models.ViewModels.Creation;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text;

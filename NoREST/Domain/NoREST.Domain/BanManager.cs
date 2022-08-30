@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using NoREST.DataAccess.Entities;
 using NoREST.DataAccess.Repositories;
-using NoREST.Models;
 using NoREST.Models.DomainModels;
 using NoREST.Models.ViewModels;
+using NoREST.Models.ViewModels.Outgoing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,7 +58,8 @@ namespace NoREST.Domain
                 var ban = new UserRestaurantBanModel(targetUser, restaurantId, currentUser, reason);
                 _auditLogic.SetAuditValues(ban);
                 var success = await _userRepository.BanUserFromRestaurant(_mapper.Map<UserRestaurantBan>(ban));
-                return new ApiResult<bool>(success, success);
+                var statusCode = success ? HttpStatusCode.OK : HttpStatusCode.Conflict;
+                return new ApiResult<bool>(success, success, null, statusCode);
             }
             else
             {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NoREST.DataAccess.Entities;
-using NoREST.Models;
+using NoREST.Models.ViewModels.Outgoing;
 using System;
 using System.Collections.Generic;
 using System.Linq;

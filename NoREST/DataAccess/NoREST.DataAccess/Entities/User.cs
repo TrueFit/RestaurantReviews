@@ -13,7 +13,7 @@ namespace NoREST.DataAccess.Entities
         public string UserName { get; set; }
         public bool IsSystemUser { get; set; }
         public bool IsAdmin { get; set; }
-
+        public bool IsActive { get; set; } = true;
         public virtual ICollection<Restaurant> Restaurants { get; set; }
 
         public virtual ICollection<UserRestaurantBan> BannedRestaurants { get; set; }
