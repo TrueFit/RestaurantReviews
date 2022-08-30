@@ -2,6 +2,7 @@
 {
     public class KeyIdHandler : IKeyIdHandler
     {
+        //ToDo: replace with MemCache...
         private static IEnumerable<string> Kids;
         private readonly IKeyIdFetcher _keyIdFetcher;
         private static readonly ILogger<IKeyIdHandler> _logger;

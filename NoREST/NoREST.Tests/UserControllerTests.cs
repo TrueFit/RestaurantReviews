@@ -13,12 +13,7 @@ using NoREST.Models.ViewModels.Creation;
 using NoREST.Models.ViewModels.Outgoing;
 using NoREST.Models.ViewModels.Profile;
 using NoREST.Tests.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace NoREST.Tests

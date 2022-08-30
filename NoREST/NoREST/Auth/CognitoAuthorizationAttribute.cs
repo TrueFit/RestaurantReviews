@@ -30,7 +30,7 @@ namespace NoREST.Api.Auth
 
                 context.HttpContext.Items[AuthService.UserKey] = user;
             }
-            catch (Exception ex)
+            catch
             {
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
             }

@@ -53,7 +53,7 @@ namespace NoREST.Domain
                 var createdId = await _restaurantRepository.Create(_mapper.Map<Restaurant>(profile));
                 if (createdId == null) return null;
                 profile.Id = createdId.Value;
-                // We don't populate the CreatedBy user on return...
+                // We don't populate the CreatedBy user on return (just the Id)... maybe UI would want this?
                 return profile;
             }
             catch (Exception ex)

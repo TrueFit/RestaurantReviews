@@ -15,9 +15,7 @@ namespace NoREST.DataAccess.Entities
         public bool IsAdmin { get; set; }
         public bool IsActive { get; set; } = true;
         public virtual ICollection<Restaurant> Restaurants { get; set; }
-
         public virtual ICollection<UserRestaurantBan> BannedRestaurants { get; set; }
-
         public virtual ICollection<Review> Reviews { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }

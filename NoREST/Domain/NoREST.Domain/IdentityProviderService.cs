@@ -105,7 +105,7 @@ namespace NoREST.Domain
                 });
 
                     content.Headers.TryAddWithoutValidation("Authorization", "Basic " + authHeader);
-
+                                                                //ToDo: remove hard-coded string value.... -- get from IConfiguration instead
                     var response = await httpClient.PostAsync("https://norest.auth.us-east-1.amazoncognito.com/oauth2/token", content);
                     var result = await response.Content.ReadFromJsonAsync<CognitoTokenResult>();
                     return result?.access_token;
@@ -113,6 +113,7 @@ namespace NoREST.Domain
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Unexpected error getting token");
                 return null;
             }
             
