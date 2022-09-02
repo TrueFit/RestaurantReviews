@@ -14,7 +14,7 @@ public static partial class Errors
             code: "User.UserNotFound",
             description: "User not found.");
 
-        public static Error UserIsMuted => Error.Failure(
+        public static Error UserIsMuted => Error.Conflict(
             code: "User.UserIsMuted",
             description: "User is muted.");
     }

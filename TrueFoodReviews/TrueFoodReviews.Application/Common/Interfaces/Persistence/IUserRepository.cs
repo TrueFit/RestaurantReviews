@@ -8,4 +8,5 @@ public interface IUserRepository
     User? GetUserById(Guid id);
     User? GetUserByUsername(string username);
     void ToggleMute(Guid userId);
+    List<User> GetMutedUsers();
 }

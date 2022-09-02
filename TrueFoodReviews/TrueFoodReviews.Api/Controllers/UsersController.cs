@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TrueFoodReviews.Application.Users.Commands.ToggleMute;
+using TrueFoodReviews.Application.Users.Queries.List;
 
 namespace TrueFoodReviews.Api.Controllers;
 
@@ -23,6 +24,20 @@ public class UsersController : ApiController
     public async Task<IActionResult> ToggleMute(Guid id)
     {
         var reviewsResult = await _mediator.Send(new ToggleMuteCommand(id));
+        
+        return reviewsResult.Match(
+            result => Ok(result),
+            errors => Problem(errors));
+    }
+    
+    /// <summary>
+    /// Returns a list of muted users.
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<IActionResult> ListMutedUsers()
+    {
+        var reviewsResult = await _mediator.Send(new ListMutedUsersQuery());
         
         return reviewsResult.Match(
             result => Ok(result),

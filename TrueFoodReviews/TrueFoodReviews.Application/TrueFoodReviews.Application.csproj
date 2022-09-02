@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Users\Queries\List" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="ErrorOr" Version="1.0.0" />
       <PackageReference Include="MediatR" Version="10.0.1" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />

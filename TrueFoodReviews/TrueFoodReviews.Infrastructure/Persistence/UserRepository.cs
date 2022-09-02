@@ -37,4 +37,9 @@ public class UserRepository : IUserRepository
         var userToUpdate = _users.First(u => u.Id == userId);
         userToUpdate.IsMuted = !userToUpdate.IsMuted;
     }
+
+    public List<User> GetMutedUsers()
+    {
+        return _users.Where(u => u.IsMuted).ToList();
+    }
 }

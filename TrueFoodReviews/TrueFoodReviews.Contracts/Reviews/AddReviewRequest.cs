@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace TrueFoodReviews.Contracts.Reviews;
 
 public record AddReviewRequest(
@@ -5,4 +7,4 @@ public record AddReviewRequest(
     Guid UserId,
     string Title,
     string Content,
-    int Rating);
+    [Range(0,10)] int Rating);
