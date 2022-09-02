@@ -1,9 +1,11 @@
 using ErrorOr;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TrueFoodReviews.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Produces("application/json")]
 public class ApiController : ControllerBase
 {

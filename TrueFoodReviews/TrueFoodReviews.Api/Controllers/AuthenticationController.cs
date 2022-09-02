@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrueFoodReviews.Application.Authentication.Commands.Register;
 using TrueFoodReviews.Application.Authentication.Common;
@@ -25,6 +26,7 @@ public class AuthenticationController : ApiController
     /// <returns></returns>
     /// <response code="200">Returns the User object and a JWT token.</response>
     /// <response code="409">If the username is already taken.</response>
+    [AllowAnonymous]
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
@@ -48,6 +50,7 @@ public class AuthenticationController : ApiController
     /// <returns></returns>
     /// <response code="200">Returns the User object and a JWT token.</response>
     /// <response code="401">If the provided credentials were invalid.</response>
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {
