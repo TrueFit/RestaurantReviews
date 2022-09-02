@@ -11,4 +11,5 @@ public interface IReviewRepository
     List<Review> GetReviewsByUserId(Guid userId);
     Review? GetReviewByRestaurantIdAndUserId(int requestRestaurantId, Guid requestUserId);
     void Delete(Guid reviewId);
+    List<Review> GetAll();
 }

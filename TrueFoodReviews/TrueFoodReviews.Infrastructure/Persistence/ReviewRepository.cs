@@ -34,16 +34,7 @@ public class ReviewRepository : IReviewRepository
     {
         return _reviews.SingleOrDefault(r => r.Id == reviewId);
     }
-    
-    // public void Delete(Guid id)
-    // {
-    //     var existingReview = _reviews.FirstOrDefault(r => r.Id == id);
-    //     
-    //     if (existingReview == null) return;
-    //     
-    //     _reviews.Remove(existingReview);
-    // }
-    
+
     public List<Review> GetReviewsByRestaurantId(int restaurantId)
     {
         return _reviews.Where(r => r.RestaurantId == restaurantId).ToList();
@@ -62,5 +53,10 @@ public class ReviewRepository : IReviewRepository
     public void Delete(Guid reviewId)
     {
         _reviews.RemoveAll(r => r.Id == reviewId);
+    }
+
+    public List<Review> GetAll()
+    {
+        return _reviews;
     }
 }

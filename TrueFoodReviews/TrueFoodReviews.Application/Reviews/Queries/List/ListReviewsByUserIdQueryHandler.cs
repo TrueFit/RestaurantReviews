@@ -16,8 +16,6 @@ public class ListReviewsByUserIdQueryHandler : IRequestHandler<ListReviewsByUser
 
     public async Task<ErrorOr<ListReviewsResult>> Handle(ListReviewsByUserIdQuery query, CancellationToken cancellationToken)
     {
-        await Task.CompletedTask;
-        
         var reviews = _reviewRepository.GetReviewsByUserId(query.UserId);
 
         var result = new ListReviewsResult(reviews);

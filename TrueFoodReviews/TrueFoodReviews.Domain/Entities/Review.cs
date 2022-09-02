@@ -10,6 +10,4 @@ public class Review
     
     public int RestaurantId { get; set; }
     public Guid UserId { get; set; }
-    
-    // TODO: Virtual properties?
 }
