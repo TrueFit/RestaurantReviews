@@ -15,8 +15,11 @@ namespace RestaurantReviews.Domain.AggregatesModel.RestaurantAggregate
             UserId = userId;
             Name = name;
             City = city;
-            CreatedOn = DateTime.Now;
-            LastUpdatedOn = DateTime.Now;
+
+            // Audit info
+            var createdOn = DateTime.Now;
+            CreatedOn = createdOn;
+            LastUpdatedOn = createdOn;
         }
 
         public void Update(Restaurant restaurant)

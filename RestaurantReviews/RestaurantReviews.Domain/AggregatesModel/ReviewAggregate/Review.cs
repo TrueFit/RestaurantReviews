@@ -19,8 +19,11 @@ namespace RestaurantReviews.Domain.AggregatesModel.ReviewAggregate
             Text = text;
             Rating = rating;
             Active = true;
-            CreatedOn = DateTime.Now;
-            LastUpdatedOn = DateTime.Now;
+
+            // Audit info
+            var createdOn = DateTime.Now;
+            CreatedOn = createdOn;
+            LastUpdatedOn = createdOn;
         }
 
         public void Update(Review review) {
