@@ -1,3 +1,14 @@
+TODO
+1. Attributes on objects - DONE
+2. Dependency Injection - DONE
+3. Unit Tests
+4. Infrastructure Layer - DONE
+5. Business Logic - DONE
+6. Clean up/pair down
+7. Database project
+8. More explicit swagger
+9. Update ReadMe to reflect changes and installation
+
 # RestaurantReviews
 
 ## The Problem
