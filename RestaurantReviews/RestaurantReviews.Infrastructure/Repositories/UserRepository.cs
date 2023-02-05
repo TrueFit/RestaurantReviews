@@ -23,7 +23,7 @@ namespace RestaurantReviews.Infrastructure.Repositories
         public int Update(int id, User user)
         {
             var existing = GetById(id);
-            if (existing == null)
+            if (existing is null)
                 throw new ArgumentOutOfRangeException("Not a valid user identity.");
 
             existing.Update(user);

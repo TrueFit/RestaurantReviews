@@ -46,9 +46,16 @@ namespace RestaurantReviews.Api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public int Put(int id, Restaurant restaurant)
+        public ActionResult<int> Put(int id, Restaurant restaurant)
         {
-            return _restaurantRepository.Update(id, restaurant);
+            try
+            {
+                return _restaurantRepository.Update(id, restaurant);
+            }
+            catch(ArgumentOutOfRangeException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
