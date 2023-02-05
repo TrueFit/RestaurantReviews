@@ -33,9 +33,10 @@ namespace RestaurantReviews.Infrastructure.Repositories
 
         public int Insert(Review review)
         {
-            _context.Reviews.Add(review);
+            var newReview = Review.Create(review);
+            _context.Reviews.Add(newReview);
             _context.SaveChanges();
-            return review.Id;
+            return newReview.Id;
         }
 
         public int Update(int id, Review review)

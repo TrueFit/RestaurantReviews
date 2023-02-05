@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestaurantReviews.Domain.AggregatesModel.RestaurantAggregate;
 using RestaurantReviews.Domain.AggregatesModel.ReviewAggregate;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReviews.Api.Controllers
 {
@@ -7,45 +9,47 @@ namespace RestaurantReviews.Api.Controllers
     [ApiController]
     public class ReviewsController : ControllerBase
     {
-        private readonly IReviewRepository _reviewRepository;
+        private readonly IRestaurantReviewRepository _restReviewRepo;
+        private readonly IReviewRepository _reviewRepo;
 
-        public ReviewsController(IReviewRepository reviewRepository)
+        public ReviewsController(IRestaurantReviewRepository restReviewRepo, IReviewRepository reviewRepo)
         {
-            _reviewRepository = reviewRepository;
+            _restReviewRepo = restReviewRepo;
+            _reviewRepo = reviewRepo;
         }
 
         [HttpGet]
         [Route("{id}")]
         public Review Get(int id)
         {
-            return _reviewRepository.GetById(id);
+            return _reviewRepo.GetById(id);
         }
 
 
         [HttpGet]
         public IEnumerable<Review> GetReviews(int? restaurantId, int? userId)
         {
-            return _reviewRepository.Get(restaurantId, userId);
+            return _reviewRepo.Get(restaurantId, userId);
         }
 
         [HttpPost]
         public int Post([FromBody] Review review)
         {
-            return _reviewRepository.Insert(review);
+            return _restReviewRepo.AddReview(review);
         }
 
         [HttpPut]
         [Route("{id}")]
         public int Put(int id, [FromBody] Review review)
         {
-            return _reviewRepository.Update(id, review);
+            return _restReviewRepo.UpdateReview(id, review);
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public void Delete(int id)
+        public void Delete(int id, [Required] int userId)
         {
-            _reviewRepository.Delete(id);
+            _restReviewRepo.DeleteReview(id, userId);
         }
     }
 }

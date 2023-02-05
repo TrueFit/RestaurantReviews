@@ -26,6 +26,11 @@ namespace RestaurantReviews.Domain.AggregatesModel.ReviewAggregate
             LastUpdatedOn = createdOn;
         }
 
+        public static Review Create(Review review)
+        {
+            return new Review(review.RestaurantId, review.UserId, review.Text, review.Rating);
+        }
+
         public void Update(Review review) {
             Text = review.Text;
             Rating = review.Rating;
