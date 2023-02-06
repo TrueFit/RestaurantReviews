@@ -15,6 +15,10 @@ namespace RestaurantReviews.Domain.AggregatesModel.UserAggregate
             IsSuspended = isSuspended;
         }
 
+        /// <summary>
+        /// Sets User attributes
+        /// </summary>
+        /// <param name="user">Updated User attributes</param>
         public void Update(User user)
         {
             FirstName = user.FirstName;

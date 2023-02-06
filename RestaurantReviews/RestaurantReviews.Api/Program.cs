@@ -1,9 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using RestaurantReviews.Domain.AggregatesModel.RestaurantAggregate;
 using RestaurantReviews.Domain.AggregatesModel.ReviewAggregate;
 using RestaurantReviews.Domain.AggregatesModel.UserAggregate;
-using RestaurantReviews.Domain.Seedwork;
 using RestaurantReviews.Infrastructure;
 using RestaurantReviews.Infrastructure.Repositories;
 

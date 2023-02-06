@@ -13,6 +13,10 @@ namespace RestaurantReviews.Domain.AggregatesModel.RestaurantAggregate
             City = city;
         }
 
+        /// <summary>
+        /// Sets Restaurant attributes
+        /// </summary>
+        /// <param name="restaurant">Updated Restaurant attributes</param>
         public void Update(Restaurant restaurant)
         {
             Name = restaurant.Name;

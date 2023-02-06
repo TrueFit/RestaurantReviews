@@ -35,6 +35,11 @@ namespace RestaurantReviews.Domain.AggregatesModel.RestaurantAggregate
             _reviewRepository.Delete(id);
         }
 
+        /// <summary>
+        /// Validates associated Restaurant and User
+        /// </summary>
+        /// <param name="review">Review to be validated</param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void Validate(Review review)
         {
             if (_restaurantRepository.GetById(review.RestaurantId) is null)
@@ -42,6 +47,12 @@ namespace RestaurantReviews.Domain.AggregatesModel.RestaurantAggregate
             ValidateUser(review.UserId);
         }
 
+        /// <summary>
+        /// Validates associated User
+        /// </summary>
+        /// <param name="userId">Identity of User to be validated</param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         private void ValidateUser(int userId)
         {
             var user = _userRepository.GetById(userId);
