@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.17.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
@@ -18,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RestaurantReviews.Domain\RestaurantReviews.Domain.csproj" />
+    <ProjectReference Include="..\RestaurantReviews.Infrastructure\RestaurantReviews.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

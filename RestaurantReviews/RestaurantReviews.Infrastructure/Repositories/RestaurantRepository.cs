@@ -35,7 +35,7 @@ namespace RestaurantReviews.Infrastructure.Repositories
 
             existing.Update(restaurant);
             _context.SaveChanges();
-            return restaurant.Id;
+            return existing.Id;
         }
     }
 }
