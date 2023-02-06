@@ -1,39 +1,19 @@
-TODO
-1. Attributes on objects - DONE
-2. Dependency Injection - DONE
-3. Unit Tests
-4. Infrastructure Layer - DONE
-5. Business Logic - DONE
-6. Clean up/pair down
-7. Database project
-8. More explicit swagger
-9. Update ReadMe to reflect changes and installation
-
 # RestaurantReviews
+## Introduction
+RESTful API that collects and manages reviews for restaurants. Provides basic CRUD operations for users, restaurants, and reviews with validation on reviews. Only users who have not been suspended can contribute to reviews.
 
-## The Problem
-Truefit is in the midst of building a mobile application that will let restaurant patrons rate the restaurant in which they are eating. As part of the build, we need to develop an API that will accept and store the ratings and other sundry data. 
+## Getting Started
+Current version uses in-memory database. When permentant storage is determined update Program.cs with connection string.
 
-For this project, we would like you to build this api. Feel free to add your own twists and ideas to what type of data we should collect and return, but at a minimum your API should be able to:
+Database source controlling has not been implemented. Several options are available based on hosting environment and deploy pipelines.
 
-1. Create a user
-2. Create a restaurant
-3. Create a review for a restaurant
-4. Get of a list of reviews by user
-5. Get of a list of reviews by restaurant
-6. Get a list of restaurants by city
-7. Delete a review
-8. Block a user from posting a review
+Common options:
+- [SQL Database Projects](https://www.c-sharpcorner.com/article/how-to-create-sql-server-database-project-with-visual-studio/)
+- [Entity Code First](https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database)
+- [DbUp](https://dbup.readthedocs.io/en/latest/)
 
-## The Fine Print
-Please use whatever technology and techniques you feel are applicable to solve the problem. We suggest that you approach this exercise as if this code was part of a larger system. The end result should be representative of your abilities and style.
+## Build and Test
+Clone the repository locally and run to make/test changes. Current version uses in-memory database. 
 
-Please fork this repository. When you have completed your solution, please issue a pull request to notify us that you are ready.
-
-Have fun.
-
-# Things To Consider
-Here are a couple of thoughts about the domain that could influence your response:
-
-* We are building a mobile application independent of your development, what might be the best way to communicate to other developer how to user your API?
-* After you turn your code over for the API, how might you help ensure future developers can feel confident updating it?
+## Contribute
+API was modeled on [Domain-Driven Design](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice). Unit tests have been added to help document and preserve funcitonality as updates are made.
