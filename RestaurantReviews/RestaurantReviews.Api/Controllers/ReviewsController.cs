@@ -33,23 +33,45 @@ namespace RestaurantReviews.Api.Controllers
         }
 
         [HttpPost]
-        public int Post([FromBody] Review review)
+        public ActionResult<int> Post([FromBody] Review review)
         {
-            return _restReviewRepo.AddReview(review);
+            try
+            {
+                return Ok(_restReviewRepo.AddReview(review));
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPut]
         [Route("{id}")]
-        public int Put(int id, [FromBody] Review review)
+        public ActionResult<int> Put(int id, [FromBody] Review review)
         {
-            return _restReviewRepo.UpdateReview(id, review);
+            try
+            {
+                return Ok(_restReviewRepo.UpdateReview(id, review));
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public void Delete(int id, [Required] int userId)
+        public ActionResult Delete(int id, [Required] int userId)
         {
-            _restReviewRepo.DeleteReview(id, userId);
+            try
+            {
+                _restReviewRepo.DeleteReview(id, userId);
+                return Ok();
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

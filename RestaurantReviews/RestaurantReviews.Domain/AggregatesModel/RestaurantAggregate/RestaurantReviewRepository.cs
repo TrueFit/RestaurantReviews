@@ -35,17 +35,20 @@ namespace RestaurantReviews.Domain.AggregatesModel.RestaurantAggregate
             _reviewRepository.Delete(id);
         }
 
-        private void Validate(Review review)
+        public void Validate(Review review)
         {
-            if (_restaurantRepository.GetById(review.RestaurantId) == null)
-                throw new Exception("Restaurant no valid");
+            if (_restaurantRepository.GetById(review.RestaurantId) is null)
+                throw new ArgumentOutOfRangeException("Restaurant no valid");
             ValidateUser(review.UserId);
         }
 
         private void ValidateUser(int userId)
         {
-            if (_userRepository.GetById(userId).IsSuspended)
-                throw new Exception("User not allowed to contribute.");
+            var user = _userRepository.GetById(userId);
+            if (user is null)
+                throw new ArgumentOutOfRangeException("Not a valid user idenity.");
+            if (user.IsSuspended)
+                throw new ArgumentException("User suspended and not allowed to contribute.");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace RestaurantReviews.Infrastructure.Repositories
         public void Delete(int id)
         {
             var existing = GetById(id);
-            if (existing == null)
+            if (existing is null)
                 throw new ArgumentOutOfRangeException("Not a valid review identity.");
 
             existing.Delete();
